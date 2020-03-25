@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using Microsoft.EntityFrameworkCore;
+using YumiAPI.Models;
+
 namespace YumiAPI
 {
     public class Startup
@@ -25,6 +28,19 @@ namespace YumiAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<YumiContext>(
+                options => options.UseSqlite("Data Source=YumiDb.db")
+            );
+            services.AddCors(
+                options => {
+                    options.AddPolicy("AllowAll",
+                        builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                    );
+                }
+            );
             services.AddControllers();
         }
 
@@ -35,6 +51,8 @@ namespace YumiAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
 
