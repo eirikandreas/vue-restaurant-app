@@ -174,6 +174,7 @@ export default {
                 dateAdded: new Date().toLocaleString()
             },
             defaultItem: {
+   
                 imgUrl: '',
                 title: '',
                 ingredients: '',
@@ -203,21 +204,12 @@ export default {
     created() {
         this.initialize()
         this.getDataFromApi()
-
-        
-
-
-
     },
 
     methods: {
-     
-      
         getDataFromApi() {
             this.loading = true
             const webAPIUrl = "https://localhost:5001/menuitems/";
-
-            
 
             this.$http.get(webAPIUrl)
                 .then(response => {
@@ -252,21 +244,24 @@ export default {
             this.editedItem = Object.assign({}, item)
             this.dialog = true
             let webAPIUrl = `https://localhost:5001/menuitems/${this.editedIndex}`;
+            console.log(this.editedIndex)
 
             this.$http.get(webAPIUrl)
                 .then(result => {
                     this.menuItem = result.data;
                 })
+             this.getDataFromApi()
         },
 
         deleteItem(item) {
-            this.editedIndex = this.menuItems.indexOf(item)
+            const index = this.menuItems.indexOf(item)
+            
             let webAPIUrl = `https://localhost:5001/menuitems/${item.id}`;
-            confirm('Are you sure you want to delete this item?') && this.menuItems.splice(this.editedIndex, 1)
-
+            this.menuItems.splice(index, 1)
             this.$http.delete(webAPIUrl)
                 .then(
                     console.log("Deleted item with ID: " + item.id),
+                     
                 )
         },
 
@@ -295,9 +290,12 @@ export default {
                 this.$http.post(webAPIUrl, this.editedItem)
                     .then(response => {
                         console.log(response);
-                        console.log("Then what?")
+                     
                     })
+                 
+                       
             }
+            this.getDataFromApi()
             this.close()
         },
     },
