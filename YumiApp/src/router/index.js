@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Dashboard from '../pages/admin/DashboardPage/Dashboard.vue'
+import Orders from '../pages/admin/DashboardPage/Orders.vue'
+import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
+import EditUsers from '../pages/admin/DashboardPage/EditUsers.vue'
+import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
 
 Vue.use(VueRouter)
 
@@ -29,9 +34,41 @@ const routes = [
     component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboard.vue')
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "admin" */ '../pages/admin/Index.vue'),
+    children: [
+      {
+        // UserProfile will be rendered inside User's <router-view>
+        // when /user/:id/profile is matched
+        path: 'dashboard',
+        component: Dashboard
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'orders',
+        component: Orders
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'editmenu',
+        component: EditMenu
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'editusers',
+        component: EditUsers
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'pagesettings',
+        component: PageSettings
+      },
+    ]
   }
 ]
 

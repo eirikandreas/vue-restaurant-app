@@ -28,6 +28,7 @@ export default {
   },
 
   data: () => ({
+    isAdmin: true,
     header: { title: "YUMI", bgColor: "transparent", cartItems: 3, isLoggedIn: false, isAdmin: false}
     //
   }),

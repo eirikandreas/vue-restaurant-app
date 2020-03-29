@@ -1,7 +1,11 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace YumiAPI.Models{
+
     public class MenuItem{
+        private string _stringZero = "0";
+      
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
@@ -11,7 +15,8 @@ namespace YumiAPI.Models{
         public string Category { get; set; }
         public string ImgUrl { get; set; }
         public string Rating { get; set; }
-        public string TimesOrdered { get; set; }
+        [DefaultValue("0")]
+        public string TimesOrdered { get { return _stringZero; } set { _stringZero = value;} }
         public string DateAdded { get; set; }
         public string IsFeatured { get; set; }
         
