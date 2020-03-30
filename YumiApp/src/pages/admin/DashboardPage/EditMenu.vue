@@ -4,11 +4,21 @@
             <v-toolbar-title class="headline ml-n4">Edit Menu</v-toolbar-title>
     
             <v-spacer></v-spacer>
+            <div width="100px" class="mt-5 mr-5">
+              <v-select
+          :items="items"
+          label="Solo field"
+          solo
+          dense
+          flat
+          width="200px"
+        ></v-select>
+            </div>
             <v-dialog :fullscreen="$vuetify.breakpoint.xsOnly" v-model="dialog" max-width="960px" class="mx-auto">
                 <template v-slot:activator="{ on }">
                    <v-btn depressed color="black" dark class="mb-2 mr-n5" v-on="on">New Item</v-btn>
 </template>
-          <v-card>
+          <v-card block>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
@@ -58,10 +68,10 @@
 <v-card class="shadow">
  <v-data-table
     :headers="headers"
-    :items="menuItems"
+    :items="menuItems.slice().reverse()"
     :loading="loading"
     loading-text="Hold on, while we are getting the menu!"
-    sort-by="dateAdded"
+    sort-by="id"
     sort-desc
   
   >
@@ -122,7 +132,7 @@
     <h1 class="headline mt-5 mb-5">
         There are no Menu Items to display.</h1>
     <h2 class="subtitle-1 mt-5 mb-5">If there should be, try to reset</h2>
-    <v-btn dark depressed color="black" class="mb-5" @click="initialize">Reset</v-btn>
+    <v-btn dark depressed color="black" class="mb-5" @click="initialize">Reload</v-btn>
 </template>
   </v-data-table>
 
@@ -151,6 +161,7 @@ export default {
                     sortable: false,
 
                 },
+                { text: 'Id', value: 'id', align: 'start' },
                 { text: 'Title', value: 'title', align: 'start' },
                 { text: 'Ingredients', value: 'ingredients' },
                 { text: 'Allergens', value: 'allergens' },
@@ -164,6 +175,7 @@ export default {
             menuItems: [],
             editedIndex: -1,
             editedItem: {
+              
                 imgUrl: '',
                 title: '',
                 ingredients: '',
@@ -171,10 +183,10 @@ export default {
                 category: '',
                 price: '',
                 timesOrdered: '0',
-                dateAdded: new Date().toLocaleString()
+                dateAdded: new Date().toDateString()
             },
             defaultItem: {
-   
+        
                 imgUrl: '',
                 title: '',
                 ingredients: '',
@@ -182,7 +194,7 @@ export default {
                 category: '',
                 price: '',
                 timesOrdered: '0',
-                dateAdded: new Date().toLocaleString()
+                dateAdded: new Date().toDateString()
             },
             menuItem: []
 
@@ -204,6 +216,7 @@ export default {
     created() {
         this.initialize()
         this.getDataFromApi()
+        
     },
 
     methods: {
@@ -290,12 +303,14 @@ export default {
                 this.$http.post(webAPIUrl, this.editedItem)
                     .then(response => {
                         console.log(response);
+                        this.getDataFromApi()
                      
                     })
+                    
                  
                        
             }
-            this.getDataFromApi()
+            
             this.close()
         },
     },

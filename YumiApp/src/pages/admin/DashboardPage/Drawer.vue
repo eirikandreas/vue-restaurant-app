@@ -3,7 +3,7 @@
     <v-navigation-drawer
       permanent
       absolute
-      :width="320"
+      :width="240"
       v-model="isSmall"
     >
            <template v-slot:prepend>
@@ -35,7 +35,6 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-
       </v-list>
 
      <!-- <template v-slot:append>
