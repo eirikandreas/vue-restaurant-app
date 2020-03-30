@@ -6,6 +6,7 @@ using YumiAPI.Models;
 using System.Linq;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace YumiAPI.Controllers{
 
@@ -14,8 +15,11 @@ namespace YumiAPI.Controllers{
     public class MenuItemsController : ControllerBase{
         
         private readonly YumiContext _context;
-        public MenuItemsController(YumiContext context){
+
+        private readonly IWebHostEnvironment _hosting;
+        public MenuItemsController(YumiContext context, IWebHostEnvironment hosting){
             _context = context;
+            _hosting = hosting;
         }
 
         [HttpGet]
@@ -51,6 +55,18 @@ namespace YumiAPI.Controllers{
             _context.MenuItem.Add(menuItem);
             await _context.SaveChangesAsync();
             return menuItem;
+        }
+
+        // Image Uploader
+
+        [HttpPost]
+        [Route("[action]")]
+        public void SavePicture(IFormFile file){
+            string webrootpath = _hosting.WebRootPath;
+            string absolutepath = Path.Combine($"{webrootpath}/images/{file.FileName}");
+            using(var filestream = new FileStream(absolutepath, FileMode.Create)){
+                file.CopyTo(filestream);
+            }
         }
 
 

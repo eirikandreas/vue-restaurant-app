@@ -4,20 +4,20 @@
             <v-toolbar-title class="headline ml-n4">Edit Menu</v-toolbar-title>
     
             <v-spacer></v-spacer>
+
+            <!-- select category -->
+
+            <!-- 
             <div width="100px" class="mt-5 mr-5">
-              <v-select
-          :items="items"
-          label="Solo field"
-          solo
-          dense
-          flat
-          width="200px"
-        ></v-select>
+                <v-select :items="items" label="Solo field" solo dense flat width="200px"></v-select>
             </div>
+            -->
+            <!-- select category end --> 
             <v-dialog :fullscreen="$vuetify.breakpoint.xsOnly" v-model="dialog" max-width="960px" class="mx-auto">
                 <template v-slot:activator="{ on }">
-                   <v-btn depressed color="black" dark class="mb-2 mr-n5" v-on="on">New Item</v-btn>
-</template>
+                <v-btn depressed color="black" dark class="mb-2 mr-n5" v-on="on">New Item</v-btn>
+            </template>
+
           <v-card block>
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
@@ -31,9 +31,10 @@
 
                     <v-textarea dense filled
           auto-grow background-color="#eff1f4" v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
-                  
-                 <!--  <v-file-input dense filled background-color="#eff1f4" accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
-                 -->
+
+        <!-- IMAGE UPLOADER -->        
+     <v-file-input id="file" name="file" dense filled background-color="#eff1f4" accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
+            
                   </v-col>
 
 
@@ -76,13 +77,13 @@
   
   >
 
-<!--
+
 <template v-slot:item.imgUrl="{ item }">
-    <v-img class="round-img mt-3 mb-3" :src="require(`@/assets/${item.imgUrl}`)" width="40px" height="40px">
+    <v-img class="round-img mt-3 mb-3" :src="`https:/localhost:5001/images/${item.imgUrl}`" width="40px" height="40px">
     </v-img>
 </template>
 
--->
+
 <template v-slot:item.title="{ item }">
     <div class="font-weight-bold"> {{ item.title }}</div>
 </template>
@@ -133,15 +134,15 @@
         There are no Menu Items to display.</h1>
     <h2 class="subtitle-1 mt-5 mb-5">If there should be, try to reset</h2>
     <v-btn dark depressed color="black" class="mb-5" @click="initialize">Reload</v-btn>
-</template>
-  </v-data-table>
+    </template>
+     </v-data-table>
 
-</v-card>
-
-
+        </v-card>
 
 
-</div>
+
+
+    </div>
 </template>
 
 <script>
@@ -149,11 +150,12 @@ export default {
     name: 'EditMenu',
     data() {
         return {
-      
+
             loading: true,
             dialog: false,
-            categories: ['Nigiri', 'Maki', 'Sashimi', 'Bowl', 'Vegetarian', 
-            'Dessert'],
+            categories: ['Nigiri', 'Maki', 'Sashimi', 'Bowl', 'Vegetarian',
+                'Dessert'
+            ],
             headers: [{
                     text: '',
                     value: 'imgUrl',
@@ -175,7 +177,7 @@ export default {
             menuItems: [],
             editedIndex: -1,
             editedItem: {
-              
+
                 imgUrl: '',
                 title: '',
                 ingredients: '',
@@ -186,8 +188,8 @@ export default {
                 dateAdded: new Date().toDateString()
             },
             defaultItem: {
-        
-                imgUrl: '',
+
+                imgUrl: 'default.jpg',
                 title: '',
                 ingredients: '',
                 allergens: '',
@@ -201,7 +203,7 @@ export default {
         }
     },
     computed: {
-      
+
         formTitle() {
             return this.editedIndex === -1 ? 'New  Menu Item' : 'Edit Menu Item'
         },
@@ -216,7 +218,7 @@ export default {
     created() {
         this.initialize()
         this.getDataFromApi()
-        
+
     },
 
     methods: {
@@ -239,6 +241,34 @@ export default {
                         this.loading = false
                     }, 3000)
                 })
+            
+        },
+
+        uploadImage(){
+            let file = document.getElementById("file");
+
+            let data = new FormData();
+
+
+            if(data != "") { 
+
+                this.editedItem.imgUrl = "default.jpg";
+
+            } else {
+
+            data.append( "file", file.files[0] );
+            console.log(data);
+
+            this.$http({
+                method: 'post',
+                url: "https://localhost:5001/menuitems/savepicture",
+                data: data,
+                config: { headers: {'Content-Type': 'mulitpart/form-data'}}
+            })
+
+            this.editedItem.imgUrl = file.files[0].name;
+
+            }
 
         },
         initialize() {
@@ -263,18 +293,21 @@ export default {
                 .then(result => {
                     this.menuItem = result.data;
                 })
-             this.getDataFromApi()
+            
+        
+            this.getDataFromApi()
+
         },
 
         deleteItem(item) {
             const index = this.menuItems.indexOf(item)
-            
+
             let webAPIUrl = `https://localhost:5001/menuitems/${item.id}`;
             this.menuItems.splice(index, 1)
             this.$http.delete(webAPIUrl)
                 .then(
                     console.log("Deleted item with ID: " + item.id),
-                     
+
                 )
         },
 
@@ -296,7 +329,7 @@ export default {
                         console.log(response);
                         console.log("Put request firing ");
                     })
-                    
+
             } else {
                 this.menuItems.push(this.editedItem)
                 const webAPIUrl = "https://localhost:5001/menuitems";
@@ -304,13 +337,15 @@ export default {
                     .then(response => {
                         console.log(response);
                         this.getDataFromApi()
-                     
+
                     })
-                    
-                 
-                       
+             
+
+
+
             }
-            
+       
+            this.uploadImage()
             this.close()
         },
     },
