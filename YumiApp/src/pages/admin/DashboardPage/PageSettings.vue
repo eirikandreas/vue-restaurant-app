@@ -1,6 +1,7 @@
 <template>
-   <div>
-    <v-toolbar-title class="headline ml-n4">Page Settings</v-toolbar-title>
+   <div>    <v-toolbar flat color="transparent">
+            <v-toolbar-title class="headline ml-n4">Page Settings</v-toolbar-title>
+            </v-toolbar>
     <v-card block flat class="shadow">
 
 <v-row>
