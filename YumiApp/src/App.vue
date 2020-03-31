@@ -10,21 +10,24 @@
 
     <v-content>
       <router-view
-      absolute top
-      class="mt-n-header"
+     
+   
       />
     </v-content>
+    <TheFooter/>
   </v-app>
 </template>
 
 <script>
 import TheHeader from './components/layout/TheHeader';
+import TheFooter from './components/layout/TheFooter';
 
 export default {
   name: 'App',
 
   components: {
-    TheHeader
+    TheHeader,
+    TheFooter
   },
 
   data: () => ({

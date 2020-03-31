@@ -1,21 +1,38 @@
 <template>
   <div class="home">
+        <Carousel/>
+        
     <Hero
     :title="hero.title"
     :btnValue="hero.btnValue"
     :bgImage="hero.imgUrl"
     />
+
+
+
+
+    <CategorySection/>
+
+
+
+
+
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Hero from '@/components/Hero.vue'
+import Hero from '@/pages/HomePage/Hero.vue'
+import Carousel from '@/pages/HomePage/Carousel.vue'
+import CategorySection from '@/pages/HomePage/CategorySection.vue'
 
 export default {
   name: 'Home',
   components: {
-    Hero
+    Hero,
+    Carousel,
+    CategorySection,
   },
   data(){
     return {

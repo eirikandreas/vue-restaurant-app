@@ -18,9 +18,9 @@
 
 
 
-<div class="hidden-sm-and-down" v-for="(link, index) in links" :key="index">
+<div class="hidden-sm-and-down mx-auto" v-for="(link, index) in links" :key="index">
 
-<v-btn text>{{ link.title }} </v-btn>
+<v-btn text :to="`${link.to}`">{{ link.title }} </v-btn>
 
 </div>
 
@@ -213,6 +213,7 @@ export default {
         { title: 'Menu', to: '/menu'},
         { title: 'About', to: '/about' },
         { title: 'Contact', to: '/contact' },
+        { title: 'Order Online', to: '/orderonline' },
       ]
         }
     },
