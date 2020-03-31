@@ -25,12 +25,13 @@
 <v-row>
 
     <v-col cols="12" sm="6" md="4">
-<v-card>
+<v-card color="transparent">
          <v-card-title>Links</v-card-title>
-            <v-list>
+            <v-list color="transparent">
                   <v-list-item
           v-for="(link, i) in links"
           :key="i"
+          
         >
          <v-list-item-content>
             <v-list-item-title><v-btn text :to="`${link.to}`">{{link.title}}</v-btn></v-list-item-title>
@@ -48,7 +49,7 @@
 
 
  <v-col cols="12" sm="6" md="4"> 
-     <v-card>
+     <v-card color="transparent">
          <v-card-title>Contact</v-card-title>
       <v-card-text class="white--text pt-0">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -61,7 +62,7 @@
 
     <v-col cols="12" sm="12" md="4"> 
 
-        <v-card>
+        <v-card color="transparent">
 
              <v-card-title>About</v-card-title>
       <v-card-text class="white--text pt-0">
@@ -107,6 +108,7 @@
 <script>
 export default {
     name: 'TheFooter',
+    
     props: {
         title: { type: String, default: "App" },
         bgColor: { type: String, default: "transparent"},
@@ -116,6 +118,7 @@ export default {
     },
     data() {
         return {
+          transparent: 'rgba(0, 0, 0, 0)',
            icons: [
         'mdi-facebook',
         'mdi-twitter',
