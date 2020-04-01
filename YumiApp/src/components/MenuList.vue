@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <v-container>
+   
+<div>
+       
         <v-row>
             <v-col cols="12" md="4" v-for="menuItem in menuItems" :key="menuItem.id">
         <MenuItem
@@ -17,9 +18,8 @@
         <div class="text-center">
         <v-btn depressed rounded large color="amber accent-3" class="mt-5 mb-5">View our menu</v-btn>
         </div>
-        </v-container>
-        </div> 
-
+</div>
+    
 </template>
 <script>
 import MenuItem from './MenuItem.vue'
@@ -35,7 +35,7 @@ export default {
     
     },
     created(){
-
+        
         let webAPIUrl = "https://localhost:5001/menuitems";
         this.$http.get( webAPIUrl )
             .then( result => {

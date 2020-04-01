@@ -1,26 +1,36 @@
 <template>
-
+<div>
+   <v-hover v-slot:default="{ hover }">
      <v-card flat class="white--text">
+      
 <v-img :src="`https:/localhost:5001/images/${image}`" height="300px">
 <div class="overlay-gradient d-flex flex-column justify-end">
 
-    <v-card-title>{{title}}</v-card-title>
+    <v-card-title class="headline">{{title}}</v-card-title>
      <v-card-subtitle class="white--text">{{category}}</v-card-subtitle>
 
-     <v-card-text>
+<v-expand-transition>
 
-     </v-card-text>
+    <div v-if="hover" class="d-flex transition-fast-in-slow-out">
 
-     <v-card-actions>
-<v-btn rounded depressed color="amber accent-3 mb-5">View</v-btn>
-<v-btn rounded depressed color="amber accent-3 mb-5">Order</v-btn>
-     </v-card-actions>
 
+   <v-card-text>
+        
+  <v-btn rounded depressed color="amber accent-3 mr-3">View</v-btn>
+<v-btn rounded depressed color="amber accent-3">Order</v-btn>      
+   </v-card-text>
+        </div>
+   
+
+</v-expand-transition>
 
 </div>
 
 </v-img>
+    
      </v-card>
+      </v-hover>
+</div>
 </template>
 <script>
 export default {
@@ -41,6 +51,10 @@ export default {
 </script>
 
 <style scoped>
+
+.v-card--reveal {
+
+}
 .ovl {
     background-color: red;
     
