@@ -9,7 +9,7 @@
     />
 
 -->
-
+    <MenuItemsSection/>
 
     <CategorySection/>
 
@@ -31,6 +31,7 @@ import Carousel from '@/pages/HomePage/Carousel.vue'
 import CategorySection from '@/pages/HomePage/CategorySection.vue'
 import ConceptSection from '@/pages/HomePage/ConceptSection.vue'
 import ParallaxSection from '@/pages/HomePage/ParallaxSection.vue'
+import MenuItemsSection from '@/pages/HomePage/MenuItemsSection.vue'
 
 export default {
   name: 'Home',
@@ -39,7 +40,8 @@ export default {
     Carousel,
     CategorySection,
     ConceptSection,
-    ParallaxSection
+    ParallaxSection,
+    MenuItemsSection
   },
   data(){
     return {
