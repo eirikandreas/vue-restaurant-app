@@ -89,8 +89,7 @@ export default {
 </script>
 
 <style scoped>
-.icon-opacity {
-}
+
 
 .section-bg{
   background-color: #111111;

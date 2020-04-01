@@ -24,10 +24,10 @@
 
 <v-row>
 
-    <v-col cols="12" sm="6" md="4">
+    <v-col cols="12" sm="6" md="3">
 <v-card color="transparent">
-         <v-card-title>Links</v-card-title>
-            <v-list color="transparent">
+         <v-card-title>Sitemap</v-card-title>
+            <v-list color="transparent" dense>
                   <v-list-item
           v-for="(link, i) in links"
           :key="i"
@@ -48,7 +48,7 @@
 
 
 
- <v-col cols="12" sm="6" md="4"> 
+ <v-col cols="12" sm="6" md="3"> 
      <v-card color="transparent">
          <v-card-title>Contact</v-card-title>
       <v-card-text class="white--text pt-0">
@@ -60,7 +60,7 @@
 
 
 
-    <v-col cols="12" sm="12" md="4"> 
+    <v-col cols="12" sm="12" md="3"> 
 
         <v-card color="transparent">
 
@@ -72,7 +72,17 @@
     </v-col>
 
 
-    
+        <v-col cols="12" sm="12" md="3"> 
+
+        <v-card color="transparent">
+
+             <v-card-title>About</v-card-title>
+      <v-card-text class="white--text pt-0">
+        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </v-card-text>
+        </v-card>
+    </v-col>
+
 
 
 
