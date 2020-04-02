@@ -250,7 +250,7 @@ export default {
             let data = new FormData();
 
 
-            if(data === "") { 
+            if(data != "") { 
 
                 this.editedItem.imgUrl = "default.jpg";
 
