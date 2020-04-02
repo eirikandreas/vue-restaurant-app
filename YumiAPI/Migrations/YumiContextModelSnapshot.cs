@@ -39,14 +39,14 @@ namespace YumiAPI.Migrations
                     b.Property<string>("IsFeatured")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Rating")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("TimesOrdered")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("TimesOrdered")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");

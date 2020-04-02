@@ -5,10 +5,12 @@
         <v-row>
             <v-col cols="12" md="4" v-for="menuItem in menuItems" :key="menuItem.id">
         <MenuItem
-      
+        :id="menuItem.id"
         :title="menuItem.title"
         :image="menuItem.imgUrl"
         :category="menuItem.category"
+        :price="menuItem.price"
+        :rating="menuItem.rating"
         />
             </v-col>
 
