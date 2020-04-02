@@ -3,7 +3,8 @@
 <div>
        
         <v-row>
-            <v-col cols="12" md="4" v-for="menuItem in menuItems" :key="menuItem.id">
+            <v-col cols="12" v-if="!menuItems.length"><h2 clasS="display-1 grey--text">No Menu Items added</h2></v-col>
+            <v-col cols="12" md="4" v-for="menuItem in menuItems.slice(0, 3) " :key="menuItem.id">
         <MenuItem
         :id="menuItem.id"
         :title="menuItem.title"

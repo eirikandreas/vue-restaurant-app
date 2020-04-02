@@ -1,5 +1,5 @@
 <template>
-<section id="menuitems-section">
+<section id="menuitems-section" class="d-flex align-center">
 <v-container>
 
 
@@ -34,6 +34,10 @@ export default {
 }
 </script>
 <style scoped>
+
+#menuitems-section {
+    min-height: 650px;
+}
 .hero-font-size-sm {
     font-size: 5rem;
     line-height: 4.5rem;
