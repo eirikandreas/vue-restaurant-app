@@ -6,6 +6,7 @@ import Orders from '../pages/admin/DashboardPage/Orders.vue'
 import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
 import EditUsers from '../pages/admin/DashboardPage/EditUsers.vue'
 import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,10 @@ const routes = [
         component: PageSettings
       },
     ]
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 

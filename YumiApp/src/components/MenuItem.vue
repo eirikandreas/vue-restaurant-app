@@ -6,7 +6,7 @@
 <v-img :src="`https:/localhost:5001/images/${image}`" height="300px">
 <div class="overlay-gradient d-flex flex-column justify-end">
 
-<div class="d-flex flex-row justify-space-between">
+<div class="d-flex flex-row justify-space-between mb-3">
 <div class="d-flex flex-column">
     <v-card-title class="headline">{{title}}</v-card-title>
      <v-card-subtitle class="white--text">{{category}}</v-card-subtitle>
