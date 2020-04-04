@@ -1,8 +1,10 @@
 <template>
-     <div>
+
+   <section id="parallax-section">
 
 
-  <v-parallax height="300" width="500" dark :src="require(`@/assets/images/${sectionParallaxImg}`)">
+
+  <v-parallax height="500" width="500" dark :src="require(`@/assets/images/${sectionParallaxImg}`)">
     <v-row
       align="center"
       justify="center"
@@ -11,29 +13,22 @@
     >
       <v-col class="text-center  d-flex flex-column align-center" cols="12">
         <v-img class="align-center" :src="require(`@/assets/icons/${sectionParallaxIcon}`)" width="64" height="64"></v-img>
-        <h1 class="display-4 font-weight-thin mb-4">Our menu</h1>
+        <h1 class="display-4 font-weight-thin mb-4">Order online</h1>
+        <h4 class="subheading">Get the perfect combination of sushi and sashimi for your next party</h4>
+        <v-btn depressed rounded large color="amber accent-3" class="mt-5">Register</v-btn>
       </v-col>
     </v-row>
   </v-parallax>
-<v-container>
-  <MenuList
-  :displayItems="display"
-  />
-</v-container>
 
-     </div>
+
+
+   </section>
 </template>
 <script>
-import MenuList from '@/components/MenuList.vue'
-
 export default {
-    name: 'Menu',
-    components: {
-        MenuList
-    },
-       data () {
+    name: 'ParallaxSection',
+     data () {
       return {
-        display: 4,
         sectionParallaxImg: 'parallax-5.jpg',
         sectionParallaxIcon: 'takeaway-w.png',
         colors: [
@@ -52,7 +47,6 @@ export default {
         ],
       }
     },
-    
 }
 </script>
 <style scoped>

@@ -8,7 +8,7 @@ using YumiAPI.Models;
 namespace YumiAPI.Migrations
 {
     [DbContext(typeof(YumiContext))]
-    [Migration("20200325180150_InitialCreate")]
+    [Migration("20200402003718_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,14 +41,14 @@ namespace YumiAPI.Migrations
                     b.Property<string>("IsFeatured")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("Rating")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("TimesOrdered")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("TimesOrdered")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
