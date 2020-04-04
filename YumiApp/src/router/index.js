@@ -6,6 +6,9 @@ import Orders from '../pages/admin/DashboardPage/Orders.vue'
 import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
 import EditUsers from '../pages/admin/DashboardPage/EditUsers.vue'
 import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
+import SettingsGeneral from '../pages/admin/DashboardPage/SettingsGeneral.vue'
+import SettingsContent from '../pages/admin/DashboardPage/SettingsContent.vue'
+import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -68,6 +71,24 @@ const routes = [
         // when /user/:id/posts is matched
         path: 'pagesettings',
         component: PageSettings
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'settingsgeneral',
+        component: SettingsGeneral
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'settingscontent',
+        component: SettingsContent
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'settingsdisplay',
+        component: SettingsDisplay
       },
     ]
   },

@@ -5,6 +5,7 @@
     <v-col
     cols="12"
     md="2"
+    
    >
 
 
@@ -44,5 +45,6 @@ export default {
 }
 .dashboard-bg {
     background-color: #eff1f4;
+    min-height: 650px;
 }
 </style>

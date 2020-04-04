@@ -33,8 +33,10 @@
           auto-grow background-color="#eff1f4" v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
 
         <!-- IMAGE UPLOADER -->        
+
+
      <v-file-input id="file" name="file" dense filled background-color="#eff1f4" accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
-            
+ 
                   </v-col>
 
 
@@ -79,7 +81,7 @@
 
 
 <template v-slot:item.imgUrl="{ item }">
-    <v-img class="round-img mt-3 mb-3" :src="`https:/localhost:5001/images/${item.imgUrl}`" width="40px" height="40px">
+    <v-img class="round-img mt-3 mb-3" :src="`https://localhost:5001/images/${item.imgUrl}`" width="40px" height="40px">
     </v-img>
 </template>
 
@@ -183,8 +185,7 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
-                price: '',
-                timesOrdered: '0',
+                price: Number(''),
                 dateAdded: new Date().toDateString()
             },
             defaultItem: {
@@ -194,8 +195,6 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
-                price: '',
-                timesOrdered: '0',
                 dateAdded: new Date().toDateString()
             },
             menuItem: []
@@ -241,23 +240,37 @@ export default {
                         this.loading = false
                     }, 3000)
                 })
-            
+    
+    
+
+
         },
 
         uploadImage(){
             let file = document.getElementById("file");
 
             let data = new FormData();
+            
+            data.append( "file", file.files[0] );
+            console.log("WHAT IS THIS DATA?" + data.entries());
 
 
-            if(data === "") { 
-
-                this.editedItem.imgUrl = "default.jpg";
+            if(file.value == "") { 
+           
+               console.log("No image uploaded :/ But default should")
+            this.editedItem.imgUrl = "default.jpg";
 
             } else {
+         
 
-            data.append( "file", file.files[0] );
-            console.log(data);
+
+
+
+
+
+
+             console.log("THIS ITEM HAS AN IMAGE");
+            
 
             this.$http({
                 method: 'post',
@@ -269,6 +282,7 @@ export default {
             this.editedItem.imgUrl = file.files[0].name;
 
             }
+
 
         },
         initialize() {
@@ -336,16 +350,17 @@ export default {
                 this.$http.post(webAPIUrl, this.editedItem)
                     .then(response => {
                         console.log(response);
-                        this.getDataFromApi()
+                        console.log("Save post request firing ");
 
                     })
              
 
-
+                       this.getDataFromApi()
 
             }
        
             this.uploadImage()
+   
             this.close()
         },
     },
