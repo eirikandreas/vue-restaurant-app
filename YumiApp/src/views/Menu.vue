@@ -15,7 +15,16 @@
       </v-col>
     </v-row>
   </v-parallax>
+
+  <v-container fluid class="pt-5 pb-5" style="backgroundColor: #f3f3f4">Hei</v-container>
 <v-container>
+
+<!--  <h1 class="display-3 font-weight-bold mt-10 mb-10">Top picks</h1> -->
+
+ <!-- SEARCH COMPONENT -->
+
+ <v-text-field dense rounded outlined label="Search menu"></v-text-field>
+
   <MenuList
   :displayItems="display"
   />
