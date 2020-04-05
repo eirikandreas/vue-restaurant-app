@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <TheHeader 
-    :title="header.title"
+    :title="pageContent.pageTitle"
     :cartItems="header.cartItems"
     :isLoggedIn="header.isLoggedIn"
     :isAdmin="header.isAdmin"
@@ -32,9 +32,23 @@ export default {
 
   data: () => ({
     isAdmin: true,
-    header: { title: "YUMI", bgColor: "black", cartItems: 3, isLoggedIn: false, isAdmin: false}
+    header: { title: "YUMI", bgColor: "black", cartItems: 3, isLoggedIn: false, isAdmin: false},
+    pageContent: {}
     //
   }),
+    methods: {
+        getPageContent(){
+            let webAPIUrl = "https://localhost:5001/pagecontent/1";
+            this.$http.get( webAPIUrl )
+                .then( result => {
+                    this.pageContent = result.data;
+                    console.log(this.pageContent)
+                })
+        }
+    },
+    created(){
+      this.getPageContent()
+    }
   
 };
 </script>

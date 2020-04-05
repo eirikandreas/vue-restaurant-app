@@ -1,26 +1,14 @@
 <template>
 
-    <div class="mt-p-header dashboard-bg fill-height">
-<v-row>
-    <v-col
-    cols="12"
-    md="2"
-    
-   >
+    <div class="mt-p-header dashboard-bg fill-height d-flex align-content-stretch">
 
 
 
         <Drawer/>
-    </v-col>
-    <v-col
-    cols="12"
-    md="10">
 
-        <router-view class="ml-5 mr-5"/>
+        <router-view class="ml-5 mr-5 flex-grow-1"/>
 
 
-    </v-col>
-</v-row>
 
         </div> 
 </template>

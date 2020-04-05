@@ -22,6 +22,7 @@
             label="Type title"
             outlined
             flat
+            v-model="editPage.pageTitle"
       
             
         ></v-text-field>
@@ -44,6 +45,7 @@
             label="Type your e-mail"
             outlined
             flat
+            v-model="editPage.contactEmail"
       
             
         ></v-text-field>
@@ -63,6 +65,7 @@
             label="Type phone number"
             outlined
             flat
+            v-model="editPage.contactNumber"
         
             
         ></v-text-field>
@@ -83,6 +86,7 @@
             label="Type your contact address"
             outlined
             flat
+            v-model="editPage.contactAddress"
         
             
         ></v-text-field>
@@ -98,6 +102,16 @@
 </v-list>
 <v-list-item>
     <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Submit</v-btn>
+
+
+    
+</v-list-item>
+
+<v-list-item>
+    <v-btn color="green accent-3" class="white--text" depressed absolute right @click="savePageContent()">Save</v-btn>
+
+
+    
 </v-list-item>
     
 </v-col>
@@ -164,7 +178,32 @@ export default {
             switch1: true,
         switch2: false,
         dialog: false,
+        editPage: {}
         }
+    },
+     methods: {
+       initialize() {
+         this.editPage = {}
+       },
+        getPageContent(){
+            let webAPIUrl = "https://localhost:5001/pagecontent/1";
+            this.$http.get( webAPIUrl )
+                .then( result => {
+                    this.editPage = result.data;
+                    console.log(this.editPage)
+                })
+        },
+        savePageContent(){
+            let webAPIUrl = "https://localhost:5001/pagecontent";
+            this.$http.put( webAPIUrl, this.editPage )
+            console.log("SAVE");
+            this.getPageContent()
+            
+        }
+    },
+    created() {
+      this.initialize()
+      this.getPageContent()
     }
     
 }

@@ -195,7 +195,7 @@
 export default {
     name: 'TheHeader',
     props: {
-        title: { type: String, default: "App" },
+        title: { type: String, default: "" },
         bgColor: { type: String, default: "transparent"},
         cartItems: { type: Number, default: 0},
         isLoggedIn: { type: Boolean, default: false },
@@ -214,9 +214,10 @@ export default {
         { title: 'About', to: '/about' },
         { title: 'Contact', to: '/contact' },
         { title: 'Order Online', to: '/orderonline' },
-      ]
+      ],
+    
         }
-    },
+    }
 
 }
 </script>

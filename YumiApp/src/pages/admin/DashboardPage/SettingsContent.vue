@@ -14,12 +14,13 @@
   <v-row>
   <v-col cols="4">
 
- <v-subheader>Hero text</v-subheader>
+ <v-subheader>About Page Text</v-subheader>
             </v-col>
  <v-col cols="8">
         <v-textarea
             outlined
-            label="Type hero text"
+            label="Type about text"
+            v-model="editPage.aboutPageText"
          
         
             
@@ -33,7 +34,7 @@
   <v-row>
   <v-col cols="4">
 
- <v-subheader>Hero Image</v-subheader>
+ <v-subheader>About Page Image</v-subheader>
             </v-col>
  <v-col cols="8">
         <v-file-input label="File input" outlined dense></v-file-input>
@@ -48,12 +49,13 @@
   <v-row>
   <v-col cols="4">
 
- <v-subheader>About text</v-subheader>
+ <v-subheader>Contact Page Text</v-subheader>
             </v-col>
  <v-col cols="8">
         <v-textarea
             outlined
             label="Type about text"
+            v-model="editPage.contactPageText"
          
         
             
@@ -68,7 +70,7 @@
   <v-row>
   <v-col cols="4">
 
- <v-subheader>About Image</v-subheader>
+ <v-subheader>Contact Page Image</v-subheader>
             </v-col>
  <v-col cols="8">
         <v-file-input label="File input" outlined dense></v-file-input>
@@ -87,6 +89,11 @@
 </v-list>
 <v-list-item>
     <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Submit</v-btn>
+</v-list-item>
+
+<v-list-item>
+
+    <v-btn color="green accent-3" class="white--text" depressed absolute right @click="savePageContent()">Save</v-btn>
 </v-list-item>
     
 </v-col>
@@ -153,7 +160,32 @@ export default {
             switch1: true,
         switch2: false,
         dialog: false,
+        editPage: {}
         }
+    },
+     methods: {
+       initialize() {
+         this.editPage = {}
+       },
+        getPageContent(){
+            let webAPIUrl = "https://localhost:5001/pagecontent/1";
+            this.$http.get( webAPIUrl )
+                .then( result => {
+                    this.editPage = result.data;
+                    console.log(this.editPage)
+                })
+        },
+        savePageContent(){
+            let webAPIUrl = "https://localhost:5001/pagecontent";
+            this.$http.put( webAPIUrl, this.editPage )
+            console.log("SAVE");
+            this.getPageContent()
+            
+        }
+    },
+    created() {
+      this.initialize()
+      this.getPageContent()
     }
     
 }

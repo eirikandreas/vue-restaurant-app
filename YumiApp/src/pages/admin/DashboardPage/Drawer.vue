@@ -1,11 +1,15 @@
 <template>
 
     <v-navigation-drawer
-      permanent
-      absolute
-      :width="240"
-      v-model="isSmall"
-      min-height="600px"
+
+    :disable-resize-watcher="isSMall"
+      :mobile-break-point="$vuetify.breakpoint.mdAndDown"
+      :mini-variant="$vuetify.breakpoint.mdAndDown"
+      min-width="60px"
+
+
+  
+
     >
            <template v-slot:prepend>
         <v-list-item two-line>
@@ -85,12 +89,11 @@ export default {
     name: 'Drawer',
      data () {
       return {
-          isSmall: false,
+          isSmall: true,
         items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard', link: "/admin/dashboard" },
           { title: 'View Orders', icon: 'mdi-bell-outline', link: "/admin/orders" },
           { title: 'Edit Menu', icon: 'mdi-pencil-outline', link: "/admin/editmenu" },
-          { title: 'Users', icon: 'mdi-account-group-outline', link: "/admin/editusers" },
         ],
         settings: [
           { title: 'Page Settings', icon: 'mdi-cogs', link: "/admin/pagesettings", items: [ { title: 'General', link: "/admin/settingsgeneral" }, { title: 'Content', link: "/admin/settingscontent" }, { title: 'Display', link: "/admin/settingsdisplay" } ] },

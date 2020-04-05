@@ -20,48 +20,92 @@
 
           <v-card block>
             <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
+              <span class="headline font-weight-bold">{{ formTitle }}</span>
             </v-card-title>
-
+             <v-divider></v-divider>
             <v-card-text>
+
+          
               <v-container>
                 <v-row>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field dense filled background-color="#eff1f4" v-model="editedItem.title" label="Title"></v-text-field>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field dense outlined v-model="editedItem.title" label="Title"></v-text-field>
 
-                    <v-textarea dense filled
-          auto-grow background-color="#eff1f4" v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
-
-        <!-- IMAGE UPLOADER -->        
-
-
-     <v-file-input id="file" name="file" dense filled background-color="#eff1f4" accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
- 
                   </v-col>
 
 
+       
 
-      
-                  <v-col cols="12" sm="6" md="6">
-                    
-                    <v-text-field dense filled background-color="#eff1f4" v-model="editedItem.allergens" label="Allergens"></v-text-field>
-                 
-                       <v-select dense filled background-color="#eff1f4"
+
+
+<v-col cols="12" sm="6" md="4">
+
+      <v-text-field dense outlined v-model="editedItem.price" label="Price"></v-text-field>
+</v-col>
+
+
+<v-col cols="12" md="4">
+
+  <v-select dense outlined 
           v-model="editedItem.category"
           :items="categories"
-          label="Select category"
+          label="Choose category"
         ></v-select>
-   
-                    <v-text-field dense filled background-color="#eff1f4" v-model="editedItem.price" label="Price"></v-text-field>
+
+</v-col>
+
+
+         </v-row>
+
+         <v-row>
+
+<v-col cols="12" md="6">
+        <v-textarea dense outlined
+          auto-grow v-model="editedItem.ingredients" label="Description"></v-textarea>
+
+
+</v-col>
+
+
+        
+
+<v-col cols="12" md="6">
+        <v-textarea dense outlined
+          auto-grow v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
+
+
+</v-col>
+
+         </v-row>
+
+
+         <v-row>
+                  <v-col cols="12" sm="12" md="12">
+                    
+                    <v-text-field dense outlined v-model="editedItem.allergens" label="Allergens"></v-text-field>
+                 
+                     
+
                   </v-col>
+
+
+         </v-row>
+
+         <v-row>
+                    
+        <!-- IMAGE UPLOADER -->        
+<v-col cols="12" sm="12" md="12">
+
+     <v-file-input id="file" name="file" dense outlined accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
+</v-col>
                 </v-row>
               </v-container>
             </v-card-text>
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              <v-btn color="grey lighten-3" depressed @click="close">Cancel</v-btn>
+              <v-btn color="green accent-2" depressed @click="save">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -71,7 +115,7 @@
 <v-card class="shadow">
  <v-data-table
     :headers="headers"
-    :items="menuItems.slice().reverse()"
+    :items="menuItems"
     :loading="loading"
     loading-text="Hold on, while we are getting the menu!"
     sort-by="id"
@@ -117,8 +161,8 @@
 
 
 <template v-slot:item.isFeatured="{ item }">
-    <v-btn depressed small min-width="120px" @click="item.isFeatured = !item.isFeatured">
-        {{ item.isFeatured ? 'Set Featured' : 'Is Featured' }}
+    <v-btn depressed small min-width="120px" :color="setFeatured(item.isFeatured)" @click="item.isFeatured = !item.isFeatured">
+        {{ item.isFeatured ? 'Is Featured' : 'Set Featured' }}
     </v-btn>
 </template>
 
@@ -185,6 +229,7 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
+                isFeatured: "false",
                 price: Number(''),
                 dateAdded: new Date().toDateString()
             },
@@ -195,6 +240,7 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
+                isFeatured: "false",
                 dateAdded: new Date().toDateString()
             },
             menuItem: []
@@ -207,7 +253,6 @@ export default {
             return this.editedIndex === -1 ? 'New  Menu Item' : 'Edit Menu Item'
         },
     },
-
     watch: {
         dialog(val) {
             val || this.close()
@@ -219,7 +264,6 @@ export default {
         this.getDataFromApi()
 
     },
-
     methods: {
         getDataFromApi() {
             this.loading = true
@@ -240,38 +284,24 @@ export default {
                         this.loading = false
                     }, 3000)
                 })
-    
-    
-
 
         },
-
         uploadImage(){
             let file = document.getElementById("file");
-
             let data = new FormData();
             
             data.append( "file", file.files[0] );
             console.log("WHAT IS THIS DATA?" + data.entries());
 
-
             if(file.value == "") { 
            
-               console.log("No image uploaded :/ But default should")
+            console.log("No image uploaded :/ But default should")
             this.editedItem.imgUrl = "default.jpg";
 
             } else {
-         
 
-
-
-
-
-
-
-             console.log("THIS ITEM HAS AN IMAGE");
+            console.log("THIS ITEM HAS AN IMAGE");
             
-
             this.$http({
                 method: 'post',
                 url: "https://localhost:5001/menuitems/savepicture",
@@ -283,48 +313,48 @@ export default {
 
             }
 
-
         },
         initialize() {
             this.menuItems = []
         },
-
         getColor(price) {
             if (price > 5) return 'green accent-3'
             else if (price > 3) return 'orange accent-3'
             else if (price < 1) return 'grey lighten-4 black--text'
             else return 'red accent-3'
         },
-
+        setFeatured(isFeatured) {
+            if(isFeatured != true ) {
+                return 'grey lighten-3'
+              
+            
+            } else {
+                return 'green'
+            }
+        },
         editItem(item) {
             this.editedIndex = this.menuItems.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
             let webAPIUrl = `https://localhost:5001/menuitems/${this.editedIndex}`;
             console.log(this.editedIndex)
-
-            this.$http.get(webAPIUrl)
+           
+           this.$http.get(webAPIUrl)
                 .then(result => {
                     this.menuItem = result.data;
                 })
-            
-        
             this.getDataFromApi()
-
         },
-
         deleteItem(item) {
             const index = this.menuItems.indexOf(item)
-
             let webAPIUrl = `https://localhost:5001/menuitems/${item.id}`;
             this.menuItems.splice(index, 1)
+            
             this.$http.delete(webAPIUrl)
                 .then(
                     console.log("Deleted item with ID: " + item.id),
-
                 )
         },
-
         close() {
             this.dialog = false
             setTimeout(() => {
@@ -332,12 +362,11 @@ export default {
                 this.editedIndex = -1
             }, 300)
         },
-
         save() {
             if (this.editedIndex > -1) {
                 Object.assign(this.menuItems[this.editedIndex], this.editedItem)
-
                 const webAPIUrl = "https://localhost:5001/menuitems/";
+               
                 this.$http.put(webAPIUrl, this.editedItem)
                     .then(response => {
                         console.log(response);
@@ -347,20 +376,17 @@ export default {
             } else {
                 this.menuItems.push(this.editedItem)
                 const webAPIUrl = "https://localhost:5001/menuitems";
+                
                 this.$http.post(webAPIUrl, this.editedItem)
                     .then(response => {
                         console.log(response);
                         console.log("Save post request firing ");
-
+                        this.getDataFromApi()
                     })
-             
-
-                       this.getDataFromApi()
-
+                       
             }
        
             this.uploadImage()
-   
             this.close()
         },
     },

@@ -42,8 +42,8 @@ namespace YumiAPI.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Rating")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("TimesOrdered")
                         .HasColumnType("INTEGER");
@@ -89,6 +89,59 @@ namespace YumiAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("YumiAPI.Models.PageContent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AboutImage")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AboutPageText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CarouselItems")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CarouselVisible")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactAddress")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactHours")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactPageText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PageLogo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PageTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SocialFacebook")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SocialInstagram")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SocialTwitter")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PageContent");
                 });
 
             modelBuilder.Entity("YumiAPI.Models.User", b =>
