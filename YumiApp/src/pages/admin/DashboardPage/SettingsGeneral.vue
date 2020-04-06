@@ -2,7 +2,7 @@
    <div>    <v-toolbar flat color="transparent">
             <v-toolbar-title class="headline ml-n4">Page Settings</v-toolbar-title>
             </v-toolbar>
-    <v-card block flat class="shadow">
+    <v-card>
 
 <v-row>
 <v-col cols="12" md="12" lg="12">
@@ -21,7 +21,7 @@
             dense
             label="Type title"
             outlined
-            flat
+    
             v-model="editPage.pageTitle"
       
             
@@ -101,17 +101,7 @@
 
 </v-list>
 <v-list-item>
-    <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Submit</v-btn>
-
-
-    
-</v-list-item>
-
-<v-list-item>
-    <v-btn color="green accent-3" class="white--text" depressed absolute right @click="savePageContent()">Save</v-btn>
-
-
-    
+    <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Save</v-btn>
 </v-list-item>
     
 </v-col>
@@ -132,7 +122,7 @@
       max-width="600"
     >
       <v-card>
-        <v-card-title class="headline">Submit changes</v-card-title>
+        <v-card-title class="headline">Save changes</v-card-title>
 
         <v-card-text>
           This will apply changes to the web page settings. Do you want to continue?
@@ -155,9 +145,9 @@
             color="grey lighten-4"
             depressed
        
-            @click="dialog = false"
+            @click="savePageContent()"
           >
-            Submit
+            Save
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -198,6 +188,7 @@ export default {
             this.$http.put( webAPIUrl, this.editPage )
             console.log("SAVE");
             this.getPageContent()
+            this.dialog = false;
             
         }
     },

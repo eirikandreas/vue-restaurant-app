@@ -1,9 +1,10 @@
 <template>
 
     <v-navigation-drawer
-
-    :disable-resize-watcher="isSMall"
-      :mobile-break-point="$vuetify.breakpoint.mdAndDown"
+    dark
+    color="#111111"
+      :disable-resize-watcher="true"
+      mobile-break-point="$vuetify.breakpoint.mdAndDown"
       :mini-variant="$vuetify.breakpoint.mdAndDown"
       min-width="60px"
 
@@ -26,11 +27,12 @@
 
       <v-divider></v-divider>
 
-      <v-list dense>
+      <v-list dense rounded>
         <v-list-item
           v-for="item in items"
           :key="item.title"
           :to="item.link"
+          color="amber accent-3"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -52,6 +54,7 @@
         v-model="item.active"
         :prepend-icon="item.icon"
         no-action
+        color="amber accent-3"
       >
         <template v-slot:activator>
           <v-list-item-content>
@@ -89,14 +92,13 @@ export default {
     name: 'Drawer',
      data () {
       return {
-          isSmall: true,
         items: [
           { title: 'Dashboard', icon: 'mdi-view-dashboard', link: "/admin/dashboard" },
           { title: 'View Orders', icon: 'mdi-bell-outline', link: "/admin/orders" },
           { title: 'Edit Menu', icon: 'mdi-pencil-outline', link: "/admin/editmenu" },
         ],
         settings: [
-          { title: 'Page Settings', icon: 'mdi-cogs', link: "/admin/pagesettings", items: [ { title: 'General', link: "/admin/settingsgeneral" }, { title: 'Content', link: "/admin/settingscontent" }, { title: 'Display', link: "/admin/settingsdisplay" } ] },
+          { title: 'Page Settings', icon: 'mdi-cogs', link: "/admin/pagesettings", items: [ { title: 'General', link: "/admin/settingsgeneral" }, { title: 'Content', link: "/admin/settingscontent" }, { title: 'Display', link: "/admin/settingsdisplay" }, { title: 'Social', link: "/admin/settingssocial" } ] },
         ]
       }
     },

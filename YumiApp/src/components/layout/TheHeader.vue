@@ -213,7 +213,6 @@ export default {
         { title: 'Menu', to: '/menu'},
         { title: 'About', to: '/about' },
         { title: 'Contact', to: '/contact' },
-        { title: 'Order Online', to: '/orderonline' },
       ],
     
         }

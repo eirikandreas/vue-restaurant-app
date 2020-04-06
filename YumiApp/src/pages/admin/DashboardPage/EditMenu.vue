@@ -29,7 +29,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field dense outlined v-model="editedItem.title" label="Title"></v-text-field>
+                    <v-text-field color="amber accent-3" dense outlined v-model="editedItem.title" label="Title"></v-text-field>
 
                   </v-col>
 
@@ -40,13 +40,16 @@
 
 <v-col cols="12" sm="6" md="4">
 
-      <v-text-field dense outlined v-model="editedItem.price" label="Price"></v-text-field>
+      <v-text-field color="amber accent-3" dense outlined v-model="editedItem.price" label="Price"></v-text-field>
 </v-col>
 
 
 <v-col cols="12" md="4">
 
-  <v-select dense outlined 
+  <v-select 
+  
+  dense outlined 
+  color="amber accent-3"
           v-model="editedItem.category"
           :items="categories"
           label="Choose category"
@@ -61,7 +64,7 @@
 
 <v-col cols="12" md="6">
         <v-textarea dense outlined
-          auto-grow v-model="editedItem.ingredients" label="Description"></v-textarea>
+          auto-grow color="amber accent-3" v-model="editedItem.ingredients" label="Description"></v-textarea>
 
 
 </v-col>
@@ -71,7 +74,7 @@
 
 <v-col cols="12" md="6">
         <v-textarea dense outlined
-          auto-grow v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
+          auto-grow color="amber accent-3" v-model="editedItem.ingredients" label="Ingredients"></v-textarea>
 
 
 </v-col>
@@ -82,7 +85,7 @@
          <v-row>
                   <v-col cols="12" sm="12" md="12">
                     
-                    <v-text-field dense outlined v-model="editedItem.allergens" label="Allergens"></v-text-field>
+                    <v-text-field dense outlined color="amber accent-3" v-model="editedItem.allergens" label="Allergens"></v-text-field>
                  
                      
 
@@ -96,23 +99,40 @@
         <!-- IMAGE UPLOADER -->        
 <v-col cols="12" sm="12" md="12">
 
-     <v-file-input id="file" name="file" dense outlined accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
+     <v-file-input id="file" name="file" color="amber accent-3" dense outlined accept="image/*" label="Upload Image" prepend-icon="mdi-camera"></v-file-input> 
 </v-col>
+
+
                 </v-row>
+
+
+
+<v-row>
+<v-card outlined flat width="100%" class="d-flex align-center">
+<v-card-text>
+    Add the this Menu Item to the Front Page Carousel by setting it as Featured.
+
+ </v-card-text>
+  <v-switch inset v-model="editedItem.isFeatured" color="green lighten-1"></v-switch>
+</v-card>
+
+ </v-row>
+
+
               </v-container>
             </v-card-text>
 
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="grey lighten-3" depressed @click="close">Cancel</v-btn>
-              <v-btn color="green accent-2" depressed @click="save">Save</v-btn>
+              <v-btn color="green lighten-1" depressed @click="save">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </v-toolbar>
   
 
-<v-card class="shadow">
+<v-card>
  <v-data-table
     :headers="headers"
     :items="menuItems"
@@ -134,9 +154,7 @@
     <div class="font-weight-bold"> {{ item.title }}</div>
 </template>
 
-<template v-slot:item.ingredients="{ item }">
-    <div class="grey--text"> {{ item.ingredients }}</div>
-</template>
+
 
 <template v-slot:item.allergens="{ item }">
     <div class="grey--text"> {{ item.allergens }}</div>
@@ -161,9 +179,15 @@
 
 
 <template v-slot:item.isFeatured="{ item }">
+    
+    <!--
     <v-btn depressed small min-width="120px" :color="setFeatured(item.isFeatured)" @click="item.isFeatured = !item.isFeatured">
         {{ item.isFeatured ? 'Is Featured' : 'Set Featured' }}
     </v-btn>
+
+    -->
+
+      <v-switch v-model="item.isFeatured" inset color="green lighten-1"></v-switch>
 </template>
 
 <template v-slot:item.actions="{ item }">
@@ -203,7 +227,7 @@ export default {
                 'Dessert'
             ],
             headers: [{
-                    text: '',
+                    text: 'Image',
                     value: 'imgUrl',
 
                     sortable: false,
@@ -211,8 +235,7 @@ export default {
                 },
                 { text: 'Id', value: 'id', align: 'start' },
                 { text: 'Title', value: 'title', align: 'start' },
-                { text: 'Ingredients', value: 'ingredients' },
-                { text: 'Allergens', value: 'allergens' },
+
                 { text: 'Category', value: 'category' },
                 { text: 'Price', value: 'price' },
                 { text: 'Popularity', value: 'timesOrdered' },
@@ -229,7 +252,7 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
-                isFeatured: "false",
+                isFeatured: false,
                 price: Number(''),
                 dateAdded: new Date().toDateString()
             },
@@ -240,7 +263,7 @@ export default {
                 ingredients: '',
                 allergens: '',
                 category: '',
-                isFeatured: "false",
+                isFeatured: false,
                 dateAdded: new Date().toDateString()
             },
             menuItem: []
@@ -320,7 +343,7 @@ export default {
         getColor(price) {
             if (price > 5) return 'green accent-3'
             else if (price > 3) return 'orange accent-3'
-            else if (price < 1) return 'grey lighten-4 black--text'
+            else if (price < 1) return 'grey lighten-3 black--text'
             else return 'red accent-3'
         },
         setFeatured(isFeatured) {

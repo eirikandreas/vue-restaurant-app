@@ -2,7 +2,7 @@
    <div>    <v-toolbar flat color="transparent">
             <v-toolbar-title class="headline ml-n4">Page Settings</v-toolbar-title>
             </v-toolbar>
-    <v-card block flat class="shadow">
+    <v-card>
 
 <v-row>
 <v-col cols="12" md="12" lg="12">
@@ -39,8 +39,8 @@
  <v-subheader>Options</v-subheader>
             </v-col>
  <v-col cols="8">
-     <v-switch v-model="switch1" :label="`Switch 1: ${switch1.toString()}`"></v-switch>
-     <v-switch v-model="switch2" :label="`Switch 2: ${switch2.toString()}`"></v-switch>
+     <v-switch inset color="green lighten-1" v-model="switch1" :label="`Switch 1: ${switch1.toString()}`"></v-switch>
+     <v-switch inset color="green lighten-1" v-model="switch2" :label="`Switch 2: ${switch2.toString()}`"></v-switch>
  </v-col>
     </v-row>
 </v-list-item>
@@ -56,7 +56,7 @@
 
 </v-list>
 <v-list-item>
-    <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Submit</v-btn>
+    <v-btn color="green accent-3" class="white--text" depressed absolute right @click.stop="dialog = true">Save</v-btn>
 </v-list-item>
     
 </v-col>
@@ -102,7 +102,7 @@
        
             @click="dialog = false"
           >
-            Submit
+            Save
           </v-btn>
         </v-card-actions>
       </v-card>
