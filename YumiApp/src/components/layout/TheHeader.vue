@@ -97,7 +97,7 @@
 
         <template v-else>
 
-            <v-btn rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Log in</v-btn>
+            <v-btn to="/Login" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Logg in</v-btn>
         
         </template>
 
@@ -114,8 +114,10 @@
 </template>
 
 <script>
+
 export default {
     name: 'TheHeader',
+    
     props: {
         title: { type: String, default: "App" },
         bgColor: { type: String, default: "transparent"},

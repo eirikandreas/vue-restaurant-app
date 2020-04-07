@@ -34,7 +34,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
   },
   {
-    path: '/admin',
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../components/Login.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import(/* webpackChunkName: "login" */ '../components/Register.vue')
+  },
+  {
+    path: '/admin', 
     name: 'Admin',
     component: () => import(/* webpackChunkName: "admin" */ '../pages/admin/Index.vue'),
     children: [
