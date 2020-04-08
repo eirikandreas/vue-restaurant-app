@@ -29,11 +29,40 @@ namespace YumiAPI.Controllers{
         }
 
         [HttpGet("{id}")]
+        [Route("[action]")]
         public async Task<MenuItem> Get(int id){
             MenuItem chosenMenuItem = await _context.MenuItem.FirstOrDefaultAsync( menuItem => menuItem.Id == id );
             return chosenMenuItem;
 
         }
+
+
+        [HttpGet("title/{title}")]
+        [Route("[action]")]
+        public async Task<IEnumerable<MenuItem>> Get(string title){
+            List<MenuItem> menuItemList = await _context.MenuItem
+                .Where( 
+                    menuItem => menuItem.Title.ToLower()
+                    .Contains(title.ToLower()) 
+                )
+                .ToListAsync();
+
+            return menuItemList;
+        } 
+
+        [HttpGet("category/{category}")]
+        [Route("[action]")]
+        public async Task<IEnumerable<MenuItem>> GetCategory(string category){
+            List<MenuItem> menuItemCategory = await _context.MenuItem
+                .Where( 
+                    menuItem => menuItem.Category.ToLower()
+                    .Contains(category.ToLower()) 
+                )
+                .ToListAsync();
+
+            return menuItemCategory;
+        } 
+
 
         [HttpPut]
         public async Task<MenuItem> Put(MenuItem updateMenuItem){

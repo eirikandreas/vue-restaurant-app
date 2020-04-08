@@ -1,5 +1,5 @@
 <template>
-   
+<!-- MAY BE REDUNDANT -->
 <div>
         <template v-if="menuItems.length === 0">
 
