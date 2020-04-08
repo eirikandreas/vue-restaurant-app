@@ -205,6 +205,9 @@
     <h2 class="subtitle-1 mt-5 mb-5">If there should be, try to reset</h2>
     <v-btn dark depressed color="black" class="mb-5" @click="initialize">Reload</v-btn>
     </template>
+
+
+    
      </v-data-table>
 
         </v-card>

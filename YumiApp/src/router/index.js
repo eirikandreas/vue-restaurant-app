@@ -9,6 +9,9 @@ import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
 import SettingsGeneral from '../pages/admin/DashboardPage/SettingsGeneral.vue'
 import SettingsContent from '../pages/admin/DashboardPage/SettingsContent.vue'
 import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
+import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
+import MenuList from '../pages/MenuPage/MenuList.vue'
+import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -30,7 +33,27 @@ const routes = [
   {
     path: '/menu',
     name: 'Menu',
-    component: () => import(/* webpackChunkName: "menu" */ '../views/Menu.vue')
+    component: () => import(/* webpackChunkName: "menu" */ '../views/Menu.vue'),
+    children: [
+      {
+        path: '',
+        component: MenuList
+      },
+      {
+        path: ':category',
+        component: MenuCategoryList
+      },
+      {
+        path: ':category/:id',
+        name: 'MenuItemDetails',
+        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/MenuItemDetails.vue')
+      },
+      {
+        path: 'search/:title', 
+        component: MenuSearchList, 
+
+      },
+    ]
   },
   {
     path: '/profile',
