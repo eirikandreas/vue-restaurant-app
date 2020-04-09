@@ -34,7 +34,7 @@
                             <div v-if="hover" class="d-flex transition-fast-in-slow-out">
                                 <v-card-text>
                                     <v-btn rounded depressed color="amber accent-3 mr-3" :to="`/menu/${category.toLowerCase()}/${id}`">View</v-btn>
-                                    <v-btn rounded depressed color="amber accent-3">Order</v-btn>
+                                    <v-btn rounded depressed color="amber accent-3" @click="placeOrder()">Order</v-btn>
                                 </v-card-text>
                             </div>
                         </v-expand-transition>
@@ -76,6 +76,14 @@ export default {
             let webAPIUrl = "https://localhost:5001/menuitems";
             this.$http.put(webAPIUrl, this.menuItem)
             console.log(this.menuItem)
+
+        },
+        //TESTING ORDER FUNCTION
+        placeOrder() {
+            let orders = [];
+            orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(this.menuItem);
+            localStorage.setItem("orders", JSON.stringify(orders));
 
         }
     },
