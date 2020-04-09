@@ -4,18 +4,18 @@
         <v-card flat height="800">
             <v-row>
                 <v-col>
-                    <v-card-title class="display-4">{{menuItem.title}}</v-card-title>
-                    <v-img :src="`https://localhost:5001/images/${menuItem.imgUrl}`" height="300px"></v-img>
+                    <v-card-title class="display-2 font-weight-bold">{{menuItem.title}}</v-card-title>
+                    <v-img :src="`https://localhost:5001/images/${menuItem.imgUrl}`" height="350px"></v-img>
                 </v-col>
 
             </v-row>
             <v-row>
-                <v-col cols="12" sm="12" lg="4">
+                <v-col cols="12" sm="4" lg="4">
                     <v-card-text>{{menuItem.category}}</v-card-text>
                     <v-card-subtitle>Allergens:</v-card-subtitle>
                     <v-card-text>{{menuItem.allergens}}</v-card-text>
                 </v-col>
-                <v-col cols="12" sm="12" lg="8">
+                <v-col cols="12" sm="8" lg="8">
                     <v-card-text>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolore eligendi numquam optio, iste neque iusto debitis repellendus nisi quos?
                     </v-card-text>

@@ -53,7 +53,7 @@ export default {
         return {
             menuItems: [{}],
             menuItemSearch: [{}],
-            title: this.$route.params.title
+            title: this.$route.params.query
         }
     },
     methods: {
@@ -68,11 +68,12 @@ export default {
         },
     },
     created() {
-        console.log('The id is: ' + this.$route.params.title);
+        console.log("JEG HAR FJERTA")
+        console.log('The id is: ' + this.$route.params.query);
         this.getCategory(this.title)        
     },
     beforeRouteUpdate (to, from, next) {
-        this.getCategory(to.params.title);
+        this.getCategory(to.params.query);
         next();
     }
    

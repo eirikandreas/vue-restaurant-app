@@ -16,7 +16,10 @@
 
     <v-container fluid style="backgroundColor: #f3f3f4">
       <v-container>
-        <v-text-field id="searchID" rounded outlined clearable append-icon="mdi-magnify" @click:append="`/maki/`" label="Search menu" v-model="searchTerm" :to="`/maki/`"></v-text-field>
+  
+        <v-text-field id="searchID" rounded outlined clearable append-icon="mdi-magnify" label="Search menu" v-model="searchTerm" :to="`/search/`"></v-text-field>
+ 
+         
           <v-tabs grow background-color="transparent" icons-and-text color="red">
             <v-tab class="pb-3"  @click="getAll()" :to="`/menu/`">
               All
@@ -31,16 +34,7 @@
     </v-container>
 
     <v-container>
-    <!-- TEST SEARCH COMPONENT -->
-    <!--
-
-         <MenuList
-    :searchTerm="searchTerm"
-    :displayItems="display"
-    :getList="menuItems"
-    />
-
-    -->
+      
       <router-view/>
   
     </v-container>

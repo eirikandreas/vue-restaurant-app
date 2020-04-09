@@ -13,7 +13,7 @@
 <MenuList/>
 
  <div class="text-center">
-        <v-btn depressed rounded large color="amber accent-3" class="mt-5 mb-5">View our menu</v-btn>
+        <v-btn depressed rounded large color="amber accent-3" class="mt-5 mb-5" :to="`/menu`">View our menu</v-btn>
         </div>
 
 </v-container>

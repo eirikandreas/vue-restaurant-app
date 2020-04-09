@@ -10,8 +10,9 @@ import SettingsGeneral from '../pages/admin/DashboardPage/SettingsGeneral.vue'
 import SettingsContent from '../pages/admin/DashboardPage/SettingsContent.vue'
 import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
 import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
-import MenuList from '../pages/MenuPage/MenuList.vue'
 import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
+import MenuList from '../pages/MenuPage/MenuList.vue'
+
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -40,6 +41,10 @@ const routes = [
         component: MenuList
       },
       {
+        path: '/search/:query',
+        component: MenuSearchList
+      },
+      {
         path: ':category',
         component: MenuCategoryList
       },
@@ -47,11 +52,6 @@ const routes = [
         path: ':category/:id',
         name: 'MenuItemDetails',
         component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/MenuItemDetails.vue')
-      },
-      {
-        path: 'search/:title', 
-        component: MenuSearchList, 
-
       },
     ]
   },
@@ -66,50 +66,34 @@ const routes = [
     component: () => import(/* webpackChunkName: "admin" */ '../pages/admin/Index.vue'),
     children: [
       {
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
         path: 'dashboard',
         component: Dashboard
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'orders',
         component: Orders
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'editmenu',
         component: EditMenu
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'editusers',
         component: EditUsers
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'pagesettings',
         component: PageSettings
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'settingsgeneral',
         component: SettingsGeneral
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'settingscontent',
         component: SettingsContent
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'settingsdisplay',
         component: SettingsDisplay
       },
