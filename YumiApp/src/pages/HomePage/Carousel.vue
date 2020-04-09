@@ -1,40 +1,34 @@
 <template>
+
      <v-carousel
     tile
     cycle
-    height="600"
+    height="600px"
     hide-delimiter-background
     show-arrows-on-hover
-
-  >
-    <v-carousel-item
-      v-for="(menuItem, i) in menuItems"
-      :key="i"
-      :src="`https:/localhost:5001/images/${menuItem.imgUrl}`"
     >
-    <div class="overlay-gradient d-flex align-center">
+      <v-carousel-item
+        v-for="(menuItem, i) in filterByFeatured()"
+        :key="i"
+        :src="`https:/localhost:5001/images/${menuItem.imgUrl}`"
+      >
+        <div class="overlay-gradient d-flex align-center">
     
-    <v-container>
-<v-row>
-  <v-col cols="12" sm="12" md="6">
-<h2 class="title white--text">Featured from our menu</h2>
-<h1 class="display-4 font-weight-bold white--text">{{menuItem.title}}</h1>
-<h2 class="title white--text">{{menuItem.category}}</h2>
-<p class="white--text mt-3">{{menuItem.description}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus esse pariatur labore aut autem odit accusantium ratione quam vel hic cumque, eius quae quo quas delectus libero reiciendis repellat perspiciatis!</p>
-<v-btn light rounded depressed color="amber accent-3" class="mt-5">View More</v-btn>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="12" md="8">
+                <h2 class="title white--text">Featured from our menu</h2>
+                <h1 class="display-4 font-weight-bold white--text">{{menuItem.title}}</h1>
+                <h2 class="title white--text">{{menuItem.category}}</h2>
+                <p class="white--text mt-3">{{menuItem.description}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus esse pariatur labore aut autem odit accusantium ratione quam vel hic cumque, eius quae quo quas delectus libero reiciendis repellat perspiciatis!</p>
+                <v-btn light rounded depressed color="amber accent-3" class="mt-5">View More</v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>   
+      </v-carousel-item>
+    </v-carousel>
 
-  </v-col>
-
-</v-row>
-
-    </v-container>
-
-
-
-    </div>
-     
-    </v-carousel-item>
-  </v-carousel>
 </template>
 <script>
 export default {
@@ -42,31 +36,23 @@ export default {
      data () {
       return {
 
-        menuItems: {},
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
+        menuItems: [{}],
       }
     },
-     created(){
+    methods: {
+      filterByFeatured() {
+
+        return this.menuItems.filter( menuItem => menuItem.isFeatured == "true")
+       
+      },
+    },
+    created(){
         
         let webAPIUrl = "https://localhost:5001/menuitems";
         this.$http.get( webAPIUrl )
             .then( result => {
                 console.log( result.data );
                 this.menuItems = result.data;
-                console.log(this.menuItem.imgUrl);
             } )
 
 

@@ -23,7 +23,7 @@
 
         </v-card-text>
         <v-card-text>
- <v-btn depressed rounded large color="amber accent-3">About us</v-btn>
+ <v-btn depressed rounded large color="amber accent-3" :to="`/about`">About us</v-btn>
         </v-card-text>
        
 
