@@ -3,12 +3,14 @@
 <v-container>
 
 
+
      <div>
              <!--   <v-img :src="require(`@/assets/icons/${starIcon}`)" width="32px" height="32px"></v-img>
 
              -->
         <h1 class="display-3 font-weight-bold mt-10 mb-10">Top picks</h1>
      </div>
+
 
 <MenuList/>
 
@@ -23,10 +25,11 @@
 <script>
 import MenuList from '@/components/MenuList.vue'
 
+
 export default {
     name: 'MenuItemsSection',
     components: {
-        MenuList
+        MenuList,
     },
     data() {
         return {

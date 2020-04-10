@@ -2,13 +2,7 @@
 <div>
 
     <template v-if="menuItems.length === 0">
-        <v-row>
-            <v-col>
-                <v-card flat min-height="300px" class="d-flex align-center justify-center">
-                    <h1 class="display-2 grey--text"> No Menu Items to display</h1>
-                </v-card>
-            </v-col>
-        </v-row>
+      <NothingToDisplay/>
     </template>
 
    <template v-else>
@@ -33,6 +27,7 @@
 <script>
 
 import MenuItem from '@/components/MenuItem.vue'
+import NothingToDisplay from '@/components/NothingToDisplay.vue'
 export default {
     name: 'MenuList',
     props: {
@@ -40,7 +35,8 @@ export default {
         searchTerm: {type: String, default: ""}
     },
     components: {
-        MenuItem
+        MenuItem,
+        NothingToDisplay
     },
     data() {
         return {
