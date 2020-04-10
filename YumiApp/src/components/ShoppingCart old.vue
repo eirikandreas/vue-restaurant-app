@@ -4,10 +4,10 @@
 
 
 
-         
+            <v-badge light top color="red accent-3" overlap offset-x="20" offset-y="20" :content="`${orders.length}`">
             <v-menu offset-y>
                 <template v-slot:activator="{ on }"> 
-                    <v-btn icon v-on="on" @click="getCartItems()">
+                    <v-btn icon v-on="on">
                         <v-icon class="white--text">mdi-shopping-outline</v-icon>
                     </v-btn>
                 </template>
@@ -17,32 +17,34 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title class="title font-weight-bold">Your shoppingcart</v-list-item-title>
+                <v-list-item-subtitle>Items: {{ orders.length }}</v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-action>
-                         <v-badge light top color="red accent-3" overlap offset-x="10" offset-y="10" :content="`${orders.length}`">
                   <v-icon>mdi-shopping-outline</v-icon>
-                         </v-badge>
               </v-list-item-action>
             </v-list-item>
           </v-list>
 
-            <v-list v-for="(order, index) in orders.slice(0, 5)"
-            :key="index">
+            <v-list v-for="item in orders"
+            :key="item.id">
 
               <v-divider></v-divider>
 
               <v-list-item>
-          
+                  <!--
                 <v-list-item-avatar>
-                  <v-img :src="`https://localhost:5001/images/${order.imgUrl}`"></v-img>
+                  <v-img :src="require(`@/assets/${item.imgUrl}`)"></v-img>
                 </v-list-item-avatar>
 
-        
+                -->
                 <v-list-item-content>
-                  <v-list-item-title>{{ order.title }} </v-list-item-title>
-           
-                  <v-list-item-subtitle>Price ${{ order.price }}</v-list-item-subtitle>
+                  <v-list-item-title>{{ item.title }} </v-list-item-title>
+                  <v-list-item-subtitle>
+                    Quantity 
+                    <v-btn text small rounded> {{ item.quantity }} <v-icon>mdi-chevron-down</v-icon></v-btn>
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>Price {{ item.price }}</v-list-item-subtitle>
                 </v-list-item-content>
           
                 <v-btn icon>
@@ -52,28 +54,16 @@
               </v-list-item>
             </v-list>
 
-
-                  <v-divider></v-divider>
-                  <template v-if="orders.length > 5">
-                
-                  <v-list-item class="justify-center">
-                      <v-list-item-content>
-                <v-btn rounded text>View all {{orders.length}} items</v-btn>
-                      </v-list-item-content>
-                  </v-list-item>
-
-                    </template>
-                         <v-divider></v-divider>
             <v-list>
 
-        
+              <v-divider></v-divider>
 
               <v-list-item>    
                 <v-list-item-content>
                   <v-list-item-title class="title font-weight-bold">Total:</v-list-item-title>
                 </v-list-item-content>
                  <v-list-item-action>
-                  <v-list-item-title class="title font-weight-bold">${{sum}}</v-list-item-title>
+                  <v-list-item-title class="title font-weight-bold">$16</v-list-item-title>
                 </v-list-item-action>
               </v-list-item>
             </v-list>
@@ -87,7 +77,7 @@
         </v-card>
             
       </v-menu>
-
+    </v-badge>
 
 
 
@@ -98,31 +88,31 @@ export default {
     name: 'ShoppingCart',
     data() {
         return {
-            orders: [],
-            sum: 5,
+            orders: []
 
         }
     },
+      mounted() {
+    if (localStorage.getItem('orders')) {
+      try {
+        this.orders = JSON.parse(localStorage.getItem('orders'));
+        console.log(this.orders);
+      } catch(e) {
+        localStorage.removeItem('orders');
+      }
+    }
+      },
     methods: {
-            calcCart() {
-            this.sum = 0
-            this.orders.forEach(order => {
-                this.sum += order.price
-            }) 
-    },
         getCartItems(){
-            this.orders = JSON.parse(localStorage.getItem('orders'));
-            this.calcCart()
     
 
             
-        },
-
-    
+        }
+    },
     
     created(){
-
-    }
+        console.log("FUNKERE?" + this.orders)
+        this.getCartItems()
     }
     
 }

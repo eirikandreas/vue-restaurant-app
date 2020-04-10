@@ -12,6 +12,7 @@ import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
 import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
 import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
 import MenuList from '../pages/MenuPage/MenuList.vue'
+import Cart from '../views/Cart.vue'
 
 import NotFound from '../views/NotFound.vue'
 
@@ -98,6 +99,10 @@ const routes = [
         component: SettingsDisplay
       },
     ]
+  },
+  {
+    path: 'cart',
+    component: Cart
   },
   {
     path: '*',
