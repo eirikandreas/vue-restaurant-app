@@ -17,6 +17,7 @@
      <ShoppingCart/>
 <!-- end Shopping Cart Menu -->
 
+<!--
         <template v-if="isLoggedIn">
 
             <v-btn icon>
@@ -30,19 +31,24 @@
             <v-btn rounded color="amber accent-3 black--text" class="ml-4 hidden-sm-and-down" dark min-width="150px" depressed>Log in</v-btn>
         
         </template>
+  -->
 
-
-        <template v-if="isAdmin">
-
-            <v-btn icon>
-                <v-icon class="black--text">mdi-cogs</v-icon>
+  
+ <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+            <v-btn icon :to="`/admin`" v-on="on">
+                <v-icon class="white--text">mdi-cogs</v-icon>
             </v-btn>
+            </template>
+            <span>View Admin Page</span>
+ </v-tooltip>
+    
 
-        </template>
+      
 
 <!-- Mobile Menu -->
 
-<v-menu bottom left offset-y>
+<v-menu min-width="100%" height="100vh" flat tile nudge-top offset-y>
   <template v-slot:activator="{ on }">
     <v-btn
     dark
@@ -56,7 +62,7 @@
     </v-btn>
   </template>
 
-  <v-card color="transparent" width="100vw" class="fill-height">
+  <v-card>
     <v-list>
       <v-list-item
       v-for="(link, i) in links"

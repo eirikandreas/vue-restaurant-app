@@ -3,27 +3,27 @@
 <v-container>
   <v-row>
     <v-col cols="12" sm="12" md="6" class="justify-center pa-0">
-  <v-img contain :src="require(`@/assets/images/${sectionConceptImg}`)" min-width="400px">
+  <v-img contain :src="require(`@/assets/images/${image}`)" min-width="400px">
   
 
   
   </v-img>
     </v-col>
 
-    <v-col cols="12" sm="12" md="6" class="d-flex align-center">
+    <v-col cols="12" sm="12" md="6" class="d-flex align-center justify-center">
 
 
       <v-card flat :class="{'text-center mb-6': $vuetify.breakpoint.smAndDown}" >
 
 
-        <v-card-title :class="[{'justify-center display-2': $vuetify.breakpoint.smAndDown}, 'display-3', 'font-weight-bold']">Our concept</v-card-title>
+        <v-card-title :class="[{'justify-center display-2': $vuetify.breakpoint.smAndDown}, 'display-3', 'font-weight-bold']">{{title}}</v-card-title>
         <v-card-text>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat cupiditate fugiat laboriosam porro officiis asperiores temporibus illo nulla aliquam culpa vitae assumenda facere harum a, ipsum sit iste velit possimus!
-
-
+          {{text}}
         </v-card-text>
         <v-card-text>
- <v-btn depressed rounded large color="amber accent-3" :to="`/about`">About us</v-btn>
+          <template v-if="showButton">
+          <v-btn depressed rounded large color="amber accent-3" :to="`${link}`">{{buttonValue}}</v-btn>
+          </template>
         </v-card-text>
        
 
@@ -40,29 +40,14 @@
 <script>
 export default {
     name: 'ConceptSection',
-     data () {
-      return {
-        sectionConceptImg: 'concept-image-1-crop.png',
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
-      }
+    props: {
+      title: { type: String, default: "Not Set"},
+      text: { type: String, default: "Not Set"},
+      image: { type: String, default: "concept-image-1-crop.png"},
+      showButton: { type: Boolean, default: false},
+      buttonValue: { type: String, default: "Not Set"},
+      link: { type: String, default: "#"}
+
     },
 }
 </script>
-<style scoped>
-.round-img {
-  border-radius: 50%;
-}
-</style>

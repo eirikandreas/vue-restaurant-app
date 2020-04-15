@@ -64,12 +64,14 @@ export default {
            menuItems: [{ title: ""          }],
            menuItemSearch: [{}],
            searchTerm: "Not set",
+           searchWord: this.$route.params.query,
+    
         }
     
     },
     methods: {
-        searchByTitle(){
-        const webAPIUrl = `https://localhost:5001/menuitems/title/${this.searchTerm}`;
+        searchByTitle(title){
+        const webAPIUrl = `https://localhost:5001/menuitems/title/${title}`;
 
       this.$http.get(webAPIUrl)
         .then( response => {
@@ -81,17 +83,13 @@ export default {
     },
     created(){
         
-        let webAPIUrl = "https://localhost:5001/menuitems";
-        this.$http.get( webAPIUrl )
-            .then( result => {
-                console.log( result.data );
-                this.menuItems = result.data;
-            } )
+    this.searchByTitle(query) 
 
 
 
             
-        }
+   
+    }
     
 }
 </script>

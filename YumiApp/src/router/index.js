@@ -13,6 +13,7 @@ import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
 import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
 import MenuList from '../pages/MenuPage/MenuList.vue'
 import Cart from '../views/Cart.vue'
+import init from '../components/init.vue'
 
 import NotFound from '../views/NotFound.vue'
 
@@ -41,10 +42,12 @@ const routes = [
         path: '',
         component: MenuList
       },
-      {
-        path: '/search/:query',
-        component: MenuSearchList
+      { 
+        path: 'all',
+        component: MenuList
+    
       },
+
       {
         path: ':category',
         component: MenuCategoryList
@@ -54,6 +57,9 @@ const routes = [
         name: 'MenuItemDetails',
         component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/MenuItemDetails.vue')
       },
+      {
+        path: 'search', name: 'search', component: MenuSearchList, props: (route) => ({ query: route.query.q })
+      }
     ]
   },
   {
@@ -101,12 +107,16 @@ const routes = [
     ]
   },
   {
-    path: 'cart',
+    path: '/cart',
     component: Cart
   },
   {
     path: '*',
     component: NotFound
+  },
+  {
+    path: '/init',
+    component: init
   }
 ]
 

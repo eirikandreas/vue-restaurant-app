@@ -1,5 +1,14 @@
 <template>
-
+<div>
+    <template v-if="menuItems.length > 0">
+      <Hero
+      title="Order, eat and enjoy!"
+      btnValue="View our Menu"
+      :bgImage="heroBg"
+      link="/menu"
+      />
+    </template>
+<template v-else>
      <v-carousel
     tile
     cycle
@@ -28,14 +37,19 @@
         </div>   
       </v-carousel-item>
     </v-carousel>
-
+  </template>
+</div>
 </template>
 <script>
+import Hero from '@/pages/HomePage/Hero'
 export default {
     name: 'Carousel',
+    components: {
+      Hero
+    },
      data () {
       return {
-
+        heroBg: "herobg2.jpg",
         menuItems: [{}],
       }
     },

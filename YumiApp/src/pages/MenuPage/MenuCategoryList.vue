@@ -1,6 +1,9 @@
 <template>
 <div>
-
+<template v-if="loading">
+    <Loader/>
+</template>
+<template v-else>
     <template v-if="menuItems.length === 0">
         <v-row>
             <v-col>
@@ -27,29 +30,38 @@
             </v-col>
         </v-row>
     </template>
+</template>
 
 </div> 
 </template>
 <script>
+import Loader from '@/components/Loader.vue'
 import MenuItem from '@/components/MenuItem.vue'
 
 export default {
     name: 'MenuCategoryList',
+    components: {
+        Loader,
+        MenuItem
+    },
     props: {
         displayItems: { type: Number, default: 3},
         searchTerm: {type: String, default: ""}
      
     },
-    components: {
-        MenuItem
-    },
     data() {
         return {
+            loading: true,
             menuItems: [{}],
             menuItemSearch: [{}],
             category: this.$route.params.category
         }
     },
+
+
+
+
+
     methods: {
         getCategory(cat) {
             this.menuItems = [{}];
@@ -57,6 +69,7 @@ export default {
             this.$http.get(webAPIUrl)
                 .then( response => {
                 this.menuItems = response.data;
+                this.loading = false;
                 });
             },
     },

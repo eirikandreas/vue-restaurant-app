@@ -11,7 +11,7 @@
                     </v-row>
                     <v-row>
                         <v-col>
-                            <h1 class="display-4 font-weight-bold grey--text">Oops! Chopsticks!</h1>
+                            <h1 class="display-4 red--text">Oops! Chopsticks!</h1>
                         </v-col>
                     </v-row>
                     <v-row>

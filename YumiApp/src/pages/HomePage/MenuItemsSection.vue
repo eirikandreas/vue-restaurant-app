@@ -5,18 +5,15 @@
 
 
      <div>
-             <!--   <v-img :src="require(`@/assets/icons/${starIcon}`)" width="32px" height="32px"></v-img>
-
-             -->
-        <h1 class="display-3 font-weight-bold mt-10 mb-10">Top picks</h1>
+        <h1 class="display-3 font-weight-bold mt-10 mb-10">{{title}}</h1>
      </div>
-
-
 <MenuList/>
-
+<template v-if="showButton">
  <div class="text-center">
-        <v-btn depressed rounded large color="amber accent-3" class="mt-5 mb-5" :to="`/menu`">View our menu</v-btn>
+        <v-btn depressed rounded large color="amber accent-3" class="mt-5 mb-5" :to="`${link}`">View our menu</v-btn>
         </div>
+
+        </template>
 
 </v-container>
 </section>
@@ -30,6 +27,11 @@ export default {
     name: 'MenuItemsSection',
     components: {
         MenuList,
+    },
+   props: {
+        showButton: { type: Boolean, default: true },
+        title: { type: String, default: "Not Set"},
+        link: { type: String, default: "#"}
     },
     data() {
         return {

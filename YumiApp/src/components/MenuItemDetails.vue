@@ -1,6 +1,13 @@
 <template>
     <div>
 
+        <template v-if="Object.keys(menuItem).length === 0">
+   
+           <h1 class="display-4">FAEN</h1>
+
+        </template>
+        <template v-else>
+
         <v-card flat height="800">
             <v-row>
                 <v-col>
@@ -23,6 +30,7 @@
                     </v-col>
             </v-row>
         </v-card>
+        </template>
 
     </div>
 </template>
@@ -31,31 +39,17 @@ export default {
     name: 'MenuItem',
     data(){
         return {
-        ratingId: null,
         menuItem: {}
-   
         }
     },
     methods: {
-        getItem(e) {
-            const webAPIUrl = `https://localhost:5001/menuitems/${e}`;
+        getItem(item) {
+            const webAPIUrl = `https://localhost:5001/menuitems/${item}`;
             this.$http.get(webAPIUrl)
                 .then( response => {
                     this.menuItem = response.data;
                     console.log(this.menuItem)
                 });
-        },
-        getRating(){
-            let webAPIUrl = `https://localhost:5001/menuitems/${this.id}`;
-            this.$http.get( webAPIUrl )
-                .then( result => {
-                    this.menuItem = result.data;
-                })
-        },
-        setRating(){
-            let webAPIUrl = "https://localhost:5001/menuitems";
-            this.$http.put( webAPIUrl, this.menuItem)
-            console.log(this.menuItem)
         }
     },
     created() {

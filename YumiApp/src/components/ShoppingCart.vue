@@ -4,15 +4,20 @@
 
 
 
-         
-            <v-menu offset-y>
+                   <v-menu offset-y> 
+            
+            
+             
                 <template v-slot:activator="{ on }"> 
+                  
                     <v-btn icon v-on="on" @click="getCartItems()">
                         <v-icon class="white--text">mdi-shopping-outline</v-icon>
                     </v-btn>
+         
                 </template>
+           
 
-        <v-card>
+        <v-card min-width="400px">
           <v-list>
             <v-list-item>
               <v-list-item-content>
@@ -82,7 +87,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn rounded depressed block color="amber accent-3" @click="menu = false">Order</v-btn>
+            <v-btn rounded depressed block color="amber accent-3" @click="menu = false" to="/cart">Order</v-btn>
           </v-card-actions>
         </v-card>
             
