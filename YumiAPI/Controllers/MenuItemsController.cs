@@ -36,7 +36,7 @@ namespace YumiAPI.Controllers{
 
         }
 
-
+    
         [HttpGet("title/{title}")]
         [Route("[action]")]
         public async Task<IEnumerable<MenuItem>> Get(string title){
@@ -49,6 +49,8 @@ namespace YumiAPI.Controllers{
 
             return menuItemList;
         } 
+
+      
 
         [HttpGet("category/{category}")]
         [Route("[action]")]

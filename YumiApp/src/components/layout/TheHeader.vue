@@ -13,77 +13,55 @@
 
         <v-spacer></v-spacer>
 
-<!-- Shopping Cart Menu -->
+      <!-- Shopping Cart Menu -->
      <ShoppingCart/>
-<!-- end Shopping Cart Menu -->
+      <!-- end Shopping Cart Menu -->
 
-<!--
-        <template v-if="isLoggedIn">
+      <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                  <v-btn icon :to="`/admin`" v-on="on">
+                      <v-icon class="white--text">mdi-cogs</v-icon>
+                  </v-btn>
+                  </template>
+                  <span>View Admin Page</span>
+      </v-tooltip>
 
-            <v-btn icon>
-                <v-icon class="black--text">mdi-account-outline</v-icon>
-            </v-btn>
-
+      <!-- Mobile Menu -->
+      <v-menu min-width="100%" height="100vh" flat tile nudge-top offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn
+          dark
+          icon
+          v-on="on"
+          close-on-click
+          close-on-content-click
+          class="hidden-md-and-up"
+          >
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
         </template>
 
-        <template v-else>
-
-            <v-btn rounded color="amber accent-3 black--text" class="ml-4 hidden-sm-and-down" dark min-width="150px" depressed>Log in</v-btn>
-        
-        </template>
-  -->
-
-  
- <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
-            <v-btn icon :to="`/admin`" v-on="on">
-                <v-icon class="white--text">mdi-cogs</v-icon>
-            </v-btn>
-            </template>
-            <span>View Admin Page</span>
- </v-tooltip>
-    
-
-      
-
-<!-- Mobile Menu -->
-
-<v-menu min-width="100%" height="100vh" flat tile nudge-top offset-y>
-  <template v-slot:activator="{ on }">
-    <v-btn
-    dark
-    icon
-    v-on="on"
-    close-on-click
-    close-on-content-click
-    class="hidden-md-and-up"
-    >
-      <v-icon>mdi-menu</v-icon>
-    </v-btn>
-  </template>
-
-  <v-card>
-    <v-list>
-      <v-list-item
-      v-for="(link, i) in links"
-      :key="i"
-      >
-        <v-list-item-title><v-btn text :to="link.to">{{ link.title }}</v-btn></v-list-item-title>
-      </v-list-item>
-      <v-list-item>
-        <v-btn rounded color="amber accent-3 black--text" block dark min-width="150px" depressed>Log in</v-btn>
-      </v-list-item>
-    </v-list>
-  </v-card>
-</v-menu>
-
-<!-- Mobile menu end -->
+        <v-card>
+          <v-list>
+            <v-list-item
+            v-for="(link, i) in links"
+            :key="i"
+            >
+              <v-list-item-title><v-btn text :to="link.to">{{ link.title }}</v-btn></v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-btn rounded color="amber accent-3 black--text" block dark min-width="150px" depressed>Log in</v-btn>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-menu>
+      <!-- Mobile menu end -->
 
     </v-app-bar>
 </template>
 
 <script>
-import ShoppingCart from '@/components/ShoppingCart'
+import ShoppingCart from '@/components/ui/ShoppingCart'
 export default {
     name: 'TheHeader',
     components: {

@@ -10,13 +10,15 @@ const CategoriesStore = {
             { id: 8, name: "Drinks", desc: "Lorem ipsum", imgSrc: "2.jpg", blackIcon: "drink.png", whiteIcon: "drink-w.png" },
         ]
     },
-    get(){
+    getAll(){
        return this.state.categories.map( category => category );
     },
-    getCategory(id){
-        return this.state.categories.find (category => category.id == id);
+    getId(id){
+        return this.state.categories.find( category => category.id == id );
+    },
+    getName(){
+        return this.state.categories.map( category => category.name );
     }
-
 }
 
 export default CategoriesStore;

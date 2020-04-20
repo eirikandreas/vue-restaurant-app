@@ -1,21 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import HomePage from '../pages/HomePage/Index.vue'
 import Dashboard from '../pages/admin/DashboardPage/Dashboard.vue'
+
 import Orders from '../pages/admin/DashboardPage/Orders.vue'
 import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
-import EditUsers from '../pages/admin/DashboardPage/EditUsers.vue'
 import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
-import SettingsGeneral from '../pages/admin/DashboardPage/SettingsGeneral.vue'
-import SettingsContent from '../pages/admin/DashboardPage/SettingsContent.vue'
-import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
-import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
-import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
-import MenuList from '../pages/MenuPage/MenuList.vue'
-import Cart from '../views/Cart.vue'
-import init from '../components/init.vue'
 
-import NotFound from '../views/NotFound.vue'
+import MenuList from '../components/menu/MenuList.vue'
+import NotFound from '../components/common/NotFound.vue'
+
+import init from '../components/unsorted/init.vue'
+import Cart from '../components/unsorted/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -23,7 +19,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: HomePage
   },
   {
     path: '/about',
@@ -31,46 +27,44 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../pages/AboutPage/Index.vue')
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../pages/ContactPage/Index.vue')
   },
   {
     path: '/menu',
     name: 'Menu',
-    component: () => import(/* webpackChunkName: "menu" */ '../views/Menu.vue'),
+    component: () => import(/* webpackChunkName: "menu" */ '../pages/MenuPage/Index.vue'),
     children: [
       {
         path: '',
         component: MenuList
       },
-      { 
-        path: 'all',
-        component: MenuList
-    
-      },
 
       {
         path: ':category',
-        component: MenuCategoryList
+        component: MenuList
       },
       {
         path: ':category/:id',
         name: 'MenuItemDetails',
-        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/MenuItemDetails.vue')
+        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemDetails.vue')
       },
       {
-        path: 'search', name: 'search', component: MenuSearchList, props: (route) => ({ query: route.query.q })
+        path: 'search', name: 'search', component: MenuList, props: (route) => ({ query: route.query.q })
       }
     ]
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
-  },
-  {
     path: '/admin',
     name: 'Admin',
-    component: () => import(/* webpackChunkName: "admin" */ '../pages/admin/Index.vue'),
+    component: () => import(/* webpackChunkName: "admin" */ '../pages/DashboardPage/Index.vue'),
     children: [
       {
         path: 'dashboard',
@@ -85,24 +79,8 @@ const routes = [
         component: EditMenu
       },
       {
-        path: 'editusers',
-        component: EditUsers
-      },
-      {
         path: 'pagesettings',
         component: PageSettings
-      },
-      {
-        path: 'settingsgeneral',
-        component: SettingsGeneral
-      },
-      {
-        path: 'settingscontent',
-        component: SettingsContent
-      },
-      {
-        path: 'settingsdisplay',
-        component: SettingsDisplay
       },
     ]
   },

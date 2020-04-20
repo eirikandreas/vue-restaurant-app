@@ -30,23 +30,23 @@ namespace YumiAPI.Migrations
                     b.Property<string>("DateAdded")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ImgUrl")
+                    b.Property<string>("ImgSrc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Ingredients")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IsFeatured")
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsSpicy")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("Rating")
+                    b.Property<double>("Rating")
                         .HasColumnType("REAL");
-
-                    b.Property<int>("TimesOrdered")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
@@ -62,29 +62,20 @@ namespace YumiAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Comments")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Delivered")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Estimate")
+                    b.Property<string>("DateAdded")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IsFinished")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("OrderCount")
+                    b.Property<string>("Items")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Quantity")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

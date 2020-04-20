@@ -2,23 +2,25 @@
   <v-app>
 
     <TheHeader 
-    :title="pageContent.pageTitle"
+    :title="header.title"
     :cartItems="header.cartItems"
     :isLoggedIn="header.isLoggedIn"
     :isAdmin="header.isAdmin"
     :bgColor="header.bgColor"
     />
-      <v-content>
-        <router-view/>
-      </v-content>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+
     <TheFooter/>
 
   </v-app>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader';
-import TheFooter from './components/layout/TheFooter';
+import TheHeader from '@/components/layout/TheHeader';
+import TheFooter from '@/components/layout/TheFooter';
 
 export default {
   name: 'App',
@@ -28,7 +30,13 @@ export default {
   },
   data: () => ({
     isAdmin: true,
-    header: { title: "YUMI", bgColor: "black", cartItems: 3, isLoggedIn: false, isAdmin: false},
+    header: { 
+      title: "YUMI",
+      bgColor: "black",
+      cartItems: 3,
+      isLoggedIn: false,
+      isAdmin: false
+      },
     pageContent: {},
   }),
     methods: {
@@ -46,8 +54,3 @@ export default {
     }
 };
 </script>
-<style>
-.mt-n-header {
-  margin-top: -64px;
-}
-</style>
