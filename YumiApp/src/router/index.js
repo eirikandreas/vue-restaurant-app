@@ -1,17 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../pages/HomePage/Index.vue'
-import Dashboard from '../pages/admin/DashboardPage/Dashboard.vue'
 
-import Orders from '../pages/admin/DashboardPage/Orders.vue'
-import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
-import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
 
-import MenuList from '../components/menu/MenuList.vue'
+import DashboardOrdersTable from '../pages/DashboardPage/DashboardOrdersTable.vue'
+import DashboardMenuTable from '../pages/DashboardPage/DashboardMenuTable.vue'
+import DashboardPageSettings from '../pages/DashboardPage/DashboardPageSettings.vue'
+
+
 import NotFound from '../components/common/NotFound.vue'
 
 import init from '../components/unsorted/init.vue'
-import Cart from '../components/unsorted/Cart.vue'
+import Cart from '../components/cart/Index.vue'
+
+
+import DisplayCategories from '../pages/MenuPage/DisplayCategories'
+import DisplayAll from '../pages/MenuPage/DisplayAll'
+import DisplaySearch from '../pages/MenuPage/DisplaySearch'
 
 Vue.use(VueRouter)
 
@@ -44,12 +49,12 @@ const routes = [
     children: [
       {
         path: '',
-        component: MenuList
+        component: DisplayAll
       },
 
       {
         path: ':category',
-        component: MenuList
+        component: DisplayCategories
       },
       {
         path: ':category/:id',
@@ -57,7 +62,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemDetails.vue')
       },
       {
-        path: 'search', name: 'search', component: MenuList, props: (route) => ({ query: route.query.q })
+        path: 'search', name: 'search', component: DisplaySearch, props: (route) => ({ query: route.query.q })
       }
     ]
   },
@@ -67,20 +72,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "admin" */ '../pages/DashboardPage/Index.vue'),
     children: [
       {
-        path: 'dashboard',
-        component: Dashboard
-      },
-      {
         path: 'orders',
-        component: Orders
+        component: DashboardOrdersTable
       },
       {
         path: 'editmenu',
-        component: EditMenu
+        component: DashboardMenuTable
       },
       {
         path: 'pagesettings',
-        component: PageSettings
+        component: DashboardPageSettings
       },
     ]
   },
@@ -101,7 +102,19 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } if (to.hash) {
+      return {
+        selector: to.hash
+        // , offset: { x: 0, y: 10 }
+      } }  else {
+      return { x: 0, y: 0 }
+    }
+  }
+  
 })
 
 export default router

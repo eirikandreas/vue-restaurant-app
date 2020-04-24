@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="top">
         <section class="search">
             <v-sheet tile color="red">
         <v-container>
@@ -23,20 +23,8 @@ export default {
         }
     },
 
-     watch: {
-        "$route.query.q":{
-            immediate: true,
-            handler(query){
-
-                console.log("Something" + query);
-                
-            }
-        }
-     },
-
     methods: {
         testFunc() {
-
             this.$router.push({ name: 'search', query: { q: this.searchWord }})
         }
     }

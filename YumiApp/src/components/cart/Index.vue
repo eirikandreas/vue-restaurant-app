@@ -1,30 +1,33 @@
 <template>
     <div>
 
-      <v-menu offset-y close-on-click> 
-      <template v-slot:activator="{ on }"> 
-        <v-btn icon v-on="on" @click="getCartItems()">
-          <v-icon class="white--text">mdi-shopping-outline</v-icon>
-        </v-btn>
-      </template>
-<v-card>
+  
+
         <CartList
         title="Your Shoppingcart"
         :itemsArr="orders"/>
 
-        
+           <v-list>
+              <v-list-item>    
+                <v-list-item-content>
+                  <v-list-item-title class="title font-weight-bold">Total:</v-list-item-title>
+                </v-list-item-content>
+
+                 <v-list-item-action>
+                  <v-list-item-title class="title font-weight-bold">${{sum}}</v-list-item-title>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
 
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn rounded depressed block color="amber accent-3" @click.stop="dialog = true">Place Order</v-btn>
             </v-card-actions>
-</v-card>
-            </v-menu>
 
     </div>
 </template>
 <script>
-import CartList from './ShoppingCartList'
+import CartList from './CartList'
 export default {
     name: 'Index',
     components: {
@@ -32,17 +35,18 @@ export default {
     },
     data() {
         return {
-            orders: [],
+            orders: [{}],
+            sum: 0
         }
     },
     methods: {
-        getCartItems(){
+         getCartItems(){
         this.orders = JSON.parse(localStorage.getItem('orders'));
         console.log(this.orders)
        // this.calcCart()    
       },
     },
-    mounted() {
+    created() {
         this.getCartItems()
     }
 }

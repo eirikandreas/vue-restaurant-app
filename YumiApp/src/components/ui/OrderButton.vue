@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-btn depressed rounded color="amber accent-3" class="ml-3" @click="placeOrder()">Order</v-btn>
+        <v-btn block depressed rounded color="amber accent-3" @click="placeOrder()">Order</v-btn>
     </div>
 </template>
 <script>

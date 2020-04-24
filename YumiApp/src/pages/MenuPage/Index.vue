@@ -8,7 +8,7 @@
     <MenuCategories/>
 
     <v-container>
-      <router-view/>
+      <router-view/> 
     </v-container>
 
   </div>     
@@ -19,33 +19,28 @@ import SearchField from '@/components/ui/SearchField'
 
 import MenuCategories from '@/components/menu/MenuCategories'
 
+
+
 export default {
     name: 'Index',
     components: {
+
       ParallaxSection,
       SearchField,
-      MenuCategories
+      MenuCategories,
     },
     data () {
       return {
+        loading: false,
         pageIcon:"icons/menu-w.png",
         menuItems: [{}],
         searchTerm: "",
       }
-    }, 
-    methods: {
-      getAll(){
-      let webAPIUrl = "https://localhost:5001/menuitems";
-      this.$http.get( webAPIUrl )
-        .then( result => {
-          console.log( result.data );
-          this.menuItems = result.data;
-        })            
-      }
+
+
+
     },
-    created(){
-      this.getAll()
-    }
+
 }
 </script>
 <style scoped>
