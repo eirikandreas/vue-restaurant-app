@@ -41,41 +41,49 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
+                    v-model="newUser.FirstName"
                     label="Fornavn"
                     name="FirstName"
                     type="text"
                   />
                   <v-text-field
+                    v-model="newUser.LastName"
                     label="Etternavn"
                     name="LastName"
                     type="text"
                   />
-<v-text-field
+                  <v-text-field
+                    v-model="newUser.adress"
                     label="Adresse"
-                    name="Adress"
+                    name="adress"
                     type="text"
                   />
                   <v-text-field
+                    v-model="newUser.phonenumber"
                     label="Telefonnummer"
                     name="phonenumber"
                     type="text"
                   />
                   <v-text-field
+                    v-model="newUser.email"
                     label="Epost"
                     name="email"
                     type="text"
                   />
                   <v-text-field
-                    id="password"
+                    v-model="newUser.password"
                     label="Passord"
                     name="password"
                     type="password"
                   />
+                  <v-text-field>
+                    {{postStatus}}
+                  </v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn rounded to="/login" color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
+                <v-btn @click="email" rounded to="/login" color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -87,7 +95,18 @@
 
 <script>
 export default {
-    name: 'Register'
+    name: 'Register',
+    data(){
+      return{
+        newUser: { FirstName: "", LastName: "", adress: "", phonenumber: "", email: "", password: ""},
+        postStatus: "Ny bruker er ikke lagret"
+      }
+    },
+    methods:{
+      email(){
+        let webAPIUrl =""
+      }
+    }
 
 }
 </script>

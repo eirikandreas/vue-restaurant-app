@@ -1145,19 +1145,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/eirik/.nuget/packages/": {}
+    "/Users/thomasmichelsen/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/eirik/webutvikling/eksamen/webprosjekt/YumiAPI/YumiAPI.csproj",
+      "projectUniqueName": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/YumiAPI.csproj",
       "projectName": "YumiAPI",
-      "projectPath": "/Users/eirik/webutvikling/eksamen/webprosjekt/YumiAPI/YumiAPI.csproj",
-      "packagesPath": "/Users/eirik/.nuget/packages/",
-      "outputPath": "/Users/eirik/webutvikling/eksamen/webprosjekt/YumiAPI/obj/",
+      "projectPath": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/YumiAPI.csproj",
+      "packagesPath": "/Users/thomasmichelsen/.nuget/packages/",
+      "outputPath": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/eirik/.nuget/NuGet/NuGet.Config"
+        "/Users/thomasmichelsen/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -1208,7 +1208,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
       }
     }
   }
