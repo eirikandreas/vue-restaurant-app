@@ -97,6 +97,7 @@
 
         <template v-else>
 
+            <v-btn to="/Register" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Registrer deg</v-btn>
             <v-btn to="/Login" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Logg in</v-btn>
         
         </template>

@@ -1150,11 +1150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/YumiAPI.csproj",
+      "projectUniqueName": "/Users/thomasmichelsen/Desktop/webprosjekt/YumiAPI/YumiAPI.csproj",
       "projectName": "YumiAPI",
-      "projectPath": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/YumiAPI.csproj",
+      "projectPath": "/Users/thomasmichelsen/Desktop/webprosjekt/YumiAPI/YumiAPI.csproj",
       "packagesPath": "/Users/thomasmichelsen/.nuget/packages/",
-      "outputPath": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/obj/",
+      "outputPath": "/Users/thomasmichelsen/Desktop/webprosjekt/YumiAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/thomasmichelsen/.nuget/NuGet/NuGet.Config"

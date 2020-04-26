@@ -76,14 +76,14 @@
                     name="password"
                     type="password"
                   />
-                  <v-text-field>
+                  <p>
                     {{postStatus}}
-                  </v-text-field>
+                  </p>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn @click="email" rounded to="/login" color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
+                <v-btn @click="email" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -94,6 +94,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Register',
     data(){
@@ -104,7 +105,13 @@ export default {
     },
     methods:{
       email(){
-        let webAPIUrl =""
+        let webAPIUrl ="https://localhost:5001/users";
+        axios.post (webAPIUrl, this.newUser)
+        .then ( result =>{
+          this.postStatus = JSON.stringify (result.data);
+          console.log (result.data);
+        })
+
       }
     }
 

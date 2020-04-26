@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RvsR0BzfqbZOG/h3GbM6qVqVmvP45MKt8t9bK16TPOPiPt8qiusO1xx3WEvUpO/iF9SNzYEijOi+49HjuObVYw==",
+  "dgSpecHash": "+arYpaJGjY2d7rF5xc7UzvTMGD0oKLhoK5LW1IzKH4bvByEci1PkONDh7lhrng305Ob3fPvJgJ8Nm//QIm3XTA==",
   "success": true,
-  "projectFilePath": "/Users/thomasmichelsen/Documents/GitHub/webprosjekt/YumiAPI/YumiAPI.csproj",
+  "projectFilePath": "/Users/thomasmichelsen/Desktop/webprosjekt/YumiAPI/YumiAPI.csproj",
   "expectedPackageFiles": [
     "/Users/thomasmichelsen/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.0/microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "/Users/thomasmichelsen/.nuget/packages/microsoft.bcl.hashcode/1.1.0/microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
