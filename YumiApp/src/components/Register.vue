@@ -53,7 +53,7 @@
                     type="text"
                   />
                   <v-text-field
-                    v-model="newUser.adress"
+                    v-model="newUser.address"
                     label="Adresse"
                     name="adress"
                     type="text"
@@ -83,7 +83,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn @click="email" to="/login" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
+                <v-btn @click="email" rounded color="amber accent-3 black--text" class="ml-4" dark min-width="150px" depressed>Opprett ny bruker</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -99,7 +99,7 @@ export default {
     name: 'Register',
     data(){
       return{
-        newUser: { FirstName: "", LastName: "", adress: "", phonenumber: "", email: "", password: ""},
+        newUser: { FirstName: "", LastName: "", address: "", phonenumber: "", email: "", password: ""},
         postStatus: "Ny bruker er ikke lagret"
       }
     },
@@ -108,7 +108,7 @@ export default {
         let webAPIUrl ="https://localhost:5001/users";
         axios.post (webAPIUrl, this.newUser)
         .then ( result =>{
-          this.postStatus = JSON.stringify (result.data);
+          this.postStatus = "Ny bruker opprettet";
           console.log (result.data);
         })
 
