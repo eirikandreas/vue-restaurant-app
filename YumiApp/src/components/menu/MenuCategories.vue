@@ -21,6 +21,5 @@ export default {
             categories: this.$categories.getAll()
         }
     },
-
 }
 </script>

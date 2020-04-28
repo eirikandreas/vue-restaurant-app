@@ -1,15 +1,17 @@
 <template>
     <v-img :src="require(`@/assets/${bgImage}`)" width="100vw" height="100vh">
+        <div class="overlay-gradient">
 
-        <v-container class="fill-height">
+            <v-container class="fill-height">
 
-            <v-card flat color="transparent" :class="{ 'hero-card-width': $vuetify.breakpoint.smAndUp}">
-                <h1 :class="{'hero-font-size-sm font-weight-bold white--text': $vuetify.breakpoint.xsOnly, 'hero-font-size-md font-weight-bold': $vuetify.breakpoint.smAndUp}">{{title}}</h1>
-                <v-btn rounded large color="amber accent-3 black--text" class="mt-10" dark min-width="150px" depressed :to="`${link}`">{{btnValue}}</v-btn>  
-            </v-card>
+                <v-card flat color="transparent" :class="{ 'hero-card-width': $vuetify.breakpoint.smAndUp}">
+                    <h1 :class="{'hero-font-size-sm font-weight-bold white--text': $vuetify.breakpoint.xsOnly, 'hero-font-size-md font-weight-bold white--text': $vuetify.breakpoint.smAndUp}">{{title}}</h1>
+                    <v-btn rounded large color="amber accent-3 black--text" class="mt-10" dark min-width="150px" depressed :to="`${link}`">{{btnValue}}</v-btn>  
+                </v-card>
 
-        </v-container>
-    
+            </v-container>
+
+        </div>
     </v-img>
 </template>
 
@@ -21,10 +23,6 @@ export default {
         btnValue: { type: String, default: "Click" },
         bgImage: { type: String, default: "herobg.jpg" },
         link: { type: String, default: "#"}
-    },
-    data() {
-        return {
-        }
     }
 }
 </script>
@@ -44,7 +42,8 @@ export default {
 }
 
 .overlay-gradient {
-    height: 600px;
+    width: 100vw;
+    height: 100vh;
     background: -moz-linear-gradient(bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */

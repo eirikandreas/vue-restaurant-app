@@ -1,31 +1,26 @@
 <template>
     <div>
-
-
-            <template v-if="loading">
-    <AppLoader/>
-</template>
-    <template v-else>
-
-      <template v-if="menuItems.length === 0 || empty == true">
-            <v-row>
-                <v-col>
-                    <v-card flat min-height="300px" class="d-flex align-center justify-center">
-                        <h1 class="display-2 grey--text"> No Menu Items with the name "{{query}}"</h1>
-                    </v-card>
-                </v-col>
-            </v-row>
+        <template v-if="loading">
+            <AppLoader/>
         </template>
-
         <template v-else>
-               <MenuList
-      :items="menuItems"
-      />
+            <template v-if="menuItems.length === 0 || empty == true">
+                <v-row>
+                    <v-col>
+                        <v-card flat min-height="300px" class="d-flex align-center justify-center">
+                            <h1 class="display-2 grey--text"> No Menu Items with the name "{{query}}"</h1>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </template>
+
+            <template v-else>
+                <MenuList
+                :items="menuItems"
+                />
+            </template>
+
         </template>
-
-
-   
-  </template>
 
     </div>
 </template>
@@ -57,7 +52,7 @@ export default {
         }
      },
     methods: {
-           searchByTitle(title){
+        searchByTitle(title){
             this.loading = true;
 
             if(title == "") {
@@ -71,7 +66,6 @@ export default {
                 this.menuItems = response.data;
                 this.loading = false;
                 });
-
             }
          
         },

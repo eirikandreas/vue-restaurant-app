@@ -1,15 +1,17 @@
 <template>
     <div>
+      
+      <template v-if="loading">
+        <AppLoader/>
+      </template>
 
-            <template v-if="loading">
-    <AppLoader/>
-</template>
-    <template v-else>
+      <template v-else>
 
-      <MenuList
-      :items="menuItems"
-      />
-  </template>
+        <MenuList
+        :items="menuItems"
+        />
+        
+      </template>
 
     </div>
 </template>
@@ -27,7 +29,6 @@ export default {
         return {
             loading: false,
             menuItems: [{}]
-
         }
     },
     methods: {
@@ -40,7 +41,6 @@ export default {
           this.loading = false;
         })            
       },
-
     },
     created() {
         this.getAll()

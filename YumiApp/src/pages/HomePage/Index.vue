@@ -9,18 +9,22 @@
 
     <template v-else>
 
-      <HomeCarousel/>
+      <HomeTopSection
+      :carousel="pageSettings.homeDisplayCarousel"/>
 
-      <HomeTopPicksSection
-      title="Top Picks"
-      link="/menu"
-      />
+      <template v-if="pageSettings.homeDisplayTopPicks">
+        <HomeTopPicksSection
+        :title="pageSettings.homeFavTitle"
+        link="/menu"
+        />
+
+    </template>
 
       <HomeCategorySection/>
 
       <HomeConceptSection
-      title="Our Concept"
-      text="Lorem ipsum dolor sit amet"
+      :title="pageSettings.homeTitle"
+      :text="pageSettings.homeText"
       :showButton="true"
       buttonValue="About us"
       link="/about"
@@ -28,15 +32,16 @@
 
       <ParallaxSection
       :height="500"
-      title="Our Concept"
+      title="See our menu"
       :showSub="true"
-      subheading="This is some shit"
+      subheading="If it is for a private celebration or just a little something extra for dinner, we got you covered."
       :icon="parallaxIcon"
       :bgImage="parallaxImage"
       :showButton="true"
-      buttonValue="Order now"
-      link="/order"
+      buttonValue="View our Menu"
+      link="/menu"
       />
+
     </template>
 
   </div>
@@ -45,8 +50,7 @@
 <script>
 import AppLoader from '@/components/common/AppLoader'
 import ParallaxSection from '@/components/ui/ParallaxSection'
-
-import HomeCarousel from '@/pages/HomePage/HomeCarousel.vue'
+import HomeTopSection from '@/pages/HomePage/HomeTopSection.vue'
 import HomeCategorySection from '@/pages/HomePage/HomeCategorySection'
 import HomeConceptSection from '@/pages/HomePage/HomeConceptSection'
 import HomeTopPicksSection from '@/pages/HomePage/HomeTopPicksSection'
@@ -56,7 +60,7 @@ export default {
   components: { 
     AppLoader,
     ParallaxSection,
-    HomeCarousel,
+    HomeTopSection,
     HomeCategorySection,
     HomeConceptSection,
     HomeTopPicksSection
@@ -66,9 +70,24 @@ export default {
       loading: false,
       height: 800,
       hero: { title: "Order, eat & enjoy", btnValue: "Explore our menu", bgImage: "herobg.jpg"},
-      parallaxIcon: "icons/takeaway-w.png",
-      parallaxImage: "parallax-5.jpg"
+      parallaxIcon: "takeaway-w.png",
+      parallaxImage: "parallax-5.jpg",
+      pageSettings: {}
     }
+  },
+  methods: {
+    getPageSettings(){
+    this.loading = true;
+    let webAPIUrl = "https://localhost:5001/pagesettings/1";
+    this.$http.get( webAPIUrl )
+      .then( response => { 
+        this.pageSettings = response.data;
+        this.loading = false
+      })          
+    },
+  },
+  created(){
+    this.getPageSettings()
   }
 }
 </script>

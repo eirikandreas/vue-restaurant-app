@@ -22,6 +22,30 @@ namespace YumiAPI.Controllers{
             return orderList;
         }
 
+        [HttpPost]
+        public async Task<Order> Post(Order order){
+            _context.Order.Add(order);
+            await _context.SaveChangesAsync();
+            return order;
+        }
+
+        [HttpGet("{id}")]
+        [Route("[action]")]
+        public async Task<Order> Get(int id){
+            Order chosenOrder = await _context.Order.FirstOrDefaultAsync( order => order.Id == id );
+            return chosenOrder;
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<Order> Delete(int id){
+            Order orderToDelete = await _context.Order.FirstAsync( order => order.Id == id );
+            _context.Order.Remove( orderToDelete );
+            await _context.SaveChangesAsync();
+            return orderToDelete;
+        }
+
+
     }
 
 }

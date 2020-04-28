@@ -10,7 +10,7 @@
       >
 
         <v-col class="text-center  d-flex flex-column align-center" cols="12">
-          <v-img class="align-center" :src="require(`@/assets/${icon}`)" width="64" height="64"></v-img>
+          <v-img class="align-center" :src="require(`@/assets/icons/${icon}`)" width="64" height="64"></v-img>
             <h1 class="display-4 font-weight-thin mb-4">{{title}}</h1>
             <template v-if="showSub">
               <h4 class="subheading">{{subheading}}</h4>
@@ -33,7 +33,7 @@ export default {
       showSub: {type: Boolean, default: false},
       subheading: { type: String, default: "Not Set"},
       bgImage: { type: String, default: "parallax-5.jpg"},
-      icon: { type: String, default: "icons/takeaway-w.png"},
+      icon: { type: String, default: "takeaway-w.png"},
       showButton: {type: Boolean, default: false},
       buttonValue: {type: String, default: "Not Set"},
       link: {type: String, default: "#"},
@@ -46,8 +46,5 @@ export default {
 #overlay-image {
   background-color: rgba(0, 0, 0, 0.6);
 
-}
-.v-parallax__content {
-    padding: 0;
 }
 </style>

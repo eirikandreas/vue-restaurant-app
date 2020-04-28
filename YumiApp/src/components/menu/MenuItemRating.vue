@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex align-center">
-        <span class="grey--text text--lighten-2 caption mr-2">({{ menuItem.rating }})</span>
+        <span class="caption mr-2">({{ menuItem.rating }})</span>
             <v-rating 
             v-model="menuItem.rating" 
             background-color="white" 
@@ -35,8 +35,6 @@ export default {
         setRating() {
             let webAPIUrl = "https://localhost:5001/menuitems";
             this.$http.put(webAPIUrl, this.menuItem)
-            console.log(this.menuItem)
-
         }
     },
     created() {

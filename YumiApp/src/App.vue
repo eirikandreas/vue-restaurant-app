@@ -2,18 +2,20 @@
   <v-app>
 
     <TheHeader 
-    :title="header.title"
-    :cartItems="header.cartItems"
-    :isLoggedIn="header.isLoggedIn"
-    :isAdmin="header.isAdmin"
-    :bgColor="header.bgColor"
+    :appName="pageTitle"
+    :links="links"
     />
 
     <v-content>
       <router-view/>
     </v-content>
 
-    <TheFooter/>
+    <TheFooter
+    :appName="pageTitle"
+    :footerItems="footerItems"
+    :links="links"
+    :someLinks="someLinks"
+    />
 
   </v-app>
 </template>
@@ -29,28 +31,24 @@ export default {
     TheFooter
   },
   data: () => ({
-    isAdmin: true,
-    header: { 
-      title: "YUMI",
-      bgColor: "black",
-      cartItems: 3,
-      isLoggedIn: false,
-      isAdmin: false
-      },
-    pageContent: {},
+    pageTitle: "YUMI",
+    links: [
+      { title: 'Home', to: '/' },
+      { title: 'Menu', to: '/menu'},
+      { title: 'About', to: '/about' },
+      { title: 'Contact', to: '/contact' },
+    ],
+    someLinks: [
+      { icon: "mdi-facebook", link:"#" },
+      { icon: "mdi-twitter", link:"#" },
+      { icon: "mdi-instagram", link:"#" },
+    ],
+    footerItems: [
+      { title: "Something", text: "Something more"},
+      { title: "Something", text: "Something more"},
+      { title: "Something", text: "Something more"},
+
+    ]
   }),
-    methods: {
-        getPageContent(){
-          let webAPIUrl = "https://localhost:5001/pagecontent/1";
-          this.$http.get( webAPIUrl )
-            .then( result => {
-              this.pageContent = result.data;
-              console.log(this.pageContent)
-            })
-        }
-    },
-    created(){
-      this.getPageContent()
-    }
 };
 </script>

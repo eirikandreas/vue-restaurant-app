@@ -1,15 +1,6 @@
 <template>
-    <div id="top">
-        <section class="search">
-            <v-sheet tile color="red">
-        <v-container>
-            
-        <v-text-field outlined rounded clearable hide-details dark color="amber accent-3" append-icon="mdi-magnify" placeholder="Search menu" v-model="searchWord" @keydown.enter="testFunc" @click:append="testFunc"></v-text-field>
-
-        </v-container>
-            </v-sheet>
-        </section>
-
+    <div id="top"> 
+        <v-text-field outlined rounded clearable hide-details dark append-icon="mdi-magnify" placeholder="Search menu" v-model="searchWord" @keydown.enter="search" @click:append="search"></v-text-field>
     </div>
 </template>
 <script>
@@ -17,22 +8,17 @@ export default {
     name: 'Search',
     data(){
         return {
-            test: "",
-            searchWord: ""
-
+            searchWord: "",
+            lastSearchWord: "",
         }
     },
-
     methods: {
-        testFunc() {
-            this.$router.push({ name: 'search', query: { q: this.searchWord }})
+        search() {
+            if(!this.searchWord == this.lastSearchWord) {
+                 this.$router.push({ name: 'search', query: { q: this.searchWord }})
+                 this.lastSearchWord = this.searchWord
+            } 
         }
     }
 }
 </script>
-<style scoped>
-.search {
-    background-color: #212121;
-    width: 100%;
-}
-</style>

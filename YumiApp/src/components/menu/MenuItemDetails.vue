@@ -1,167 +1,75 @@
 <template>
-    <div id="#top">
+    <v-card class="shadow" flat>
+        <v-list two-line>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title class="title">{{title}}</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
 
-        <template v-if="Object.keys(menuItem).length === 0">
-        </template>
-        <template v-else>
+            <v-divider inset></v-divider>
 
-            <v-card flat>
-                <v-row>
+            <v-list-item>
+                <v-list-item-icon>
+                    <v-icon color="grey lighten-1">mdi-nutrition</v-icon>
+                </v-list-item-icon>
 
-                    <v-col cols="12" md="12">                  
-                        <v-card-title class="display-2 font-weight-bold">{{menuItem.title}}</v-card-title>
-                        
-                         <MenuItemRating
-                        :itemId="menuItem.id"/>
+                <v-list-item-content>
+                    <v-list-item-title>Ingredients</v-list-item-title>
+                    <v-list-item-subtitle>{{ingredients}}</v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
 
-            
-    
-                    </v-col>
+            <v-divider inset></v-divider>
 
-                    <v-col cols="12" md="8">
-                        <v-img :src="`https://localhost:5001/images/${menuItem.imgSrc}`" height="350px">
-                            <div class="overlay-gradient">
-                                <template v-if="menuItem.isSpicy">
-                                    <v-tooltip bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-chip color="red" v-on="on" class="is-spicy mt-4 mr-4">
-                                                <v-icon color="white">mdi-chili-hot</v-icon>
-                                            </v-chip>
-                                        </template>
+            <v-list-item>
+                <v-list-item-icon>
+                    <v-icon color="grey lighten-1">mdi-egg-outline</v-icon>
+                </v-list-item-icon>
 
-                                        <span>This dish is spicy</span>
+                <v-list-item-content>
+                    <v-list-item-title>Allergens</v-list-item-title>
+                    <v-list-item-subtitle>{{allergens}}</v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
 
-                                    </v-tooltip>
-                                </template>
+            <v-divider inset></v-divider>
 
-                                <div class="cat-chip">
-                                    <v-card-text>
-                                        <v-chip style="backgroundColor:rgba(255,255,255,0.4)" class="font-weight-bold white--text">{{menuItem.category}}</v-chip>
-                                    </v-card-text>
-                                </div>
-                            
-                            </div>
-                        </v-img>
+            <v-list-item>
 
-                        <v-card-title class="title font-weight-bold">Description:</v-card-title>
-                        <v-card-text>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, recusandae iste! Natus explicabo odit, ullam officiis libero amet nulla, ex illo facilis impedit mollitia reiciendis voluptatum ea perspiciatis sint? Quisquam recusandae esse iste nihil numquam quibusdam accusantium est accusamus repellat consectetur, nisi amet consequuntur dolorem, quas dolor iusto nesciunt quos.
-                        </v-card-text>
+                <v-list-item-action></v-list-item-action>
 
-                    </v-col>
+                <v-list-item-content>
+                <v-list-item-title class="d-flex justify-end headline font-weight-bold">{{price}}</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
 
-                    <v-col cols="12" sm="12" md="4">
-
-                        <MenuDet
-                        :itemId="menuItem.id"
-                        :title="menuItem.title"
-                        :ingredients="menuItem.ingredients"
-                        :allergens="menuItem.allergens"
-                        />
-
-                    </v-col>
-                </v-row>
-            </v-card>
-
-            <v-divider class="pa-5"></v-divider>
-            <v-row>
-                <v-col cols="12">
-                    <h2>Similar Dishes</h2>
-                </v-col>
-            </v-row>
-
-            <MenuList
-            :items="menuItems.slice(0,4)"
-            />
-
-        </template>
-
-    </div>
+            <div class="pl-3 pr-3 pt-5 pb-5">
+                <OrderButton :id="itemId"/>
+            </div>
+        </v-list>
+    </v-card>
 </template>
 <script>
-import MenuList from './MenuList'
-import MenuDet from './MenuDet'
-import MenuItemRating from '@/components/menu/MenuItemRating'
-
+import OrderButton from '@/components/ui/OrderButton'
 export default {
-    name: 'MenuItem',
+    name: 'MenuItemDetails',
+    props: {
+        itemId: { type: Number, default: 0},
+        title: { type: String, default: "Not Set"},
+        ingredients: { type: String, default: "Not Set"},
+        allergens: { type: String, default: "Not Set"},
+        price: {type: Number, default: 0}
+    },
     components: {
-        MenuList,
-        MenuDet,
-        MenuItemRating
-
-    },
-    data(){
-        return {
-        show: false,
-        menuItem: {},
-        cat: this.$route.params.category,
-        menuItems: [{}]
-        }
-    },
-    methods: {
-        getItem(item) {
-            const webAPIUrl = `https://localhost:5001/menuitems/${item}`;
-            this.$http.get(webAPIUrl)
-                .then( response => {
-                    this.menuItem = response.data;
-                    console.log(this.menuItem)
-                });
-
-        },
-          getSimilar(cat) {
-            this.loading = true;
-            const webAPIUrl = `https://localhost:5001/menuitems/category/${cat}`;
-            this.$http.get(webAPIUrl)
-                .then( response => {
-                this.menuItems = response.data;
-                this.loading = false;
-                
-            });
-            
-
-            },
-
-            placeOrder() {
-            let orders = [];
-            orders = JSON.parse(localStorage.getItem("orders")) || [];
-            orders.push(this.menuItem);
-            localStorage.setItem("orders", JSON.stringify(orders));
-
-        },
-    },
-    created() {
-        this.getItem(this.$route.params.id)
-        this.getSimilar(this.cat)
-        console.log(this.$route.params.id)
-        }
-
+        OrderButton
+    }
 }
 </script>
-
 <style scoped>
-.is-spicy {
-    position: absolute;
-    right: 0;
-}
-.cat-chip {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-.ovl {
-    background-color: red;
-    
-}
-
-.chip-bg {
-    background-color: rgba(0,0,0,0.65);
-}
-
-.overlay-gradient {
-height: 350px;
-background: -moz-linear-gradient(bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+.shadow {
+    -webkit-box-shadow: 0px 0px 25px 0px rgba(238, 238, 238, 9);
+    -moz-box-shadow: 0px 0px 25px 0px rgba(238, 238, 238, 9);
+    box-shadow: 0px 0px 25px 0px rgba(238, 238, 238, 9);
 }
 </style>

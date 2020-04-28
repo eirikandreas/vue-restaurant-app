@@ -15,6 +15,41 @@ namespace YumiAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
+            modelBuilder.Entity("YumiAPI.Models.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("ContactByPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DateSent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactMessage");
+                });
+
             modelBuilder.Entity("YumiAPI.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
@@ -62,17 +97,26 @@ namespace YumiAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Comments")
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DateAdded")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IsFinished")
+                    b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Items")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("TotalPrice")
                         .HasColumnType("INTEGER");
@@ -133,6 +177,59 @@ namespace YumiAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PageContent");
+                });
+
+            modelBuilder.Entity("YumiAPI.Models.PageSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AboutHeaderTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AboutText1")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AboutText2")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AboutTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactHeaderTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("HomeDisplayCarousel")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("HomeDisplayTopPicks")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("HomeFavTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HomeHeroTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HomeText")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HomeTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MenuHeaderTitle")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PageSettings");
                 });
 
             modelBuilder.Entity("YumiAPI.Models.User", b =>

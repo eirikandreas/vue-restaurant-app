@@ -1,7 +1,6 @@
 <template>
 <div>
-
-  <template v-if="menuItems.length < 1">
+  <template v-if="carousel == false">
     <HomeHero
     title="Order, eat and enjoy!"
     btnValue="View our Menu"
@@ -11,6 +10,7 @@
   </template>
 
   <template v-else>
+    
     <v-carousel
     tile
     cycle
@@ -19,8 +19,8 @@
     show-arrows-on-hover
     >
       <v-carousel-item
-      v-for="(menuItem, i) in filterByFeatured()"
-      :key="i"
+      v-for="(menuItem, index) in filterByFeatured()"
+      :key="index"
       :src="`https:/localhost:5001/images/${menuItem.imgSrc}`"
       >
         <div class="overlay-gradient d-flex align-center">
@@ -40,6 +40,7 @@
         </div>
       </v-carousel-item>
     </v-carousel>
+
   </template>
 
 </div>
@@ -48,6 +49,9 @@
 import HomeHero from '@/pages/HomePage/HomeHero'
 export default {
     name: 'HomeCarousel',
+    props: {
+      carousel: {type: Boolean, default: false}
+    },
     components: {
       HomeHero
     },
@@ -66,7 +70,6 @@ export default {
         let webAPIUrl = "https://localhost:5001/menuitems";
         this.$http.get( webAPIUrl )
             .then( result => {
-                console.log( result.data );
                 this.menuItems = result.data;
             })
         }

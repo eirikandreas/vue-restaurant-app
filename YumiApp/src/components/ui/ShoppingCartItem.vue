@@ -4,7 +4,6 @@
 
 
 
-      <v-divider></v-divider>
             <v-list-item>
               <v-list-item-avatar>
                 <v-img :src="`https://localhost:5001/images/${image}`"></v-img>
@@ -13,14 +12,17 @@
               <v-list-item-content>
                 <v-list-item-title>{{ title }} </v-list-item-title>
                 <v-list-item-subtitle>Price ${{ price }}</v-list-item-subtitle>
+                 <v-list-item-subtitle>Quantity {{ quantity }}</v-list-item-subtitle>
               </v-list-item-content>
-        
-              <v-btn icon @click.stop="deleteFunc(index)">
+              <template v-if="showDelete">
+              <v-btn icon @click.stop="deleteItem(index)">
                 <v-icon small>mdi-close</v-icon>
               </v-btn>
+              </template>
             
             </v-list-item>
 
+      <v-divider></v-divider>
 
 
     </div>
@@ -34,12 +36,15 @@ export default {
         price: {type: Number, default: 0 },
         index: {type: Number, default: 0 },
         method: { type: Function },
+        quantity: {type: Number, default: 1},
+        showDelete: {type: Boolean, default: true}
     },
     methods: {
-        deleteFunc(index) {
+        deleteItem(index) {
             this.$emit('delete-item', index)
 
-        }
+        },
+        
         
     
     }

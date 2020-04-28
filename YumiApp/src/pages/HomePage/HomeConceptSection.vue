@@ -12,7 +12,7 @@
             <v-card-title 
             :class="[{'justify-center display-2': $vuetify.breakpoint.smAndDown}, 'display-3', 'font-weight-bold']"
             >
-            {{title}}
+              {{title}}
             </v-card-title>
             
             <v-card-text>{{text}}</v-card-text>

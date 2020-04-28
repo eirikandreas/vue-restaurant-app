@@ -82,14 +82,6 @@ export default {
     position: absolute;
     right: 0;
 }
-.ovl {
-    background-color: red;
-}
-
-.chip-bg {
-    background-color: rgba(0, 0, 0, 0.65);
-}
-
 .overlay-gradient {
     height: 300px;
     background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);

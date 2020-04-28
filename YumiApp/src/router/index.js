@@ -2,16 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../pages/HomePage/Index.vue'
 
-
+import DashboardInbox from '../pages/DashboardPage/DashboardInbox.vue'
 import DashboardOrdersTable from '../pages/DashboardPage/DashboardOrdersTable.vue'
 import DashboardMenuTable from '../pages/DashboardPage/DashboardMenuTable.vue'
 import DashboardPageSettings from '../pages/DashboardPage/DashboardPageSettings.vue'
 
 
-import NotFound from '../components/common/NotFound.vue'
-
-import init from '../components/unsorted/init.vue'
-import Cart from '../components/cart/Index.vue'
+import PageNotFound from '../components/common/PageNotFound.vue'
 
 
 import DisplayCategories from '../pages/MenuPage/DisplayCategories'
@@ -48,18 +45,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "menu" */ '../pages/MenuPage/Index.vue'),
     children: [
       {
-        path: '',
+        path: '/menu',
         component: DisplayAll
       },
-
       {
         path: ':category',
         component: DisplayCategories
       },
       {
         path: ':category/:id',
-        name: 'MenuItemDetails',
-        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemDetails.vue')
+        name: 'MenuItemFull',
+        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemFull.vue')
       },
       {
         path: 'search', name: 'search', component: DisplaySearch, props: (route) => ({ query: route.query.q })
@@ -72,6 +68,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "admin" */ '../pages/DashboardPage/Index.vue'),
     children: [
       {
+        path: '/admin',
+        component: DashboardOrdersTable
+      },
+      {
         path: 'orders',
         component: DashboardOrdersTable
       },
@@ -83,19 +83,20 @@ const routes = [
         path: 'pagesettings',
         component: DashboardPageSettings
       },
+      {
+        path: 'inbox',
+        component: DashboardInbox
+      },
     ]
   },
   {
-    path: '/cart',
-    component: Cart
+    path: '/checkout',
+    name: 'Checkout',
+    component: () => import(/* webpackChunkName: "checkout" */ '../pages/CheckoutPage/Index.vue')
   },
   {
     path: '*',
-    component: NotFound
-  },
-  {
-    path: '/init',
-    component: init
+    component: PageNotFound
   }
 ]
 
@@ -109,7 +110,6 @@ const router = new VueRouter({
     } if (to.hash) {
       return {
         selector: to.hash
-        // , offset: { x: 0, y: 10 }
       } }  else {
       return { x: 0, y: 0 }
     }

@@ -3,8 +3,8 @@
        
         <v-row>
             <v-col>
-                <v-card flat min-height="300px" class="d-flex align-center justify-center">
-                        <h1 class="display-2 grey--text">Nothing to display</h1>
+                <v-card flat min-height="290px" class="d-flex align-center justify-center">
+                        <h1 class="display-2 grey--text">{{text}}</h1>
                 </v-card>                
             </v-col>
         </v-row>
@@ -16,7 +16,7 @@
 export default {
     name: 'NothingToDisplay',
     props: {
-        array: { type: Array },
+        text: { type: String, default: "Nothing To Display"}
     }
 }
 </script>

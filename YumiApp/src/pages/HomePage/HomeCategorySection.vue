@@ -1,5 +1,5 @@
 <template>
-  <section class="section-bg">
+  <section>
 
     <v-container fluid class="pa-0">
       <v-row class="no-gutters">
@@ -23,7 +23,7 @@
                     </v-btn>
                   </v-card-text>
                 </div>
-                  </v-img>
+              </v-img>
             </v-hover>
             </v-card>
         </v-col>
@@ -50,25 +50,14 @@ export default {
 }
 </script>
 <style scoped>
-.section-bg{
-  background-color: #111111;
-}
 #overlay-image {
   transition: .4s ease-in-out;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.overlay{
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
  #overlay-image:not(.on-hover) {
    background-color: rgba(0, 0, 0, 0.6);
  }
-
-.imgColor {
-  background-color: red;
-}
 
 #hover-btn:not(.show-btns) {
   color: rgba(255, 255, 255, 0) !important;

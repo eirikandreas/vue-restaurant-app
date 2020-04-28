@@ -1,32 +1,37 @@
 <template>
   <div class="contact">
 
-    <AboutHero
-    :title="abouthero.title"
-    :bgImage="abouthero.bgImage"/>
+     <template v-if="loading">
+    
+      <AppLoader/>
 
-    <ConceptSectionContact
-    :cardTitle="conceptsectioncontact.cardTitle"
-    :cardText="conceptsectioncontact.cardText"
+    </template>
+
+    <template v-else>
+
+
+    <ParallaxSection
+    :title="pageSettings.contactHeaderTitle"
     />
-
-    <ResturantSection
-    :cardTitle1="resturantsection.cardTitle1"
-    :cardTitle2="resturantsection.cardTitle2" 
-    :cardTitle3="resturantsection.cardTitle3"
-    :heading1="resturantsection.heading1"
-    :heading2="resturantsection.heading2"
-    :card1Description1="resturantsection.card1Description1"
-    :card1Description2="resturantsection.card1Description2"
-    :card2Description1="resturantsection.card2Description1"
-    :card2Description2="resturantsection.card2Description2"
-    :card3Description1="resturantsection.card3Description1"
-    :card3Description2="resturantsection.card3Description2"
+       <div class="pt-10 pb-10">
+    <ContactSection
+    :cardTitle="pageSettings.contactTitle"
+    :cardText="pageSettings.contactText"
     />
+       </div>
 
-    <ParallaxSection/>
+   
 
-    <ServicesContact/>
+      <ParallaxSection
+      :height="500"
+      :title="parallax.title"
+      :showSub="true"
+      :subheading="parallax.subtitle"
+      :showButton="true"
+      :buttonValue="parallax.btnValue"
+      :link="parallax.link"/>
+
+    <ServicesList/>
 
 
 
@@ -35,34 +40,62 @@
     
 
 
-
+  </template>
 
   </div>
 </template>
 
 <script>
-
-import AboutHero from '@/pages/AboutPage/AboutHero.vue'
-import ConceptSectionContact from '@/pages/ContactPage/ConceptSectionContact.vue'
+import AppLoader from '@/components/common/AppLoader'
+import ContactSection from '@/pages/ContactPage/ContactSection.vue'
 import ParallaxSection from '@/components/ui/ParallaxSection.vue'
-import ResturantSection from '@/pages/ContactPage/ResturantSection.vue'
-import ServicesContact from '@/pages/ContactPage/ServicesContact.vue'
+
+import ServicesList from '@/pages/ContactPage/ServicesList.vue'
 
 export default {
   name: 'Contact',
   components: {
-    AboutHero,
-    ConceptSectionContact,
+    AppLoader,
+    ContactSection,
     ParallaxSection,
-    ResturantSection,
-    ServicesContact
+    ServicesList
   },
   data(){
     return {
+      loading: false,
+      pageSettings: {},
       abouthero: { title: "Contact us", bgImage: "sushi.jpg"},
       conceptsectioncontact: { cardTitle: "What can we do for you?", cardText: "Contact us and become our regular customer"},
-      resturantsection: { cardTitle1: "Yummi Oslo", cardTitle2: "Yummi Bergen", cardTitle3: "Yummi Trondheim", heading1:"Address:", heading2: "Phonenumber:", card1Description1:"Karl Johans Gate 1, 0170 Oslo", card1Description2:"+47 123 45 678", card2Description1:"Hordalandsgaten 1, 5051 Bergen", card2Description2:"+47 123 45 678", card3Description1:"Trondheimsgata 1, 7018 Trondheim", card3Description2:"+47 123 45 678",   }
+        parallax: {
+          title: "Some Title",
+          subtitle: "Some subtitle",
+          btnValue: "About us",
+          link: "/about"
+
+        }
     }
+  },
+  methods: {
+      getPageSettings(){
+            this.loading = true;
+            let webAPIUrl = "https://localhost:5001/pagesettings/1";
+            this.$http.get( webAPIUrl )
+                .then( response => { 
+                    this.pageSettings = response.data;
+                    this.loading = false,
+
+                    console.log("HELLEU" + this.pageSettings);
+                    
+              
+                })
+
+             
+        },
+
+ 
+  },
+  created() {
+    this.getPageSettings()
   }
 }
 </script>

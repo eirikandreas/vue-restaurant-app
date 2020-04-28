@@ -1,136 +1,105 @@
 <template>
   <div>
-    
     <v-toolbar flat color="transparent">
-      <v-toolbar-title class="headline ml-n4">Orders</v-toolbar-title>
+      <v-toolbar-title class="headline ml-n4">Orders ({{orders.length}})</v-toolbar-title>
     </v-toolbar>
 
-    <v-data-table
-    :headers="headers"
-    :items="desserts"
-    single-expand
-    :expanded.sync="expanded"
-    item-key="name"
-    show-expand
-    class="elevation-1"
-    >
-    <template v-slot:top>
+    <v-card class="mb-5">
 
-    </template>
-    <template v-slot:expanded-item="{ headers, item }">
-      <td class="height" :colspan="headers.length">More info about {{ item.name }}</td>
-    </template>
-    </v-data-table>
+      <v-data-table
+      :headers="headers"
+      :items="orders"
+      class="elevation-1"
+      >
+
+      <template v-slot:item.actions="{ item }">
+        <v-btn depressed color="amber accent-3" class="text-center" @click="openOrder(item)" fab x-small dark>
+          <v-icon fab small>mdi-eye</v-icon>
+        </v-btn>
+      </template>
+
+      </v-data-table>
+    </v-card>
+
+<!-- DIALOG -->
+  
+  <OrderDialog
+  :active="dialog"
+  :order="order"
+  :orderItems="orderItems"
+  @delete-order="deleteOrder"
+  @close-dialog="closeDialog"
+  />
+  
+
 
   </div>  
 </template>
 <script>
+import OrderDialog from '@/components/dashboard/OrderDialog'
 export default {
     name: 'DashboardOrdersTable',
+    components: {
+      OrderDialog
+
+    },
      data () {
       return {
+        dialog: false,
         expanded: [],
         headers: [
           {
             text: 'Id',
             align: 'start',
             sortable: false,
-            value: 'name',
+            value: 'id',
           },
-          { text: 'Ordered', value: 'calories' },
-          { text: 'Sum', value: 'fat' },
-          { text: 'Status', value: 'carbs' },
-          { text: '', value: 'data-table-expand' },
+          { text: 'Name', value: 'name' },
+          { text: 'Price', value: 'totalPrice' },
+          { text: 'Added', value: 'dateAdded' },
+          { text: 'Actions', value: 'actions' },
+          { text: '', value: 'data-table-expand', sortable: false },
         ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+        orders: [{}],
+        order: {},
+        orderItems: [{}]
       }
     },
+    methods: {
+      init() {
+        this.loading = true
+        const webAPIUrl = "https://localhost:5001/orders/";
+        this.$http.get(webAPIUrl)
+          .then(response => {
+            this.orders = response.data,
+       
+            console.log(this.orders)
+            this.loading = false
+          })
+        },
+        openOrder(item){
+          this.order = item
+          this.orderItems = JSON.parse(this.order.items)
+          console.log(this.orderItems)
+          this.dialog = true
+          console.log(item)
+        },
+        deleteOrder(item) {
+        const index = this.orders.indexOf(item)
+        this.orders.splice(index, 1)
+        let webAPIUrl = `https://localhost:5001/orders/${item.id}`;
+        this.$http.delete(webAPIUrl)
+            .then(
+            this.dialog = false
+            )
+        },
+        closeDialog() {
+          this.dialog = false
+        }
+    },
+    created() {
+      this.init()
+    }
     
 }
 </script>
-<style scoped>
-.height {
-  height: 100px;
-}
-</style>

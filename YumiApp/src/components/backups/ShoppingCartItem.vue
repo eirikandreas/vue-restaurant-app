@@ -13,9 +13,10 @@
               <v-list-item-content>
                 <v-list-item-title>{{ title }} </v-list-item-title>
                 <v-list-item-subtitle>Price ${{ price }}</v-list-item-subtitle>
+                 <v-list-item-subtitle>Quantity {{ quantity }}</v-list-item-subtitle>
               </v-list-item-content>
         
-              <v-btn icon @click.stop="deleteFunc(index)">
+              <v-btn icon @click.stop="deleteItem(index)">
                 <v-icon small>mdi-close</v-icon>
               </v-btn>
             
@@ -34,12 +35,14 @@ export default {
         price: {type: Number, default: 0 },
         index: {type: Number, default: 0 },
         method: { type: Function },
+        quantity: {type: Number, default: 1}
     },
     methods: {
-        deleteFunc(index) {
+        deleteItem(index) {
             this.$emit('delete-item', index)
 
-        }
+        },
+        
         
     
     }

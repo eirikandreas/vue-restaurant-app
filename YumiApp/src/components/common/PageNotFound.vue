@@ -11,13 +11,13 @@
                     </v-row>
                     <v-row>
                         <v-col>
-                            <h1 class="display-4 red--text">Oops! Chopsticks!</h1>
+                            <h1 class="display-4 red--text">Oops 404! Chopsticks!</h1>
                         </v-col>
                     </v-row>
                     <v-row>
                         <v-col cols="12">
                             <h2 class="subtitle mt-5">Chopsticks can be finicky and the page you are looking for can not be found! Dont worry!</h2>
-                            <v-btn rounded depressed large color="amber accent-3 mt-5">Take me back</v-btn>
+                            <v-btn rounded depressed large color="amber accent-3 mt-5" to="/home">Take me home!</v-btn>
                 
                         </v-col>
                     </v-row>

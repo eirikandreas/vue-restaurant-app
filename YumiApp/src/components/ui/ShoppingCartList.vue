@@ -1,58 +1,33 @@
 <template>
-    
-
-
-
-
-
-
-        <div>
-
-
-
-                   <v-list>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="title font-weight-bold">{{title}}</v-list-item-title>
-              </v-list-item-content>
-
-              <v-list-item-action>
-                         <v-badge light top color="red accent-3" overlap offset-x="10" offset-y="10" :content="`${items.length}`">
-                  <v-icon>mdi-shopping-outline</v-icon>
-                         </v-badge>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-
-
-
-
-            <v-list>
+<div>
+        <v-list v-for="(item, index) in cartItems" :key="index">
           
-        <CartItem
-        v-for="(item, index) in items" 
-        :key="index"
+        <ShoppingCartItem
         :image="item.imgSrc"
         :title="item.title"
         :price="item.price"
+        :quantity="item.quantity"
         :index="index"
         @delete-item="deleteCartItem"
+        :showDelete="showDelete"
         />
-          </v-list>
+
+
             <v-divider></v-divider>
-            <template v-if="items.length > 5">
+        </v-list>
+
+         <template v-if="displayLimit">
+
+       
               <v-list-item class="justify-center">
                 <v-list-item-content>
-                  <v-btn rounded text>View all {{items.length}} items</v-btn>
+                  <v-btn rounded text to="/checkout">View all ({{totalItems.length}})</v-btn>
                 </v-list-item-content>
               </v-list-item>
-            </template>
-            <v-divider></v-divider>
-    
-    
-    
-    
-       <v-list>
+      
+         </template>
+
+            <v-list>
               <v-list-item>    
                 <v-list-item-content>
                   <v-list-item-title class="title font-weight-bold">Total:</v-list-item-title>
@@ -65,56 +40,51 @@
             </v-list>
     
     
-    
-    
-    </div>
+  
 
 
 
-
-
-
+</div>
 </template>
 <script>
-import CartItem from './ShoppingCartItem'
+import ShoppingCartItem from './ShoppingCartItem'
 export default {
-    name: 'CartList',
+    name: 'ShoppingCartList',
     props: {
         title: { type: String },
-        itemsArr: { type: Array},
+        cartItems: { type: Array },
+        totalItems: { type: Array },
+        showDelete: { type: Boolean, default: true},
+        displayLimit: { type: Boolean, default: true}
+        
     },
     components: {
-        CartItem
+        ShoppingCartItem
     },
     data() {
         return {
             items: [{}],
-            sum: 0
-        }
-    },
-    watch: {
-        itemsArr () {
-            this.items = this.itemsArr
+            sum: 0,
+            quantity: 0,
+            
         }
     },
     methods: {
+        deleteCartItem(index){
+        this.items = JSON.parse(localStorage.getItem("orders"));
+        this.items.splice(index, 1);
+        localStorage.setItem("orders",JSON.stringify(this.items));
+        },
         calcCart() {
         this.sum = 0
-        this.itemsArr.forEach(item => {
+        this.cartItems.forEach(item => {
         this.sum += item.price
-        console.log("CALCULATING")
         }) 
         },
-         deleteCartItem(index){
-            this.items = JSON.parse(localStorage.getItem("orders"));
-            this.items.splice(index, 1);
-            localStorage.setItem("orders",JSON.stringify(this.items));
-            this.calcCart()
-        }
     },
     created(){
+        this.items = this.cartItems
         this.calcCart()
-        this.items = this.itemsArr
         
     }
 }

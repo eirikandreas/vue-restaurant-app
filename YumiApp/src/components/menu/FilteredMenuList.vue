@@ -7,12 +7,12 @@
 
    <template v-else>
         <v-row>
-            <v-col cols="12" sm="6" md="4" lg="3" v-for="menuItem in filterByRated()" :key="menuItem.id">
+            <v-col cols="12" md="6" lg="3" v-for="menuItem in filterByRated()" :key="menuItem.id">
 
                 <MenuItem
                 :id="menuItem.id"
                 :title="menuItem.title"
-                :image="menuItem.imgUrl"
+                :image="menuItem.imgSrc"
                 :category="menuItem.category"
                 :price="menuItem.price"
                 :rating="menuItem.rating"
@@ -25,9 +25,9 @@
 </div>
 </template>
 <script>
-
 import MenuItem from '@/components/menu/MenuItem'
 import NothingToDisplay from '@/components/common/NothingToDisplay'
+
 export default {
     name: 'FilteredMenuList',
     props: {
@@ -47,9 +47,7 @@ export default {
     },
     methods: {
         filterByRated() {
-
-        return this.menuItems.filter( menuItem => menuItem.rating > 3).reverse()
-       
+            return this.menuItems.filter( menuItem => menuItem.rating > 3).reverse().splice(1, 4)
         },
         getAll() {
             this.menuItems = [{}];
