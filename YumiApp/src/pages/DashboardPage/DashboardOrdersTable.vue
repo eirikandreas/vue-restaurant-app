@@ -21,7 +21,7 @@
       </v-data-table>
     </v-card>
 
-<!-- DIALOG -->
+
   
   <OrderDialog
   :active="dialog"
@@ -68,7 +68,7 @@ export default {
     methods: {
       init() {
         this.loading = true
-        const webAPIUrl = "https://localhost:5001/orders/";
+        const webAPIUrl = "https://localhost:5001/admin/orders/";
         this.$http.get(webAPIUrl)
           .then(response => {
             this.orders = response.data,
@@ -87,7 +87,7 @@ export default {
         deleteOrder(item) {
         const index = this.orders.indexOf(item)
         this.orders.splice(index, 1)
-        let webAPIUrl = `https://localhost:5001/orders/${item.id}`;
+        let webAPIUrl = `https://localhost:5001/admin/orders/${item.id}`;
         this.$http.delete(webAPIUrl)
             .then(
             this.dialog = false

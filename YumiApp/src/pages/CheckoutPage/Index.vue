@@ -72,7 +72,7 @@ export default {
             this.success = true
         },
         getCartItems(){
-       this.orders = JSON.parse(localStorage.getItem('orders'));
+            this.orders = JSON.parse(localStorage.getItem('orders'));
   
       },
     },

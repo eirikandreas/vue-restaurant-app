@@ -51,7 +51,7 @@ export default {
     methods: {
         getAll(){
             this.loading = true;
-            let webAPIUrl = "https://localhost:5001/menuitems";
+            let webAPIUrl = "https://localhost:5001/user/menuitems";
             this.$http.get( webAPIUrl )
                 .then( result => {
                     this.menuItems = result.data;
@@ -61,7 +61,7 @@ export default {
         getCategory(cat) {
             this.loading = true;
             this.menuItems = [{}];
-            const webAPIUrl = `https://localhost:5001/menuitems/category/${cat}`;
+            const webAPIUrl = `https://localhost:5001/user/menuitems/category/${cat}`;
             this.$http.get(webAPIUrl)
                 .then( response => {
                     this.menuItems = response.data;

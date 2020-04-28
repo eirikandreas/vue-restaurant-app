@@ -332,13 +332,13 @@ export default {
         this.pageSettings = {}  
       },
       postPageSettings() {
-        let webAPIUrl = "https://localhost:5001/pagesettings";
+        let webAPIUrl = "https://localhost:5001/admin/pagesettings";
         this.$http.post(webAPIUrl, this.defaultPageSettings)
         },
       getPageSettings() {
         this.loading = true
         this.initialize()
-        let webAPIUrl = "https://localhost:5001/pagesettings/1";
+        let webAPIUrl = "https://localhost:5001/admin/pagesettings/1";
         this.$http.get( webAPIUrl )
           .then( response => { 
                 this.pageSettings = response.data;
@@ -356,7 +356,7 @@ export default {
           })             
         },
       savePageSettings() {
-        let webAPIUrl = "https://localhost:5001/pagesettings";
+        let webAPIUrl = "https://localhost:5001/admin/pagesettings";
         this.$http.put( webAPIUrl, this.pageSettings )
         this.getPageSettings()
         this.dialog = false;       

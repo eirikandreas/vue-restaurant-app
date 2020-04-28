@@ -51,7 +51,7 @@ export default {
         },
         getAll() {
             this.menuItems = [{}];
-            const webAPIUrl = "https://localhost:5001/menuitems/";
+            const webAPIUrl = "https://localhost:5001/user/menuitems/";
             this.$http.get(webAPIUrl)
                 .then( response => {
                     this.menuItems = response.data;

@@ -77,7 +77,7 @@ export default {
         let newOrder = {
         items: localStorage.getItem("orders")
         }
-        let webAPIUrl = "https://localhost:5001/orders";
+        let webAPIUrl = "https://localhost:5001/user/orders";
         this.$http.post(webAPIUrl, newOrder)
         .then(
         console.log("POST request firing "),

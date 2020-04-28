@@ -111,7 +111,7 @@ export default {
             },
 
                postContactForm(){
-          let webAPIUrl = "https://localhost:5001/contactmessages";
+          let webAPIUrl = "https://localhost:5001/user/contactmessages";
                 this.$http.post(webAPIUrl, this.contactForm)
                     .then(
          

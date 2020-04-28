@@ -172,7 +172,7 @@ export default {
      getMessages(){
             this.init()
             this.loading = true;
-            let webAPIUrl = "https://localhost:5001/contactmessages";
+            let webAPIUrl = "https://localhost:5001/admin/messages";
             this.$http.get( webAPIUrl )
                 .then( response => { 
                     this.messages = response.data;

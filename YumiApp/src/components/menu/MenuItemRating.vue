@@ -26,14 +26,14 @@ export default {
     },
     methods: {
         getRating() {
-            let webAPIUrl = `https://localhost:5001/menuitems/${this.itemId}`;
+            let webAPIUrl = `https://localhost:5001/user/menuitems/${this.itemId}`;
             this.$http.get(webAPIUrl)
                 .then(result => {
                     this.menuItem = result.data;
                 })
         },
         setRating() {
-            let webAPIUrl = "https://localhost:5001/menuitems";
+            let webAPIUrl = "https://localhost:5001/user/menuitems";
             this.$http.put(webAPIUrl, this.menuItem)
         }
     },

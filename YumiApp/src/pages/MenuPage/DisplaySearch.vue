@@ -60,7 +60,7 @@ export default {
                 this.loading = false;
 
             } else {
-                const webAPIUrl = `https://localhost:5001/menuitems/title/${title}`;
+                const webAPIUrl = `https://localhost:5001/user/menuitems/title/${title}`;
                 this.$http.get(webAPIUrl)
                 .then( response => {
                 this.menuItems = response.data;

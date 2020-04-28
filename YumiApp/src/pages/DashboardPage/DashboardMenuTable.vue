@@ -128,7 +128,7 @@ export default {
         init() {
             this.editedItem = Object.assign({}, this.defaultMenuItem)
             this.loading = true
-            const webAPIUrl = "https://localhost:5001/admin/";
+            const webAPIUrl = "https://localhost:5001/admin/menuitems";
 
             this.$http.get(webAPIUrl)
                 .then(response => {
@@ -147,7 +147,7 @@ export default {
         deleteItem(item) {
         const index = this.menuItems.indexOf(item)
         this.menuItems.splice(index, 1)
-        let webAPIUrl = `https://localhost:5001/menuitems/${item.id}`;
+        let webAPIUrl = `https://localhost:5001/admin/menuitems/${item.id}`;
         this.$http.delete(webAPIUrl)
             .then(
             console.log("Deleted item with ID: " + item.id),
@@ -174,7 +174,7 @@ export default {
         let categoryString = this.editedItem.category.toString();
         this.$set(this.editedItem, 'category', categoryString);
 
-        const webAPIUrl = "https://localhost:5001/admin";
+        const webAPIUrl = "https://localhost:5001/admin/menuitems";
         this.$http.post(webAPIUrl, this.editedItem)
         .then(response => {
             console.log(response);
@@ -203,7 +203,7 @@ export default {
         let categoryString = this.editedItem.category.toString();
         this.$set(this.editedItem, 'category', categoryString);
 
-        const webAPIUrl = "https://localhost:5001/menuitems/";
+        const webAPIUrl = "https://localhost:5001/admin/menuitems/";
         this.$http.put(webAPIUrl, this.editedItem)
             .then(response => {
                 console.log(response),

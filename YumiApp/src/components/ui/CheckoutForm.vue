@@ -96,7 +96,7 @@ export default {
         postCheckoutForm(){ 
     
         console.log(this.checkoutForm)
-        let webAPIUrl = "https://localhost:5001/orders";
+        let webAPIUrl = "https://localhost:5001/user/orders";
         this.$http.post(webAPIUrl, this.checkoutForm)
         .then(
         console.log("POST request firing "),
@@ -119,7 +119,7 @@ export default {
         dateAdded: this.checkoutForm.dateAdded,
         items: localStorage.getItem("orders")
         }
-        let webAPIUrl = "https://localhost:5001/orders";
+        let webAPIUrl = "https://localhost:5001/user/orders";
         this.$http.post(webAPIUrl, newOrder)
         .then(
           this.success(),

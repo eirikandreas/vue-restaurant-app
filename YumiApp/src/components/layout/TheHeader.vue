@@ -13,10 +13,8 @@
       :links="links"/>
 
       <v-spacer></v-spacer>
-
-      <!-- Shopping Cart Menu -->
+      
       <ShoppingCart/>
-      <!-- end Shopping Cart Menu -->
 
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">

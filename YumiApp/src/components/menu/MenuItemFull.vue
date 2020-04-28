@@ -110,7 +110,7 @@ export default {
     methods: {
         getItem(item) {
             this.loading = true
-            const webAPIUrl = `https://localhost:5001/menuitems/${item}`;
+            const webAPIUrl = `https://localhost:5001/user/menuitems/${item}`;
             this.$http.get(webAPIUrl)
                 .then( response => {
                     this.menuItem = response.data;
@@ -120,7 +120,7 @@ export default {
         },
           getSimilar(cat) {
             this.loading = true;
-            const webAPIUrl = `https://localhost:5001/menuitems/category/${cat}`;
+            const webAPIUrl = `https://localhost:5001/user/menuitems/category/${cat}`;
             this.$http.get(webAPIUrl)
                 .then( response => {
                 this.menuItems = response.data;

@@ -34,7 +34,7 @@ export default {
     methods: {
       getAll(){
       this.loading = true;
-      let webAPIUrl = "https://localhost:5001/menuitems";
+      let webAPIUrl = "https://localhost:5001/user/menuitems";
       this.$http.get( webAPIUrl )
         .then( result => {
           this.menuItems = result.data;

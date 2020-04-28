@@ -78,7 +78,7 @@ export default {
   methods: {
     getPageSettings(){
     this.loading = true;
-    let webAPIUrl = "https://localhost:5001/pagesettings/1";
+    let webAPIUrl = "https://localhost:5001/user/pagesettings/1";
     this.$http.get( webAPIUrl )
       .then( response => { 
         this.pageSettings = response.data;
