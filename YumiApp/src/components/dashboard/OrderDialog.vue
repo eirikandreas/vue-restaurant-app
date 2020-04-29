@@ -112,6 +112,7 @@ export default {
         deleteOrder: {type: Object}
     },
     methods: {
+        //$emit tillater bruk av funksjoner fra parent-component i child-component.
         close() {
             this.$emit('close-dialog')
         },

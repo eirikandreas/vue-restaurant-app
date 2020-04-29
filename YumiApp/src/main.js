@@ -6,7 +6,7 @@ import axios from 'axios'
 import CategoriesStore from '@/stores/CategoriesStore.js'
 import AllergensStore from '@/stores/AllergensStore.js'
 
-
+//Gjør importert axios og stores tilgjengelig med et respektivt nøkkelord.
 Vue.prototype.$http = axios
 Vue.prototype.$categories = CategoriesStore
 Vue.prototype.$allergens = AllergensStore

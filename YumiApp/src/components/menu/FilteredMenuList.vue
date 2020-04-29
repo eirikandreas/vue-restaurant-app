@@ -5,7 +5,7 @@
       <NothingToDisplay/>
     </template>
 
-   <template v-else>
+    <template v-else>
         <v-row>
             <v-col cols="12" md="6" lg="3" v-for="menuItem in filterByRated()" :key="menuItem.id">
 
@@ -30,10 +30,6 @@ import NothingToDisplay from '@/components/common/NothingToDisplay'
 
 export default {
     name: 'FilteredMenuList',
-    props: {
-        displayItems: { type: Number, default: 3},
-        searchTerm: {type: String, default: ""}
-    },
     components: {
         MenuItem,
         NothingToDisplay
@@ -41,14 +37,17 @@ export default {
     data() {
         return {
             menuItems: [{}],
-            menuItemSearch: [{}],
-            category: this.$route.params.category
         }
     },
     methods: {
+        /*
+        Filtrerer menuItems arrayet basert på rating, begrenser det og reverserer 
+        slik at høyest verdi vises først
+        */
         filterByRated() {
             return this.menuItems.filter( menuItem => menuItem.rating > 3).reverse().splice(1, 4)
         },
+        //Initialiserer menuItems og henter data fra databasen 
         getAll() {
             this.menuItems = [{}];
             const webAPIUrl = "https://localhost:5001/user/menuitems/";
@@ -61,10 +60,5 @@ export default {
     created() {
         this.getAll()  
     },
-    beforeRouteUpdate (to, from, next) {
-        this.getCategory(to.params.category);
-        next();
-    }
-
 }
 </script>

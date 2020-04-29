@@ -68,31 +68,32 @@
 </template>
 <script>
 export default {
-    name: 'MessageDialog',
-     props: {
-        active: {
-            type: Boolean,
-            required: true,
-            default: false
-        },
-        message: {
-            type: Object,
-            required: true
-        },
-        closeDialog: {
-            type: Object,
-        },
-        deleteMessage: {
-            type: Object,
-        }
+  name: 'MessageDialog',
+  props: {
+    active: {
+      type: Boolean,
+      required: true,
+      default: false
     },
-    methods: {
-        close() {
-            this.$emit('close-dialog')
-        },
-        deleteItem(message) {
-            this.$emit('delete-message', message)
-        }
+    message: {
+      type: Object,
+      required: true
+    },
+    closeDialog: {
+      type: Object,
+    },
+    deleteMessage: {
+      type: Object,
     }
+  },
+  methods: {
+    //$emit tillater bruk av funksjoner fra parent-component i child-component.
+    close() {
+      this.$emit('close-dialog')
+    },
+    deleteItem(message) {
+      this.$emit('delete-message', message)
+    }
+  }
 }
 </script>

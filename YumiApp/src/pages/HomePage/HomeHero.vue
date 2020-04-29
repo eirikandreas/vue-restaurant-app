@@ -3,7 +3,7 @@
         <div class="overlay-gradient">
 
             <v-container class="fill-height">
-
+                <!-- Setter klasse basert på browservinduets størrelse -->
                 <v-card flat color="transparent" :class="{ 'hero-card-width': $vuetify.breakpoint.smAndUp}">
                     <h1 :class="{'hero-font-size-sm font-weight-bold white--text': $vuetify.breakpoint.xsOnly, 'hero-font-size-md font-weight-bold white--text': $vuetify.breakpoint.smAndUp}">{{title}}</h1>
                     <v-btn rounded large color="amber accent-3 black--text" class="mt-10" dark min-width="150px" depressed :to="`${link}`">{{btnValue}}</v-btn>  
@@ -31,16 +31,13 @@ export default {
     font-size: 5rem;
     line-height: 4.5rem;
 }
-
 .hero-font-size-md {
     font-size: 6rem;
     line-height: 6.2rem;
 }
-
 .hero-card-width {
     width: 60%;
 }
-
 .overlay-gradient {
     width: 100vw;
     height: 100vh;

@@ -10,12 +10,15 @@ const CategoriesStore = {
             { id: 8, name: "Drinks", desc: "Lorem ipsum", imgSrc: "2.jpg", blackIcon: "drink.png", whiteIcon: "drink-w.png" },
         ]
     },
+    // Gir tilgang til å hente ut all data
     getAll(){
        return this.state.categories.map( category => category );
     },
+    // Gir tilgang til å hente ut data basert på id
     getId(id){
         return this.state.categories.find( category => category.id == id );
     },
+    // Gir tilgang til å hente ut data basert på navn
     getName(){
         return this.state.categories.map( category => category.name );
     }

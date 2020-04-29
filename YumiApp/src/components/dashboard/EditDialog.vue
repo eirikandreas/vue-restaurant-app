@@ -28,10 +28,7 @@
                             </v-col>
 
                             <v-col cols="12" sm="12" class="mb-0 pb-0">
-                                <!-- 
-                                    Select som legger valgene til bruker til et Array. Dette gjøres så om til en String.
-                                    Dette er gjort for å øke brukeropplevelsen når brukeren legger til allergener.
-                                -->
+
                                 <v-select
                                 outlined
                                 chips
@@ -127,10 +124,14 @@ export default {
             resetValidation() {
                 this.$refs.form.reset()
             },
-
+            //$emit tillater bruk av funksjoner fra parent-component i child-component.
             close() {
                 this.$emit('close-dialog')
             },
+            /* 
+            Sender oppdatert informasjon tilbake til parent-komponenten
+            kjører så uploadImage.
+            */
             save() {
                 if (this.editedItemIndex > -1) {
                     this.$emit('save-item', {editedItemIndex: this.editedItemIndex, editedItem: this.editedItem})

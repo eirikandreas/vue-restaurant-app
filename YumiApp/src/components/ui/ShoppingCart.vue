@@ -31,20 +31,13 @@
             </v-list-item>
           </v-list>
 
-        <ShoppingCartList
-        :cartItems="limitedOrder"
-        :totalItems="orders"
-        :showDelete="false"
-        />
+          <ShoppingCartList
+          :cartItems="limitedOrder"
+          :totalItems="orders"
+          :showDelete="false"
+          />
 
-    
-
-            <v-divider></v-divider>
-
-  
-
-         
-
+          <v-divider></v-divider>
         </template>
       </v-card>
     </v-menu>
@@ -64,33 +57,22 @@ export default {
             sum: 0,
         }
     },
-   methods: {
-        limitCartItems(){
-        this.limitedOrder = this.orders.slice(0, 3)
-        },
+    methods: {
+        /*
+        Henter data fra LocalStorage og setter den i orders Arrayet
+        og begrenser antall synlig innhold i handlekurven
+        */
         getCartItems(){
-        this.orders = JSON.parse(localStorage.getItem('orders'));
-        this.limitCartItems()
+          this.orders = JSON.parse(localStorage.getItem('orders'));
+          this.limitCartItems()
   
         },
-        postCartItems(){
-        let newOrder = {
-        items: localStorage.getItem("orders")
-        }
-        let webAPIUrl = "https://localhost:5001/user/orders";
-        this.$http.post(webAPIUrl, newOrder)
-        .then(
-        console.log("POST request firing "),
-        localStorage.removeItem("orders")
-        );
-
+        limitCartItems(){
+          this.limitedOrder = this.orders.slice(0, 3)
         },
     },
-
-
     mounted() {
-        this.getCartItems()
-        
+        this.getCartItems()    
     }
 }
 </script>

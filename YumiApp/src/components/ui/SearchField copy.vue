@@ -8,20 +8,16 @@ export default {
     name: 'Search',
     data(){
         return {
-            searchWord: null,
-            lastSearchWord: null
+            searchWord: "",
+            lastSearchWord: ""
         }
     },
     methods: {
-        /*
-        Sjekker om det forrige søkeordet er likt som query i routen,
-        Unngår med dette å duplikere samme route dersom en bruker søker etter samme ord.
-        */
         search() {
-            if(this.lastSearchWord != this.$route.query.q) {
+
                 this.$router.push({ name: 'search', query: { q: this.searchWord }})
-            }
-            this.lastSearchWord = this.searchWord
+              
+                console.log( "this.lastSearchWord " + this.lastSearchWord );
         }
     }
 }

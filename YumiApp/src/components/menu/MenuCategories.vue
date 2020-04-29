@@ -18,6 +18,7 @@ export default {
     name: 'MenuCategories',
     data() {
         return {
+            //Henter kategorier fra Store
             categories: this.$categories.getAll()
         }
     },

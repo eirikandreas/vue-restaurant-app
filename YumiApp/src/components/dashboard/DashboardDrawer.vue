@@ -39,11 +39,9 @@ export default {
           { title: 'View Orders', icon: 'mdi-bell-outline', link: "/admin/orders" },
           { title: 'Inbox', icon: 'mdi-message-outline', link: "/admin/inbox" },
           { title: 'Edit Menu', icon: 'mdi-pencil-outline', link: "/admin/editmenu" },
-          { title: 'Page Settings', icon: 'mdi-cogs', link: "/admin/pagesettings" },
-          
+          { title: 'Page Settings', icon: 'mdi-cogs', link: "/admin/pagesettings" }
         ]
       }
-    },
-    
+    }
 }
 </script>

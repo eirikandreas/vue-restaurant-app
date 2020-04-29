@@ -1,15 +1,13 @@
 <template>
     <div>
-      
+      <!-- Dersom Axios laster inn data, vis AppLoader -->
       <template v-if="loading">
         <AppLoader/>
       </template>
 
       <template v-else>
 
-        <MenuList
-        :items="menuItems"
-        />
+        <MenuList :items="menuItems"/>
         
       </template>
 
@@ -32,18 +30,19 @@ export default {
         }
     },
     methods: {
+      //Henter alle retter fra APIet
       getAll(){
-      this.loading = true;
-      let webAPIUrl = "https://localhost:5001/user/menuitems";
-      this.$http.get( webAPIUrl )
-        .then( result => {
-          this.menuItems = result.data;
-          this.loading = false;
-        })            
+        this.loading = true;
+        let webAPIUrl = "https://localhost:5001/user/menuitems";
+        this.$http.get( webAPIUrl )
+          .then( result => {
+            this.menuItems = result.data;
+            this.loading = false;
+          })            
       },
     },
     created() {
-        this.getAll()
+      this.getAll()
     }
 }
 </script>

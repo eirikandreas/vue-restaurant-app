@@ -48,31 +48,36 @@
 <script>
 import HomeHero from '@/pages/HomePage/HomeHero'
 export default {
-    name: 'HomeCarousel',
-    props: {
-      carousel: {type: Boolean, default: false}
-    },
-    components: {
-      HomeHero
-    },
-     data () {
-      return {
-        heroBg: "herobg2.jpg",
-        menuItems: [{}],
-      }
-    },
-    methods: {
-      filterByFeatured() {
-        return this.menuItems.filter( menuItem => menuItem.isFeatured == true)
+  name: 'HomeCarousel',
+  props: {
+    carousel: {type: Boolean, default: false}
+  },
+  components: {
+    HomeHero
+  },
+  data () {
+    return {
+      heroBg: "herobg2.jpg",
+      menuItems: [{}],
+    }
+  },
+  methods: {
+    //Henter alle retter fra APIet
+    getData(){
+      let webAPIUrl = "https://localhost:5001/user/menuitems";
+      this.$http.get( webAPIUrl )
+        .then( result => {
+          this.menuItems = result.data;
+        })
       },
+    //Filtrerer resultatene fra APIet basert på om de er "Featured"
+    filterByFeatured() {
+      return this.menuItems.filter( menuItem => menuItem.isFeatured == true)
+    },
     },
     created(){
-        let webAPIUrl = "https://localhost:5001/user/menuitems";
-        this.$http.get( webAPIUrl )
-            .then( result => {
-                this.menuItems = result.data;
-            })
-        }
+       this.getData()
+    }
 }
 </script>
 <style scoped>

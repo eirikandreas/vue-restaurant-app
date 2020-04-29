@@ -31,6 +31,7 @@
   </div>     
 </template>
 <script>
+//Importerte komponenter
 import AppLoader from '@/components/common/AppLoader'
 import ParallaxSection from '@/components/ui/ParallaxSection'
 import SearchField from '@/components/ui/SearchField'
@@ -53,6 +54,7 @@ export default {
       }
     },
     methods: {
+      //Henter ut spesifikk data med id 1 til applikasjonen fra apiet
       getPageSettings(){
         this.loading = true;
         let webAPIUrl = "https://localhost:5001/user/pagesettings/1";

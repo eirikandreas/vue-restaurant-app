@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- Dersom Axios laster inn data, vis AppLoader -->
         <template v-if="loading">
             <AppLoader/>
         </template>
@@ -49,6 +50,7 @@ export default {
         }
     },
     methods: {
+        //Henter alle retter fra APIet
         getAll(){
             this.loading = true;
             let webAPIUrl = "https://localhost:5001/user/menuitems";
@@ -58,6 +60,7 @@ export default {
                     this.loading = false;
                 })            
         },
+        //Henter alle retter fra APIet basert på kategori
         getCategory(cat) {
             this.loading = true;
             this.menuItems = [{}];

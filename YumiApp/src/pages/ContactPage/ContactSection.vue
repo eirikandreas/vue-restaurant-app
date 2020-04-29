@@ -7,10 +7,7 @@
         </v-col>
 
         <v-col cols="12" sm="12" md="6" class="d-flex align-center">
-
-
           <v-card flat :class="{'mx-auto text-center mb-6': $vuetify.breakpoint.smAndDown}" >
-
 
             <v-card-title :class="[{'justify-center display-2': $vuetify.breakpoint.smAndDown}, 'display-3', 'font-weight-bold']">{{cardTitle}}</v-card-title>
             <v-card-text>{{cardText}}</v-card-text>
@@ -20,12 +17,8 @@
               <ContactForm/>
                 
             </v-card-text>
-       
-
+    
           </v-card>
-
-
-
         </v-col>
 
       </v-row>
@@ -37,9 +30,8 @@ import ContactForm from '@/pages/ContactPage/ContactForm'
 export default {
     name: 'ContactSection',
     props: {
-
-        cardTitle: { type: String, default: "What can we do for you?" },
-        cardText: { type: String, default: "Contact us and become our regular customer" }
+      cardTitle: { type: String, default: "What can we do for you?" },
+      cardText: { type: String, default: "Contact us and become our regular customer" }
     },
     components: {
       ContactForm
@@ -49,11 +41,6 @@ export default {
         contactImage: 'concept-image-1-crop.png',
       }
     },
-    methods: {
-      submit() {
-        return console.log("Sending message")
-      }
-    }
 }
 </script>
 <style scoped>

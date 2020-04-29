@@ -7,23 +7,21 @@
     
     <v-card block class="mb-5">
 
-         <template v-if="loading">
-    
-      <AppLoader/>
-
-    </template>
-
-    <template v-else>
-
-      <template v-if="nothingToDisplay">
-
-        <NothingToDisplay
-        text="Could not connect to API"
-        />
-      
+      <template v-if="loading">
+        <AppLoader/>
       </template>
 
       <template v-else>
+
+        <template v-if="nothingToDisplay">
+
+          <NothingToDisplay
+          text="Could not connect to API"
+          />
+        
+        </template>
+
+        <template v-else>
 
         <v-row>
           <v-col cols="12" md="12" lg="12">
@@ -272,18 +270,13 @@
     </template>
   </v-card>
 
+    <ConfirmSettingsDialog
+    :active="dialog"
+    @save-changes="savePageSettings"
+    @close-dialog="closeDialog"
+    />
 
-
-    <!-- DIALOG --->
-
-<ConfirmSettingsDialog
-:active="dialog"
-@save-changes="savePageSettings"
-@close-dialog="closeDialog"/>
-
-
-    <!-- DIALOG END -->
-       </div>  
+  </div>  
 </template>
 <script>
 import AppLoader from '@/components/common/AppLoader'
@@ -300,8 +293,6 @@ export default {
         return {
           loading: false,
           nothingToDisplay: false,
-          switch1: true,
-          switch2: false,
           dialog: false,
           pageSettings: {},
           defaultPageSettings: {
@@ -322,19 +313,27 @@ export default {
       }
     },
      methods: {
-       /* Sjekk om objektet er tomt. Object.keys returnerer et Array med properties,
-          Objektet er tomt hvis lengden er 0.
+      /* 
+      Sjekk om objektet er tomt. Object.keys returnerer et Array med properties,
+      Objektet er tomt hvis lengden er 0.
       */
       isEmpty(obj) {
         return Object.keys(obj).length === 0;
       },
+      // Initialiserer pageSettings objektet
       initialize() {
         this.pageSettings = {}  
       },
+
+      //Skriver default verdier til Pagesettings
       postPageSettings() {
         let webAPIUrl = "https://localhost:5001/admin/pagesettings";
         this.$http.post(webAPIUrl, this.defaultPageSettings)
-        },
+      },
+      /*
+      Henter ut spesifikk data med id 1 til applikasjonen fra databasen
+      Hvis den speifikke oppføringen ikke eksisterer, kjør post-funksjon
+      */
       getPageSettings() {
         this.loading = true
         this.initialize()
@@ -354,7 +353,8 @@ export default {
                 console.log(error.response)
 
           })             
-        },
+      },
+      //Lagrer dataene fra pageSettings objektet til databasen
       savePageSettings() {
         let webAPIUrl = "https://localhost:5001/admin/pagesettings";
         this.$http.put( webAPIUrl, this.pageSettings )

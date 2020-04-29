@@ -28,15 +28,9 @@ export default {
         title: { type: String, default: "Not Set"},
         link: { type: String, default: "#"}
     },
-    data() {
-        return {
-            starIcon: 'star.png',
-        }
-    }
 }
 </script>
 <style scoped>
-
 #menuitems-section {
     min-height: 650px;
 }
@@ -44,12 +38,10 @@ export default {
     font-size: 5rem;
     line-height: 4.5rem;
 }
-
 .hero-font-size-md {
     font-size: 6rem;
     line-height: 5rem;
 }
-
 .hero-card-width {
     width: 60%;
 }

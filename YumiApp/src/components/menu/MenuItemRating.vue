@@ -25,6 +25,10 @@ export default {
         }
     },
     methods: {
+        /*
+        Henter rett fra APIet basert på den verdien som er sendt inn
+        via props og legger resultatet inn i menuItem objektet
+        */
         getRating() {
             let webAPIUrl = `https://localhost:5001/user/menuitems/${this.itemId}`;
             this.$http.get(webAPIUrl)
@@ -32,6 +36,7 @@ export default {
                     this.menuItem = result.data;
                 })
         },
+        //Skriver menuItem objektet tilbake til APIet
         setRating() {
             let webAPIUrl = "https://localhost:5001/user/menuitems";
             this.$http.put(webAPIUrl, this.menuItem)

@@ -17,10 +17,7 @@ export default {
                 title: '',
                 price: 0,
                 quantity: 1,
-            },
-
-       
-
+            }
         }
     },
     methods: {
@@ -39,8 +36,7 @@ export default {
                     
                     //this.menuItem = this.orderItem = {id: this.menuItem.id, title: this.menuItem.title, price: this.menuItem.price, quantity: 1}
                     
-
-                    
+       
                  
                 });
         },

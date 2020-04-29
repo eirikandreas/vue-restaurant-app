@@ -20,18 +20,14 @@
 
       </v-data-table>
     </v-card>
-
-
   
-  <OrderDialog
-  :active="dialog"
-  :order="order"
-  :orderItems="orderItems"
-  @delete-order="deleteOrder"
-  @close-dialog="closeDialog"
-  />
-  
-
+    <OrderDialog
+    :active="dialog"
+    :order="order"
+    :orderItems="orderItems"
+    @delete-order="deleteOrder"
+    @close-dialog="closeDialog"
+    />
 
   </div>  
 </template>
@@ -41,65 +37,61 @@ export default {
     name: 'DashboardOrdersTable',
     components: {
       OrderDialog
-
     },
-     data () {
+    data () {
       return {
         dialog: false,
         expanded: [],
-        headers: [
-          {
-            text: 'Id',
-            align: 'start',
-            sortable: false,
-            value: 'id',
+        headers: [{
+          text: 'Id',
+          align: 'start',
+          sortable: false,
+          value: 'id',
           },
           { text: 'Name', value: 'name' },
           { text: 'Price', value: 'totalPrice' },
           { text: 'Added', value: 'dateAdded' },
           { text: 'Actions', value: 'actions' },
           { text: '', value: 'data-table-expand', sortable: false },
-        ],
+          ],
         orders: [{}],
         order: {},
         orderItems: [{}]
       }
     },
     methods: {
-      init() {
+      //Henter ordre fra APIet.
+      getData() {
         this.loading = true
         const webAPIUrl = "https://localhost:5001/admin/orders/";
         this.$http.get(webAPIUrl)
           .then(response => {
             this.orders = response.data,
-       
-            console.log(this.orders)
             this.loading = false
           })
-        },
-        openOrder(item){
-          this.order = item
-          this.orderItems = JSON.parse(this.order.items)
-          console.log(this.orderItems)
-          this.dialog = true
-          console.log(item)
-        },
-        deleteOrder(item) {
+      },
+      //Når ordren åpnes, parse også items propertien fra string til Array
+      openOrder(item){
+        this.order = item
+        this.orderItems = JSON.parse(this.order.items)
+        this.dialog = true
+      },
+      //Slett den spesfikke ordren basert på id.
+      deleteOrder(item) {
         const index = this.orders.indexOf(item)
         this.orders.splice(index, 1)
         let webAPIUrl = `https://localhost:5001/admin/orders/${item.id}`;
         this.$http.delete(webAPIUrl)
-            .then(
+          .then(
             this.dialog = false
-            )
+          )
         },
         closeDialog() {
           this.dialog = false
         }
     },
     created() {
-      this.init()
-    }
-    
+      this.getData()
+    }  
 }
 </script>

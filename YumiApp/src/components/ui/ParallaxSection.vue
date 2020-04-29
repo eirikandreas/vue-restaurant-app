@@ -2,6 +2,7 @@
   <section id="parallax-section">
     
     <v-parallax :height="`${height}`" width="500" dark :src="require(`@/assets/images/${bgImage}`)">
+      
       <v-row
       align="center"
       justify="center"
@@ -11,18 +12,26 @@
 
         <v-col class="text-center  d-flex flex-column align-center" cols="12">
           <v-img class="align-center" :src="require(`@/assets/icons/${icon}`)" width="64" height="64"></v-img>
-            <h1 class="display-4 font-weight-thin mb-4">{{title}}</h1>
-            <template v-if="showSub">
-              <h4 class="subheading">{{subheading}}</h4>
-            </template>
-            <template v-if="showButton">
-              <v-btn depressed rounded large color="amber accent-3" class="mt-5" :to="`${link}`">{{buttonValue}}</v-btn>
-            </template>
+          <h1 class="display-4 font-weight-thin mb-4">{{title}}</h1>
+          <template v-if="showSub">
+            <h4 class="subheading">{{subheading}}</h4>
+          </template>
+          <template v-if="showButton">
+            <v-btn
+            depressed 
+            rounded 
+            large 
+            color="amber accent-3" 
+            class="mt-5" 
+            :to="`${link}`">
+              {{buttonValue}}
+            </v-btn>
+          </template>
         </v-col>
 
       </v-row>
     </v-parallax>
-
+    
    </section>
 </template>
 <script>

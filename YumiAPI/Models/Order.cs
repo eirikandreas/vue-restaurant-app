@@ -7,13 +7,13 @@ namespace YumiAPI.Models{
 
         public string Items { get; set;}
 
-        public int TotalPrice { get; set;}
+        public string TotalPrice { get; set;}
 
         public string Name { get; set; }
 
         public string Email { get; set; }
 
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public string Address { get; set; }
 

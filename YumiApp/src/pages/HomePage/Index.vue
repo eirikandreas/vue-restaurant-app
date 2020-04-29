@@ -17,8 +17,7 @@
         :title="pageSettings.homeFavTitle"
         link="/menu"
         />
-
-    </template>
+      </template>
 
       <HomeCategorySection/>
 
@@ -76,6 +75,7 @@ export default {
     }
   },
   methods: {
+    //Henter ut spesifikk data med id 1 til applikasjonen fra apiet
     getPageSettings(){
     this.loading = true;
     let webAPIUrl = "https://localhost:5001/user/pagesettings/1";

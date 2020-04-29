@@ -8,6 +8,7 @@
         </v-col>
 
         <v-col cols="12" sm="12" md="6" class="d-flex align-center justify-center">
+          <!-- Setter klasse basert på browservinduets størrelse -->
           <v-card flat :class="{'text-center mb-6': $vuetify.breakpoint.smAndDown}" >
             <v-card-title 
             :class="[{'justify-center display-2': $vuetify.breakpoint.smAndDown}, 'display-3', 'font-weight-bold']"

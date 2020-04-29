@@ -1,6 +1,5 @@
 <template>
     <div>
-       
         <v-row>
             <v-col>
                 <v-card flat min-height="290px" class="d-flex align-center justify-center">
@@ -8,7 +7,6 @@
                 </v-card>                
             </v-col>
         </v-row>
-
     </div>
 </template>
 

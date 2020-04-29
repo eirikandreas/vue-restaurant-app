@@ -72,7 +72,7 @@
                     <h2>Similar Dishes</h2>
                 </v-col>
             </v-row>
-
+            <!-- Begrenser listen til 4 objekter -->
             <MenuList
             :items="menuItems.slice(0,4)"
             />
@@ -108,6 +108,7 @@ export default {
         }
     },
     methods: {
+        //Henter rett fra databasen og setter den i menuItem objektet
         getItem(item) {
             this.loading = true
             const webAPIUrl = `https://localhost:5001/user/menuitems/${item}`;
@@ -116,36 +117,25 @@ export default {
                     this.menuItem = response.data;
                     this.loading = false
                 });
-
         },
-          getSimilar(cat) {
+        //Henter ut data fra databasen basert på kategori
+        getSimilar(cat) {
             this.loading = true;
             const webAPIUrl = `https://localhost:5001/user/menuitems/category/${cat}`;
             this.$http.get(webAPIUrl)
                 .then( response => {
                 this.menuItems = response.data;
-                this.loading = false;
-                
+                this.loading = false;     
             });
-
-        },
-        placeOrder() {
-            let orders = [];
-            orders = JSON.parse(localStorage.getItem("orders")) || [];
-            orders.push(this.menuItem);
-            localStorage.setItem("orders", JSON.stringify(orders));
-
-        },
+        }
     },
     created() {
         this.getItem(this.$route.params.id)
         this.getSimilar(this.cat)
-        console.log(this.$route.params.id)
-        }
+    }
 
 }
 </script>
-
 <style scoped>
 .is-spicy {
     position: absolute;

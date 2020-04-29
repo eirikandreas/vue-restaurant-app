@@ -13,7 +13,7 @@
       :links="links"/>
 
       <v-spacer></v-spacer>
-      
+
       <ShoppingCart/>
 
       <v-tooltip bottom>
@@ -37,17 +37,16 @@ import NavigationLinks from '@/components/ui/NavigationLinks'
 import ShoppingCart from '@/components/ui/ShoppingCart'
 import MobileHeaderMenu from '@/components/ui/MobileHeaderMenu'
 export default {
-    name: 'TheHeader',
-    components: {
-      NavigationLinks,
-      ShoppingCart,
-      MobileHeaderMenu
-    },
-    props: {
-        appName: { type: String, default: "" },
-        links: {type: Array }
-    },
-
+  name: 'TheHeader',
+  components: {
+    NavigationLinks,
+    ShoppingCart,
+    MobileHeaderMenu
+  },
+  props: {
+    appName: { type: String, default: "" },
+    links: {type: Array }
+  },
 }
 </script>
 <style scoped>

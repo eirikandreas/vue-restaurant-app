@@ -50,10 +50,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemFull.vue')
       },
       {
-        path: '/search', 
-        name: 'search', 
-        component: DisplaySearch, 
-        props: (route) => ({ query: route.query.q })
+        name: 'search', component: DisplaySearch, props: (route) => ({ query: route.query.q })
       }
     ]
   },

@@ -70,8 +70,7 @@ export default {
     },
     data() {
         return {
-            menuItem: {},
-          
+            menuItem: {}
         }
     },
 }

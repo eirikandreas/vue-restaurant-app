@@ -11,6 +11,8 @@
                   <v-card-text class="display-2 white--text font-weight-bold d-flex flex-column align-center">
                     <v-img :src="require(`@/assets/icons/${category.whiteIcon}`)" width="72px" height="72px" class="mb-3 icon-opacity"></v-img>
                     {{category.name}}
+
+                    <!-- URL blir konsistent med .toLowerCase() -->
                     <v-btn 
                     id="hover-btn" 
                     :class="[{ 'show-btns mt-6': hover }]" 
@@ -37,16 +39,13 @@ export default {
     name: 'HomeCategorySection',
      data () {
       return {
+        // Henter kategorier fra store og fjerner den første kategorien (All)
         categories: this.$categories.getAll().slice(1, 5),
         textcenter: 'text-center',
         transparent: 'rgba(255, 255, 255, 0)',
         amber: '#ffc400',
       }
-    },
-    created() {
-      console.log(this.categories)
-    }
-    
+    } 
 }
 </script>
 <style scoped>
@@ -54,17 +53,14 @@ export default {
   transition: .4s ease-in-out;
   background-color: rgba(0, 0, 0, 0.3);
 }
-
  #overlay-image:not(.on-hover) {
    background-color: rgba(0, 0, 0, 0.6);
  }
-
 #hover-btn:not(.show-btns) {
   color: rgba(255, 255, 255, 0) !important;
   background-color: rgba(255, 255, 255, 0) !important;
   transition: .4s ease-in-out;
 }
-
 .show-btns {
   color: rgba(0, 0, 0, 1) !important;
   background-color: #ffc400 !important;

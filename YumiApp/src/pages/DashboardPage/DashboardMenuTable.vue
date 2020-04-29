@@ -123,9 +123,9 @@ export default {
             
         }
     },
-    
     methods: {
-        init() {
+        //Henter retter fra API
+        getData() {
             this.editedItem = Object.assign({}, this.defaultMenuItem)
             this.loading = true
             const webAPIUrl = "https://localhost:5001/admin/menuitems";
@@ -135,103 +135,98 @@ export default {
                     this.menuItems = response.data,
                     this.loading = false
                 })
-
         },
-
+        /*
+        Setter en Index verdi på det valgte objektet for midlertidig lagring,
+        for så tilegne det innsendte objektet til editedItem objektet
+        */
         editItem (item) {
             this.editedItemIndex = this.menuItems.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
-
+        /*
+        Sletter objektet fra menuItems arrayet samt sletter det samme objektet
+        i APIet.
+        */
         deleteItem(item) {
-        const index = this.menuItems.indexOf(item)
-        this.menuItems.splice(index, 1)
-        let webAPIUrl = `https://localhost:5001/admin/menuitems/${item.id}`;
-        this.$http.delete(webAPIUrl)
-            .then(
-            console.log("Deleted item with ID: " + item.id),
-
-            )
-
+            const index = this.menuItems.indexOf(item)
+            this.menuItems.splice(index, 1)
+            let webAPIUrl = `https://localhost:5001/admin/menuitems/${item.id}`;
+            this.$http.delete(webAPIUrl)
         },
+        /*
+        
+        Benytter $set for å kunne dynamisk endre properties til String
+        for at APIet skal kunne motta informasjonen.
 
+        Ref: https://vuejs.org/v2/guide/reactivity.html
+        */ 
         newItem() {
-        let priceInt = parseInt(this.editedItem.price);
-        this.$set(this.editedItem, 'price', priceInt);
-        
-
-        let descriptionString = this.editedItem.description.toString();
-        this.$set(this.editedItem, 'description', descriptionString);
-
-        let ingredientsString = this.editedItem.ingredients.toString();
-        this.$set(this.editedItem, 'ingredients', ingredientsString);
-
-
-        let allergensString = this.editedItem.allergens.toString();
-        this.$set(this.editedItem, 'allergens', allergensString);
-
-        let categoryString = this.editedItem.category.toString();
-        this.$set(this.editedItem, 'category', categoryString);
-
-        const webAPIUrl = "https://localhost:5001/admin/menuitems";
-        this.$http.post(webAPIUrl, this.editedItem)
-        .then(response => {
-            console.log(response);
-            console.log("Save post request firing ");
-            this.init()
-            this.dialog = false;
-            })
-        },
-
-        saveItem() {
-
-        let priceInt = parseInt(this.editedItem.price);
-        this.$set(this.editedItem, 'price', priceInt);
-        
-
-        let descriptionString = this.editedItem.description.toString();
-        this.$set(this.editedItem, 'description', descriptionString);
-
-        let ingredientsString = this.editedItem.ingredients.toString();
-        this.$set(this.editedItem, 'ingredients', ingredientsString);
-
-
-        let allergensString = this.editedItem.allergens.toString();
-        this.$set(this.editedItem, 'allergens', allergensString);
-
-        let categoryString = this.editedItem.category.toString();
-        this.$set(this.editedItem, 'category', categoryString);
-
-        const webAPIUrl = "https://localhost:5001/admin/menuitems/";
-        this.$http.put(webAPIUrl, this.editedItem)
-            .then(response => {
-                console.log(response),
-                this.init()
-                this.dialog = false;
-            })
-
-        },
-    
-         closeDialog() {
-        // close modal and reset the editedItem as well as editedIndex
-        this.dialog = false
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-         }
-
+            let priceInt = parseInt(this.editedItem.price);
+            this.$set(this.editedItem, 'price', priceInt);
             
 
-       
+            let descriptionString = this.editedItem.description.toString();
+            this.$set(this.editedItem, 'description', descriptionString);
 
+            let ingredientsString = this.editedItem.ingredients.toString();
+            this.$set(this.editedItem, 'ingredients', ingredientsString);
+
+
+            let allergensString = this.editedItem.allergens.toString();
+            this.$set(this.editedItem, 'allergens', allergensString);
+
+            let categoryString = this.editedItem.category.toString();
+            this.$set(this.editedItem, 'category', categoryString);
+            //Legger til ny rett i APIet
+            const webAPIUrl = "https://localhost:5001/admin/menuitems";
+            this.$http.post(webAPIUrl, this.editedItem)
+            .then(response => {
+                console.log(response);
+                console.log("Save post request firing ");
+                this.getData()
+                this.dialog = false;
+                })
+        },
+        saveItem() {
+            let priceInt = parseInt(this.editedItem.price);
+            this.$set(this.editedItem, 'price', priceInt);
+            
+
+            let descriptionString = this.editedItem.description.toString();
+            this.$set(this.editedItem, 'description', descriptionString);
+
+            let ingredientsString = this.editedItem.ingredients.toString();
+            this.$set(this.editedItem, 'ingredients', ingredientsString);
+
+
+            let allergensString = this.editedItem.allergens.toString();
+            this.$set(this.editedItem, 'allergens', allergensString);
+
+            let categoryString = this.editedItem.category.toString();
+            this.$set(this.editedItem, 'category', categoryString);
+            //Setter redigert rett i APIet
+            const webAPIUrl = "https://localhost:5001/admin/menuitems/";
+            this.$http.put(webAPIUrl, this.editedItem)
+                .then(response => {
+                    console.log(response),
+                    this.getData()
+                    this.dialog = false;
+                })
+
+        },
+        //Setter editedItem og editedIndex tilbake til angitte verdier
+        closeDialog() {
+            this.dialog = false
+            this.editedItem = Object.assign({}, this.defaultItem)
+            this.editedIndex = -1
+            }
     },
-
     created() {
-           this.editedItem = Object.assign({}, this.defaultMenuItem)
-
-        this.init()
+        this.editedItem = Object.assign({}, this.defaultMenuItem)
+        this.getData()
     }
-
 }
 </script>
 <style scoped>
