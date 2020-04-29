@@ -70,8 +70,9 @@ export default {
   
         },
         limitCartItems(){
+          this.limitedOrder = this.orders
           if(this.orders > 3) {
-          this.limitedOrder = this.orders.slice(0, 3)
+          this.limitedOrder.slice(0, 3)
           }
         },
     },

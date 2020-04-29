@@ -27,7 +27,7 @@
 
       <v-text-field
       :rules="reqRule"
-      v-model="checkoutForm.subject"
+      v-model="checkoutForm.address"
       label="Address"
       required
       color="red"
@@ -77,6 +77,7 @@ export default {
         name: '',
         email: '',
         phoneNumber: '',
+        address: '',
         comment: '',
         dateAdded: new Date().toDateString(),
       },
@@ -113,7 +114,7 @@ export default {
       let newOrder = {
         name: this.checkoutForm.name,
         email: this.checkoutForm.email,
-        phoneNumbers: this.checkoutForm.phoneNumber,
+        phoneNumber: this.checkoutForm.phoneNumber,
         address: this.checkoutForm.address,
         comment: this.checkoutForm.comment,
         dateAdded: this.checkoutForm.dateAdded,

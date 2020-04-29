@@ -210,11 +210,10 @@ export default {
             //Setter redigert rett i APIet
             const webAPIUrl = "https://localhost:5001/admin/menuitems/";
             this.$http.put(webAPIUrl, this.editedItem)
-                .then(response => {
-                    console.log(response),
-                    this.getData()
-                    this.dialog = false;
-                })
+                .then(
+                    this.getData(),
+                    this.dialog = false
+                )
 
         },
         //Setter editedItem og editedIndex tilbake til angitte verdier
