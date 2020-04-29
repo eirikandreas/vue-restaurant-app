@@ -44,9 +44,9 @@ export default {
       { icon: "mdi-instagram", link:"#" },
     ],
     footerItems: [
-      { title: "Something", text: "Something more"},
-      { title: "Something", text: "Something more"},
-      { title: "Something", text: "Something more"},
+      { title: "About", text: "Yumi is a big, locally owned sushi resturant in Oslo. Since 1999, Yumi has been producing high quality Asian dishes. Visit us for a great taste experience."},
+      { title: "Get in touch", text: "Reach us by mail or phone. +47 22453590 yumioslo@sushi.com"},
+      { title: "Location", text: "Cort Adelers gate 2, 0254 Oslo"},
 
     ]
   }),

@@ -54,8 +54,8 @@ export default {
       abouthero: { title: "Contact us", bgImage: "sushi.jpg"},
       conceptsectioncontact: { cardTitle: "What can we do for you?", cardText: "Contact us and become our regular customer"},
         parallax: {
-          title: "Some Title",
-          subtitle: "Some subtitle",
+          title: "Who are we?",
+          subtitle: "Get to know our story",
           btnValue: "About us",
           link: "/about"
         }
