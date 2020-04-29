@@ -27,7 +27,6 @@
             :item="item"
             :subject="item.subject"
             :name="item.name"
-            :comment="item.comment"
             :date="item.dateSent"
             :read="item.isRead"/>
 

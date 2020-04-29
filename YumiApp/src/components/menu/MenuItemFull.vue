@@ -108,7 +108,16 @@ export default {
         menuItems: [{}]
         }
     },
+    watch: {
+    "$route.params.id":{
+            immediate: true,
+            handler(id){
+                this.getItem(id) 
+            }
+        }
+     },
     methods: {
+        
         //Henter rett fra databasen og setter den i menuItem objektet
         getItem(item) {
             this.loading = true

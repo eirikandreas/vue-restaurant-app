@@ -34,7 +34,7 @@
                         <v-expand-transition>
                             <div v-if="hover" class="d-flex transition-fast-in-slow-out">
                                 <v-card-text class="d-flex">
-                                    <v-btn rounded depressed color="amber accent-3 mr-3" :to="`/menu/${category.toLowerCase()}/${id}#category`">View</v-btn>
+                                    <v-btn rounded depressed color="amber accent-3 mr-3" :to="`/menu/${category.toLowerCase()}/${id}`">View</v-btn>
                   
                                     <OrderButton :id="id"/>
                                 </v-card-text>

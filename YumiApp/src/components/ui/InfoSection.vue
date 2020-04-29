@@ -2,8 +2,7 @@
      <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="6" class="justify-center pa-0 hidden-sm-and-down">
-            <v-img contain :src="require(`@/assets/images/${image}`)" max-height="500" width="auto">
-              <div class="overlay-gradient"></div>
+            <v-img contain :src="require(`@/assets/images/${image}`)" max-height="400">
             </v-img>
   
         </v-col>
@@ -49,11 +48,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.overlay-gradient {
-  height: 500px;
-  background: -moz-linear-gradient(bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-}
-</style>

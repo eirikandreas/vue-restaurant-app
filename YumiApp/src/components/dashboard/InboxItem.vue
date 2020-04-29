@@ -8,7 +8,6 @@
       <v-list-item-content>
         <v-list-item-title v-text="subject"></v-list-item-title>
         <v-list-item-subtitle class="text--primary" v-text="subject"></v-list-item-subtitle>
-        <v-list-item-subtitle v-text="comment"></v-list-item-subtitle>
       </v-list-item-content>
 
       <v-list-item-action>
@@ -38,7 +37,6 @@ export default {
     inboxData: {type: Array },
     subject: { type: String, default: 'Not Set'},
     name: { type: String, default: 'Not Set'},
-    comment: { type: String, default: 'Not Set'},
     date: {type: String, default: "Not Set"},
     read: {type: Boolean, default: false }
   },

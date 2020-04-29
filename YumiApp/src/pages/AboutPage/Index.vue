@@ -57,7 +57,7 @@ export default {
       pageSettings: {},
       abouthero: { title: "About Us", bgImage: "herobg.jpg"},
       aboutinfo: { 
-        imgSrc: "chef.jpg", 
+        imgSrc: "about-image.jpg", 
         heading: "Who we are", 
         info: "Yumi is a big, locally owned and operated bakery in Oslo, Bergen and Trondheim.Since 1999, Yumi has been producing its high quality product on the popular. Partners Hilma Maier and Robert McMonigle felt that Burlingame was the perfect location to continue their centuries old trade. We believe that a healthy lifestyle begins with a healthy dietOur focus is to provide Yumi desserts and snacks that are nutritious and delicious. Our products always feature as many local, organic ingredients as possible.",
         heading2: "Why choose us", 
