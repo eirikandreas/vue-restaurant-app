@@ -28,8 +28,8 @@
           <v-container>
             <v-row>
               <v-col cols="12" sm="12" md="8">
-                <h2 class="title white--text">Featured from our menu</h2>
-                <h1 class="display-4 font-weight-bold white--text">{{menuItem.title}}</h1>
+                <div class="title white--text">Featured from our menu</div>
+                <h1 :class="{'display-2 font-weight-bold white--text': $vuetify.breakpoint.xsOnly, 'display-4 font-weight-bold white--text': $vuetify.breakpoint.smAndUp}">{{menuItem.title}}</h1>
                 <h2 class="title white--text">{{menuItem.category}}</h2>
                 <p class="white--text mt-3">{{menuItem.description}}</p>
                 <v-btn light rounded depressed color="amber accent-3" class="mt-5">View More</v-btn>

@@ -1,7 +1,7 @@
 <template>
 
-        <v-dialog :value="active" :fullscreen="$vuetify.breakpoint.xsOnly" v-model="active" persistent>
-            <v-card class="mx-auto" max-width="800px">
+        <v-dialog :value="active" :fullscreen="$vuetify.breakpoint.xsOnly" v-model="active" persistent max-width="800px">
+            <v-card class="mx-auto">
                 <v-form ref="form" v-model="valid" lazy-validation>
                     <v-container>
                         <v-card-title class="headline">Add menu item</v-card-title>
