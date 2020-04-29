@@ -67,7 +67,6 @@ export default {
         getCartItems(){
           this.orders = JSON.parse(localStorage.getItem('orders'));
           this.limitCartItems()  
-          this.calcCart()
         },
         limitCartItems(){
           this.limitedOrder = this.orders
@@ -84,7 +83,8 @@ export default {
         },
     },
     mounted() {
-        this.getCartItems()    
+        this.getCartItems()
+        this.calcCart() 
     }
 }
 </script>

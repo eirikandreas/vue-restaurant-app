@@ -75,14 +75,14 @@ export default {
         //Kalkulerer totalsummen på innholdet i handlekurven.
         calcCart() {
           this.sum = 0
-          this.cartItems.forEach(item => {
+          this.items.forEach(item => {
             this.sum += item.price
           }) 
         },
     },
     created(){
         this.items = this.cartItems
-        this.calcCart()    
+        this.calcCart() 
     }
 }
 </script>
