@@ -32,7 +32,7 @@
                 <h1 :class="{'display-2 font-weight-bold white--text': $vuetify.breakpoint.xsOnly, 'display-4 font-weight-bold white--text': $vuetify.breakpoint.smAndUp}">{{menuItem.title}}</h1>
                 <h2 class="title white--text">{{menuItem.category}}</h2>
                 <p class="white--text mt-3">{{menuItem.description}}</p>
-                <v-btn light rounded depressed color="amber accent-3" class="mt-5">View More</v-btn>
+                <v-btn light rounded depressed color="amber accent-3" class="mt-5"  :to="`/menu/${menuItem.category.toLowerCase()}/${menuItem.id}#category`">View More</v-btn>
               </v-col>
             </v-row>
           </v-container>

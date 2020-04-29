@@ -109,6 +109,7 @@ export default {
             ],
             categories: this.$categories.getName().slice(1, 7),
             allergens: this.$allergens.getAll(),
+            file: "",
 
         } 
     },
@@ -144,19 +145,23 @@ export default {
                 this.close()
             },
             uploadImage(){
-                let file = document.getElementById("file");
+                this.file = document.getElementById("file");
                 let data = new FormData();  
-                data.append( "file", file.files[0] );
-                if(file.value == "") { 
+                data.append( "file", this.file.files[0] );
+                if(this.file.value == "") { 
                     this.editedItem.imgSrc = "default.jpg";
-                } else {
+                } else if(this.file.value == this.editedItem.imgSrc) {
+                    this.editedItem.imgSrc = this.file.value ;
+                }
+                
+                else {
                     this.$http({
                         method: 'post',
                         url: "https://localhost:5001/admin/savepicture",
                         data: data,
                         config: { headers: {'Content-Type': 'mulitpart/form-data'}}
                     });
-                    this.editedItem.imgSrc = file.files[0].name;
+                    this.editedItem.imgSrc = this.file.files[0].name;
                 }
             }
     }

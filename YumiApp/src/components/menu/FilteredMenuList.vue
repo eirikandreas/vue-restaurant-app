@@ -45,7 +45,7 @@ export default {
         slik at høyest verdi vises først
         */
         filterByRated() {
-            return this.menuItems.filter( menuItem => menuItem.rating > 3).reverse().splice(1, 4)
+            return this.menuItems.filter( menuItem => menuItem.rating > 3).reverse().splice(0, 4)
         },
         //Initialiserer menuItems og henter data fra databasen 
         getAll() {

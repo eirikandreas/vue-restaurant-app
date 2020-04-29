@@ -7,13 +7,15 @@
           </v-btn>
         </template>
 
-        <v-card min-width="400px" min-height="200px" class="d-flex flex-column align-content-center">
+        <v-card class="d-flex flex-column align-content-center">
 
           <template v-if="!orders">
-            <div class="text-center pt-8">
-              <v-icon color="grey lighten-2" class="display-3">mdi-shopping-outline</v-icon>
-              <v-card-text class="display-1">No Items</v-card-text>
-            </div>
+            <v-list class="text-center justify-center" width="300px">
+             
+              <v-icon color="grey lighten-2" class="display-3 justify-center">mdi-shopping-outline</v-icon>
+              <v-card-text class="display-1 text-center">No Items</v-card-text>
+             
+            </v-list>
           </template>
 
         <template v-else>
