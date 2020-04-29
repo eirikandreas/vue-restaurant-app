@@ -37,7 +37,7 @@
                     </v-col>
 
                 </v-row>
-                
+
             </template>
         </template>
     </v-container>
@@ -65,7 +65,6 @@ export default {
     methods: {
         update(e) {
             this.orders = e;
-
         },
         checkoutFinished() {
             this.success = true
