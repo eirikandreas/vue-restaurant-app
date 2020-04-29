@@ -22,7 +22,7 @@ export default {
     props: {
         showButton: { type: Boolean, default: true },
         title: { type: String, default: "Not Set"},
-        link: { type: String, default: "#"}
+        link: { type: String, required: true, default: "#"}
     },
     components: {
         FilteredMenuList,

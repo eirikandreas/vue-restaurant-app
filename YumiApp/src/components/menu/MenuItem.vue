@@ -18,7 +18,7 @@
                     <div class="overlay-gradient d-flex flex-column justify-end">
                         <div class="d-flex flex-row justify-space-between mb-3">
                             <div class="d-flex flex-column">
-                                <v-card-title class="headline">{{title}}</v-card-title>
+                                <v-card-title class="text-wrap">{{title}}</v-card-title>
                                 <v-card-subtitle class="white--text">{{category}}</v-card-subtitle>
                                 <v-card-text>
                                    <MenuItemRating
@@ -55,14 +55,13 @@ import OrderButton from '@/components/ui/OrderButton'
 export default {
     name: 'MenuItem',
     props: {
-        id: { type: Number, default: 0 },
+        id: { type: Number, required: true, default: 0 },
         title: { type: String, default: "Not set" },
         category: { type: String, default: "Not set" },
         price: { type: Number, default: 0 },
         rating: { type: Number, default: null },
         image: { type: String, default: "default.jpg" },
-        btnRoute: { type: String, default: "default.jpg" },
-        isSpicy: { type: Boolean, default: false}
+        isSpicy: { type: Boolean, default: false }
     },
     components: {
         MenuItemRating,

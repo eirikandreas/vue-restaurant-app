@@ -51,14 +51,12 @@ export default {
     return {
       loading: false,
       pageSettings: {},
-      abouthero: { title: "Contact us", bgImage: "sushi.jpg"},
-      conceptsectioncontact: { cardTitle: "What can we do for you?", cardText: "Contact us and become our regular customer"},
-        parallax: {
+      parallax: {
           title: "Who are we?",
           subtitle: "Get to know our story",
           btnValue: "About us",
           link: "/about"
-        }
+      }
     }
   },
   methods: {

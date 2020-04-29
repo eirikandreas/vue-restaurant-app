@@ -14,22 +14,21 @@
         <InfoSection
         :twotext="true"
         :title="pageSettings.aboutTitle"
-        :image="aboutinfo.imgSrc"
+        :image="aboutImage"
         :text="pageSettings.aboutText1"
         :text2="pageSettings.aboutText2"
-        
         />
       </div>
 
       <ParallaxSection
       :height="500"
-      :title="resturantsection.title"
+      :title="parallaxSection.title"
       :showSub="true"
-      :subheading="resturantsection.text"
-      :icon="resturantsection.resturantSectionIcon"
-      :bgImage="resturantsection.resturantSectionImg"
+      :subheading="parallaxSection.text"
+      :icon="parallaxSection.icon"
+      :bgImage="parallaxSection.image"
       :showButton="true"
-      :buttonValue="resturantsection.btnValue"
+      :buttonValue="parallaxSection.btnValue"
       link="/contact"/>
 
       <AboutTeamList/>
@@ -55,22 +54,14 @@ export default {
     return {
       loading: false,
       pageSettings: {},
-      abouthero: { title: "About Us", bgImage: "herobg.jpg"},
-      aboutinfo: { 
-        imgSrc: "about-image.jpg", 
-        heading: "Who we are", 
-        info: "Yumi is a big, locally owned and operated bakery in Oslo, Bergen and Trondheim.Since 1999, Yumi has been producing its high quality product on the popular. Partners Hilma Maier and Robert McMonigle felt that Burlingame was the perfect location to continue their centuries old trade. We believe that a healthy lifestyle begins with a healthy dietOur focus is to provide Yumi desserts and snacks that are nutritious and delicious. Our products always feature as many local, organic ingredients as possible.",
-        heading2: "Why choose us", 
-        info2: "We are proud to be featuring thet following local ingredients in our bakery.All of our bakery items are made with all-natural ingredients and contain no artificial preservatives, so we recommend that you freeze or refrigerate these baked goods in order to extend the shelf life. We dedicated to helping you stay healthy while still.Hopefully we success story will help encourage you on the path to a new, healthy you!"
-      },
-      resturantsection: { 
-        resturantSectionIcon: "bowl-w.png",
-        resturantSectionImg: "resturant.jpg", 
+      aboutImage: "about-image.jpg",
+      parallaxSection: { 
+        icon: "bowl-w.png",
+        image: "parallax-2.jpg", 
         title: "Visit Us", 
         btnValue: "Contact Us", 
         text: "Restaurant is proud to be serving fine Asian dishes for more than 20 years!" 
-      },
-           
+      },       
     }
   },
   methods: {

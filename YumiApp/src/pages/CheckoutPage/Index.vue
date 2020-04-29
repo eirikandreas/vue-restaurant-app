@@ -35,7 +35,9 @@
                             />
                         </v-card>
                     </v-col>
+
                 </v-row>
+                
             </template>
         </template>
     </v-container>

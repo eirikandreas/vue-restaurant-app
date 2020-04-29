@@ -80,23 +80,10 @@
 export default {
     name: 'EditDialog',
     props: {
-        active: {
-            type: Boolean,
-            required: true,
-            default: false
-        },
-        editedItemIndex: {
-            type: Number,
-            required: true,
-            default: -1
-        },
-        editedItem: {
-            type: Object,
-            required: true
-        },
-        closeDialog: {
-            type: Object,
-        }
+        active: { type: Boolean, required: true, default: false },
+        editedItemIndex: { type: Number, required: true, default: -1 },
+        editedItem: { type: Object, required: true },
+        closeDialog: { type: Object }
     },
     data() {
         return {

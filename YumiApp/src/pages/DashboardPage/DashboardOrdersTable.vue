@@ -42,12 +42,8 @@ export default {
       return {
         dialog: false,
         expanded: [],
-        headers: [{
-          text: 'Id',
-          align: 'start',
-          sortable: false,
-          value: 'id',
-          },
+        headers: [
+          { text: 'Id', align: 'start', sortable: false, value: 'id'},
           { text: 'Name', value: 'name' },
           { text: 'Price', value: 'totalPrice' },
           { text: 'Added', value: 'dateAdded' },

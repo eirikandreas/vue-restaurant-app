@@ -39,7 +39,7 @@ export default {
       image: { type: String, default: "concept-image-1-crop.png"},
       showButton: { type: Boolean, default: false},
       buttonValue: { type: String, default: "Not Set"},
-      link: { type: String, default: "#"}
+      link: { type: String, required: true, default: "/"}
     },
 }
 </script>

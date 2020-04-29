@@ -43,6 +43,11 @@ export default {
 
         }
     },
+    /*
+    Watch som ser om Routen forandrer seg
+    og sprøyter inn query fra søk inn i
+    searchByTitle funksjonen
+    */
      watch: {
     "$route.query.q":{
             immediate: true,

@@ -331,7 +331,7 @@ export default {
         this.$http.post(webAPIUrl, this.defaultPageSettings)
       },
       /*
-      Henter ut spesifikk data med id 1 til applikasjonen fra databasen
+      Henter ut spesifikk data med id 1 til applikasjonen fra APIet
       Hvis den speifikke oppføringen ikke eksisterer, kjør post-funksjon
       */
       getPageSettings() {
@@ -354,7 +354,7 @@ export default {
 
           })             
       },
-      //Lagrer dataene fra pageSettings objektet til databasen
+      //Lagrer dataene fra pageSettings objektet til APIet
       savePageSettings() {
         let webAPIUrl = "https://localhost:5001/admin/pagesettings";
         this.$http.put( webAPIUrl, this.pageSettings )

@@ -105,11 +105,11 @@
 export default {
     name: 'OrderDialog',
     props: {
-        active: {type: Boolean},
-        order: {type: Object},
-        orderItems: {type: Array},
-        closeDialog: {type: Object},
-        deleteOrder: {type: Object}
+        active: { type: Boolean },
+        order: { type: Object },
+        orderItems: { type: Array, required: true },
+        closeDialog: { type: Object },
+        deleteOrder: { type: Object }
     },
     methods: {
         //$emit tillater bruk av funksjoner fra parent-component i child-component.

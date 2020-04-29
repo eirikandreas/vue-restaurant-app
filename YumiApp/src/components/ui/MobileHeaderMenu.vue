@@ -27,6 +27,6 @@
 <script>
 export default {
     name: 'MobileHeaderMenu',
-    props: { links: { type: Array } }
+    props: { links: { type: Array, required: true } }
 }
 </script>

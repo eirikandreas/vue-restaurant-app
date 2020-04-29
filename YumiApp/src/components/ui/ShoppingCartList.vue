@@ -42,8 +42,8 @@ export default {
     name: 'ShoppingCartList',
     props: {
         title: { type: String },
-        cartItems: { type: Array },
-        totalItems: { type: Array },
+        cartItems: { type: Array, required: true },
+        totalItems: { type: Array, required: true },
         showDelete: { type: Boolean, default: true},
         displayLimit: { type: Boolean, default: true}
         

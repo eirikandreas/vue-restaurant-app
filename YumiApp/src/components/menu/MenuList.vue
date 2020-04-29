@@ -30,7 +30,7 @@ import NothingToDisplay from '@/components/common/NothingToDisplay'
 export default {
     name: 'MenuList',
     props: {
-        items: {type: Array}
+        items: {type: Array, required: true}
     },
     components: {
         MenuItem,

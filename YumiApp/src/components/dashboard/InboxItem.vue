@@ -34,7 +34,7 @@ export default {
   },
   props: {
     item: { type: Object },
-    inboxData: { type: Array },
+    inboxData: { type: Array, required: true },
     subject: { type: String, default: 'Not Set'},
     name: { type: String, default: 'Not Set'},
     date: { type: String, default: "Not Set"},

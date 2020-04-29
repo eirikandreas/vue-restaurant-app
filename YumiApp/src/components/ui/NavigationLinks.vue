@@ -9,7 +9,7 @@
 export default {
     name: "NavigationLinks",
     props: {
-        links: { type: Array }
+        links: { type: Array, required: true }
     },
 }
 </script>

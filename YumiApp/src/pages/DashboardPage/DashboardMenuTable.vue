@@ -94,7 +94,7 @@ export default {
             dialog: false,
             delDialog: false,
             loading: true,
-            headers: [
+            headers: [ 
                 { text: 'Id', align: 'start', value: 'id'},
                 { text: 'Image', value: 'imgSrc' },
                 { text: 'Title', value: 'title' },
@@ -106,7 +106,6 @@ export default {
             menuItems: [],
             editedItemIndex: -1,
             editedItem: {
-               
             },
             defaultMenuItem: {
                 title: '',
@@ -120,8 +119,6 @@ export default {
                 isFeatured: false,
                 dateAdded: new Date().toDateString()
             },
-            
-            
         }
     },
     methods: {
@@ -167,13 +164,11 @@ export default {
             let priceInt = parseInt(this.editedItem.price);
             this.$set(this.editedItem, 'price', priceInt);
             
-
             let descriptionString = this.editedItem.description.toString();
             this.$set(this.editedItem, 'description', descriptionString);
 
             let ingredientsString = this.editedItem.ingredients.toString();
             this.$set(this.editedItem, 'ingredients', ingredientsString);
-
 
             let allergensString = this.editedItem.allergens.toString();
             this.$set(this.editedItem, 'allergens', allergensString);
@@ -194,13 +189,11 @@ export default {
             let priceInt = parseInt(this.editedItem.price);
             this.$set(this.editedItem, 'price', priceInt);
             
-
             let descriptionString = this.editedItem.description.toString();
             this.$set(this.editedItem, 'description', descriptionString);
 
             let ingredientsString = this.editedItem.ingredients.toString();
             this.$set(this.editedItem, 'ingredients', ingredientsString);
-
 
             let allergensString = this.editedItem.allergens.toString();
             this.$set(this.editedItem, 'allergens', allergensString);
@@ -214,7 +207,6 @@ export default {
                     this.getData(),
                     this.dialog = false
                 )
-
         },
         //Setter editedItem og editedIndex tilbake til angitte verdier
         closeDialog() {

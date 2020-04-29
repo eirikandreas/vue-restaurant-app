@@ -33,7 +33,7 @@
 export default {
     name: 'MenuItemCarousel',
     props: {
-        items: { type: Array },
+        items: { type: Array, required: true },
     }
 }
 </script>

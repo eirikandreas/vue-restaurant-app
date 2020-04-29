@@ -21,8 +21,8 @@ export default {
     props: {
         title: { type: String, default: "App" },
         btnValue: { type: String, default: "Click" },
-        bgImage: { type: String, default: "herobg.jpg" },
-        link: { type: String, default: "#"}
+        bgImage: { type: String, default: "/image/herobg.jpg" },
+        link: { type: String, required: true, default: "/"}
     }
 }
 </script>

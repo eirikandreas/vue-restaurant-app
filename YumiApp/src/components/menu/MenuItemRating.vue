@@ -17,7 +17,7 @@
 export default {
     name: 'MenuItemRating',
     props: {
-        itemId: { type: Number, default: 0}
+        itemId: { type: Number, required: true, default: 0}
     },
     data() {
         return {

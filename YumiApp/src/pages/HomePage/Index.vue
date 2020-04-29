@@ -70,7 +70,7 @@ export default {
       height: 800,
       hero: { title: "Order, eat & enjoy", btnValue: "Explore our menu", bgImage: "herobg.jpg"},
       parallaxIcon: "takeaway-w.png",
-      parallaxImage: "parallax-5.jpg",
+      parallaxImage: "parallax-1.jpg",
       pageSettings: {}
     }
   },

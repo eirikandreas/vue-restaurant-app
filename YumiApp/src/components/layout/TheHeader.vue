@@ -41,7 +41,7 @@ export default {
   name: 'TheHeader',
   props: {
     appName: { type: String, default: "" },
-    links: { type: Array }
+    links: { type: Array, required: true }
   },
   components: {
     NavigationLinks,
