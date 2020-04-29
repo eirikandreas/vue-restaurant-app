@@ -9,7 +9,7 @@
 
         <v-card class="d-flex flex-column align-content-center">
 
-          <template v-if="!orders">
+          <template v-if="orders.length == 0">
             <v-list class="text-center justify-center" width="300px">
              
               <v-icon color="grey lighten-2" class="display-3 justify-center">mdi-shopping-outline</v-icon>
@@ -66,8 +66,7 @@ export default {
         */
         getCartItems(){
           this.orders = JSON.parse(localStorage.getItem('orders'));
-          this.limitCartItems()
-  
+          this.limitCartItems()  
         },
         limitCartItems(){
           this.limitedOrder = this.orders

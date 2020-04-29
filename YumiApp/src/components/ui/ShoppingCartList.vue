@@ -59,16 +59,6 @@ export default {
         }
     },
     methods: {
-        /*
-        Henter data fra LocalStorage og setter den i orders Arrayet
-        og begrenser antall synlig innhold i handlekurven
-        */
-        getCartItems(){
-          this.orders = JSON.parse(localStorage.getItem('orders'));
-          this.limitCartItems()
-          this.calcCart()
-  
-        },
         /* 
         Sett orders fra LocalStorage i items Arrayet,
         slett fra Arrayet, sett så Arrayet tilbake til LocalStorage
@@ -81,7 +71,6 @@ export default {
           let cart = this.items
           this.$emit("update-cart", cart)
           this.calcCart()
-
         },
         //Kalkulerer totalsummen på innholdet i handlekurven.
         calcCart() {

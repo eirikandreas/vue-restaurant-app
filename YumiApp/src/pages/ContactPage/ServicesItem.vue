@@ -20,8 +20,7 @@ export default {
         servicesIcon: String,
         heading: String,
         info: String
-    }
-    
+    }    
 }
 </script>
 

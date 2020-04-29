@@ -117,7 +117,6 @@ export default {
         }
      },
     methods: {
-        
         //Henter rett fra databasen og setter den i menuItem objektet
         getItem(item) {
             this.loading = true

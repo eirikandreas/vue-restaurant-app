@@ -27,26 +27,17 @@ export default {
             this.$http.get(webAPIUrl)
                 .then( response => {
                     this.menuItem = response.data;
-
-
                     this.orderItem.id = this.menuItem.id
                     this.orderItem.title = this.menuItem.title
                     this.orderItem.price = this.menuItem.price
-                    this.orderItem.imgSrc = this.menuItem.imgSrc
-
-                    
-                    //this.menuItem = this.orderItem = {id: this.menuItem.id, title: this.menuItem.title, price: this.menuItem.price, quantity: 1}
-                    
-       
-                 
+                    this.orderItem.imgSrc = this.menuItem.imgSrc                 
                 });
         },
-         placeOrder() {
+        placeOrder() {
             let orders = [];
             orders = JSON.parse(localStorage.getItem("orders")) || [];
             let newOrder = true;
             
-
             /*
             Sjekker om den nye bestillingen er i listen fra før, dersom den er det
             oppdater antall og pris.
@@ -63,16 +54,13 @@ export default {
             if(newOrder) {
                 orders.push(this.orderItem)
             }
+
             localStorage.setItem("orders", JSON.stringify(orders));
-
-
-
         }
     },
     created() {
         this.getItem(this.id)
 
-    }
-    
+    }  
 }
 </script>

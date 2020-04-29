@@ -33,12 +33,12 @@ export default {
     MessageDialog
   },
   props: {
-    item: {type: Object },
-    inboxData: {type: Array },
+    item: { type: Object },
+    inboxData: { type: Array },
     subject: { type: String, default: 'Not Set'},
     name: { type: String, default: 'Not Set'},
-    date: {type: String, default: "Not Set"},
-    read: {type: Boolean, default: false }
+    date: { type: String, default: "Not Set"},
+    read: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -57,8 +57,6 @@ export default {
     isRead(message){
       let webAPIUrl = "https://localhost:5001/admin/messages/";
       this.$http.put( webAPIUrl, message )
-      console.log("SAVE");
-      console.log(message)
     },
     close(){
       this.dialog = false
@@ -69,7 +67,6 @@ export default {
       this.dialog = false;
       let webAPIUrl = `https://localhost:5001/admin/messages/${item.id}`;
       this.$http.delete(webAPIUrl)
-      console.log(item.id)
     }
   }
 }

@@ -25,6 +25,9 @@ import ServicesItem from './ServicesItem'
 
 export default {
     name: "servicesList",
+    components: {
+        ServicesItem
+    },
     data(){
         return{
             services: [
@@ -67,9 +70,6 @@ export default {
             ]
         }
     },
-    components: {
-        ServicesItem
-    }
     
 }
 </script>

@@ -106,7 +106,6 @@ export default {
             ],
             categories: this.$categories.getName().slice(1, 7),
             file: "",
-
         } 
     },
     methods: {

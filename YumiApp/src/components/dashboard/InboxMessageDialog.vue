@@ -68,7 +68,7 @@
 export default {
   name: 'InboxMessageDialog',
   props: {
-    active: {
+    active: { 
       type: Boolean,
       required: true,
       default: false

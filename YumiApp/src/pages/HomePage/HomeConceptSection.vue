@@ -40,7 +40,6 @@ export default {
       showButton: { type: Boolean, default: false},
       buttonValue: { type: String, default: "Not Set"},
       link: { type: String, default: "#"}
-
     },
 }
 </script>

@@ -36,16 +36,17 @@
 import NavigationLinks from '@/components/ui/NavigationLinks'
 import ShoppingCart from '@/components/ui/ShoppingCart'
 import MobileHeaderMenu from '@/components/ui/MobileHeaderMenu'
+
 export default {
   name: 'TheHeader',
+  props: {
+    appName: { type: String, default: "" },
+    links: { type: Array }
+  },
   components: {
     NavigationLinks,
     ShoppingCart,
     MobileHeaderMenu
-  },
-  props: {
-    appName: { type: String, default: "" },
-    links: {type: Array }
   },
 }
 </script>

@@ -57,7 +57,7 @@ export default {
   },
   data () {
     return {
-      heroBg: "herobg2.jpg",
+      heroBg: "herobg.jpg",
       menuItems: [{}],
     }
   },

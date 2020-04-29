@@ -63,15 +63,15 @@ import FooterItem from '@/components/ui/FooterItem'
 
 export default {
     name: 'TheFooter',
-    components: {
-      NavigationLinks,
-      FooterItem
-    },
     props: {
       appName: { type: String, default: "App"},
       footerItems: { type: Array },
       links: { type: Array },
       someLinks: { type: Array }
-    }
+    },
+    components: {
+      NavigationLinks,
+      FooterItem
+    },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
      <v-container>
       <v-row>
-        <v-col cols="12" sm="12" md="6" class="justify-center pa-0 hidden-sm-and-down">
+        <v-col cols="12" sm="12" md="6" class="d-flex align-center pa-0 hidden-sm-and-down">
             <v-img contain :src="require(`@/assets/images/${image}`)" max-height="400">
             </v-img>
   

@@ -34,7 +34,6 @@ export default {
     name: 'MenuItemCarousel',
     props: {
         items: { type: Array },
-
     }
 }
 </script>

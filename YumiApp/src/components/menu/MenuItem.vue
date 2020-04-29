@@ -54,10 +54,6 @@ import OrderButton from '@/components/ui/OrderButton'
 
 export default {
     name: 'MenuItem',
-    components: {
-        MenuItemRating,
-        OrderButton
-    },
     props: {
         id: { type: Number, default: 0 },
         title: { type: String, default: "Not set" },
@@ -67,6 +63,10 @@ export default {
         image: { type: String, default: "default.jpg" },
         btnRoute: { type: String, default: "default.jpg" },
         isSpicy: { type: Boolean, default: false}
+    },
+    components: {
+        MenuItemRating,
+        OrderButton
     },
     data() {
         return {
