@@ -6,7 +6,7 @@ const CategoriesStore = {
             { id: 3, name: "Maki", imgSrc: "2.jpg", blackIcon: "maki.png", whiteIcon: "maki-w.png" },
             { id: 4, name: "Nigiri", imgSrc: "3.jpg", blackIcon: "nigiri.png", whiteIcon: "nigiri-w.png" },
             { id: 5, name: "Sashimi", imgSrc: "4.jpg", blackIcon: "sashimi.png", whiteIcon: "sashimi-w.png" },
-            { id: 7, name: "Sushi", imgSrc: "1.jpg", blackIcon: "dessert.png", whiteIcon: "dessert-w.png" },
+            { id: 7, name: "Sushi", imgSrc: "1.jpg", blackIcon: "food.png", whiteIcon: "food.png" },
         ]
     },
     // Gir tilgang til å hente ut all data
