@@ -1,20 +1,17 @@
 <template>
 
-         <v-container class="mt-12 mb-12 ">
+    <v-container class="mt-12 mb-12 ">
         <v-row 
         align="center"
         justify="center">
 
             <ServicesItem
-                v-bind:key="service.heading"
-                v-for="service in services"
-                v-bind:servicesIcon="service.servicesIcon"
-                v-bind:heading="service.heading"
-                v-bind:info="service.info" 
+            v-for="service in services"
+            :key="service.heading"
+            :servicesIcon="service.servicesIcon"
+            :heading="service.heading"
+            :info="service.info" 
             />
-
-
-            
 
         </v-row>
 
@@ -66,19 +63,6 @@ export default {
                 heading: "Cooking Events",
                 info: "Enjoy late evenings without thinking about cooking. We arrange events so you can gather your friends for a tasty meal."
                 },
-
-                 {
-                servicesIcon: "account-tie-outline.png",
-                heading: "Corporate Functions",
-                info: "Do you have a company that wants a partnership with us? We work with several companies for good prices at meetings and other events."
-                },
-
-                {
-                servicesIcon: "noodles-black.png",
-                heading: "Learn to Cook",
-                info: "Get inspired by Asian flavors and learn how to master Asian cuisine. Learn cooking with friends or colleagues."
-                },
-
 
             ]
         }

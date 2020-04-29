@@ -35,14 +35,6 @@
 
           <v-text-field
           :rules="reqRule"
-          v-model="contactForm.address"
-          label="Subject"
-          required
-          color="red"
-          ></v-text-field>
-
-          <v-text-field
-          :rules="reqRule"
           v-model="contactForm.subject"
           label="Subject"
           required
@@ -92,7 +84,6 @@ export default {
           name: '',
           email: '',
           phoneNumber: '',
-          address: '',
           subject: '',
           comment: '',
           contactByPhone: false,
@@ -103,7 +94,6 @@ export default {
           name: '',
           email: '',
           phoneNumber: '',
-          address: '',
           subject: '',
           comment: '',
           contactByPhone: false,
