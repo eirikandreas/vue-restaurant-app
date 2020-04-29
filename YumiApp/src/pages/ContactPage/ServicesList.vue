@@ -1,122 +1,91 @@
-<template>  
-    <v-container class="mt-12 mb-12" >
-        <v-row
+<template>
+
+         <v-container class="mt-12 mb-12 ">
+        <v-row 
         align="center"
-        justify="center"
-       >
-            <v-col class="text-center  d-flex flex-column align-center"  cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon1}`)" width="50" height="50"></v-img>
-                <h3 class="red--text"  >{{heading1}}</h3>
-                 <p class="grey--text">{{info1}}</p>
+        justify="center">
 
-            </v-col>
+            <ServicesItem
+                v-bind:key="service.heading"
+                v-for="service in services"
+                v-bind:servicesIcon="service.servicesIcon"
+                v-bind:heading="service.heading"
+                v-bind:info="service.info" 
+            />
 
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon2}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading2}}</h3>
-                 <p class="grey--text">{{info2}}</p>
-                
-            </v-col>
 
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon3}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading3}}</h3>
-                 <p class="grey--text">{{info3}}</p>
-                
-            </v-col>
-
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon4}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading4}}</h3>
-                 <p class="grey--text">{{info4}}</p>
-                
-            </v-col>
+            
 
         </v-row>
 
-        <v-row
-        align="center"
-        justify="center"
-        >
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon5}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading5}}</h3>
-                 <p class="grey--text">{{info5}}</p>
-
-            </v-col>
-
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon6}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading6}}</h3>
-                 <p class="grey--text">{{info6}}</p>
-                
-            </v-col>
-
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon7}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading7}}</h3>
-                 <p class="grey--text">{{info7}}</p>
-                
-            </v-col>
-
-            <v-col class="text-center  d-flex flex-column align-center" cols="12" sm="12" md="3">
-                 <v-img class="align-center" :src="require(`@/assets/icons/${servicesIcon8}`)" width="50" height="50"></v-img>
-                <h3 class="red--text">{{heading8}}</h3>
-                 <p class="grey--text">{{info8}}</p>
-                
-            </v-col>
-
-        </v-row>
     </v-container>
-
-    
-
-
 
 </template>
 
-
 <script>
-export default {
-    name: 'ServicesContact',
-    props: {
-        servicesIcon1: { type: String, default: "rice.png" },
-        servicesIcon2: { type: String, default: "party-popper.png" },
-        servicesIcon3: { type: String, default: "ring.png" },
-        servicesIcon4: { type: String, default: "cake-variant.png" },
-        servicesIcon5: { type: String, default: "truck-outline.png" },
-        servicesIcon6: { type: String, default: "grill-outline.png" },
-        servicesIcon7: { type: String, default: "account-tie-outline.png" },
-        servicesIcon8: { type: String, default: "noodles-black.png" },
-        heading1: { type: String, default: "Dine In"},
-        heading2: { type: String, default: "Private Celebration"},
-        heading3: { type: String, default: "Wedding Service"},
-        heading4: { type: String, default: "Birthday Parties"},
-        heading5: { type: String, default: "Delivery"},
-        heading6: { type: String, default: "Cooking Events"},
-        heading7: { type: String, default: "Corporate Functions"},
-        heading8: { type: String, default: "Heading"},
-        info1: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info2: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info3: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info4: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info5: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info6: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info7: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        info8: { type: String, default: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum ut beatae sapiente! Rem, ad sum."},
-        
-        
-    },
-    data() {
-        return {
-        }
-    }
 
+import ServicesItem from './ServicesItem'
+
+export default {
+    name: "servicesList",
+    data(){
+        return{
+            services: [
+                {
+                servicesIcon: "rice.png",
+                heading: "Dine In",
+                info: "Enjoy everything from sushi bowls to spring rolls in a comfortable atmosphere with modern Asian elements."
+                },
+
+                {
+                servicesIcon: "party-popper.png",
+                heading: "Private Celebration",
+                info: "Are you planning a big or small party? We help you serve one feast your guests will soon forget."
+                },
+
+                {
+                servicesIcon: "ring.png",
+                heading: "Wedding Service",
+                info: "We are willing to go the extra mile to make your special day perfect. Offer guests a wide variety of dishes and enjoy the day without a single worry."
+                },
+
+                {
+                servicesIcon: "cake-variant.png",
+                heading: "Birthday Parties",
+                info: "Arrange the coolest birthday party of the year and enjoy great food with your guests. We make the food you like best so that you can celebrate with your favorite food."
+                },
+
+                {
+                servicesIcon: "truck-outline.png",
+                heading: "Delivery",
+                info: "Are you hungry but not able to visit us? We deliver small and large orders with food to you!"
+                },
+
+                {
+                servicesIcon: "grill-outline.png",
+                heading: "Cooking Events",
+                info: "Enjoy late evenings without thinking about cooking. We arrange events so you can gather your friends for a tasty meal."
+                },
+
+                 {
+                servicesIcon: "account-tie-outline.png",
+                heading: "Corporate Functions",
+                info: "Do you have a company that wants a partnership with us? We work with several companies for good prices at meetings and other events."
+                },
+
+                {
+                servicesIcon: "noodles-black.png",
+                heading: "Learn to Cook",
+                info: "Get inspired by Asian flavors and learn how to master Asian cuisine. Learn cooking with friends or colleagues."
+                },
+
+
+            ]
+        }
+    },
+    components: {
+        ServicesItem
+    }
+    
 }
 </script>
-
-<style lang="less" scoped>
-
-
-
-</style>

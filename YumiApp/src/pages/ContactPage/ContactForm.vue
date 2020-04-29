@@ -119,7 +119,6 @@ export default {
       let webAPIUrl = "https://localhost:5001/user/contactmessages";
       this.$http.post(webAPIUrl, this.contactForm)
         .then(
-          console.log("POST request firing "),
           this.contactForm = this.emptyForm,
           this.success = true
         );
