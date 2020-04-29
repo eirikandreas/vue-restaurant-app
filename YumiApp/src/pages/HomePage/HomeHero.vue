@@ -1,5 +1,5 @@
 <template>
-    <v-img :src="require(`@/assets/${bgImage}`)" width="100vw" height="100vh">
+    <v-img :src="require(`@/assets/images/${bgImage}`)" width="100vw" height="100vh">
         <div class="overlay-gradient">
 
             <v-container class="fill-height">
@@ -21,7 +21,7 @@ export default {
     props: {
         title: { type: String, default: "App" },
         btnValue: { type: String, default: "Click" },
-        bgImage: { type: String, default: "/image/herobg.jpg" },
+        bgImage: { type: String, default: "herobg.jpg" },
         link: { type: String, required: true, default: "/"}
     }
 }

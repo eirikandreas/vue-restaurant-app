@@ -67,12 +67,20 @@ export default {
         getCartItems(){
           this.orders = JSON.parse(localStorage.getItem('orders'));
           this.limitCartItems()  
+          this.calcCart()
         },
         limitCartItems(){
           this.limitedOrder = this.orders
           if(this.orders > 3) {
           this.limitedOrder.slice(0, 3)
           }
+        },
+        //Kalkulerer totalsummen på innholdet i handlekurven.
+        calcCart() {
+          this.sum = 0
+          this.orders.forEach(item => {
+            this.sum += item.price
+          }) 
         },
     },
     mounted() {
