@@ -1,5 +1,5 @@
 <template>
-    <v-dialog :value="active" v-model="active" max-width="600px">
+    <v-dialog persistent :value="active" v-model="active" max-width="600px">
         <v-card class="mx-auto">
 
             <v-sheet tile color="grey lighten-3">

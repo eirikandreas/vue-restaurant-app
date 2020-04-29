@@ -12,6 +12,7 @@ namespace YumiAPI.Models{
         public string Allergens { get; set; }
         public int Price { get; set; }
         public string Category { get; set; }
+        public string Description { get; set; }
         public string ImgSrc { get; set; }
         public double Rating { get; set; }
         public string DateAdded { get; set; }

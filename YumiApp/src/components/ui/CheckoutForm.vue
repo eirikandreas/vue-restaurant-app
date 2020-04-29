@@ -21,7 +21,6 @@
       :rules="reqRule"
       v-model="checkoutForm.phoneNumber"
       label="Phonenumber"
-      type="number"
       required
       color="red"
       ></v-text-field>
@@ -69,13 +68,15 @@ export default {
       checkoutForm: {
         name: '',
         email: '',
+        phoneNumber: '',
+        address: '',
         comment: '',
         dateAdded: new Date().toDateString(),
       },
       emptyForm: {
         name: '',
         email: '',
-        phoneNumber: null,
+        phoneNumber: '',
         comment: '',
         dateAdded: new Date().toDateString(),
       }
@@ -116,6 +117,7 @@ export default {
       let newOrder = {
         name: this.checkoutForm.name,
         email: this.checkoutForm.email,
+        phoneNumbera: this.checkoutForm.phoneNumber,
         address: this.checkoutForm.address,
         comment: this.checkoutForm.comment,
         dateAdded: this.checkoutForm.dateAdded,

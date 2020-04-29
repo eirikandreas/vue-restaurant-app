@@ -28,7 +28,7 @@
             :subject="item.subject"
             :name="item.name"
             :comment="item.comment"
-            :date="item.dateAdded"
+            :date="item.dateSent"
             :read="item.isRead"/>
 
           <v-divider v-if="index + 1 < messages.length" :key="index"></v-divider>
@@ -87,7 +87,7 @@ export default {
         this.dialog = true        
       },
       isRead(message){
-        let webAPIUrl = "https://localhost:5001/contactmessages/";
+        let webAPIUrl = "https://localhost:5001/admin/messages/";
         this.$http.put( webAPIUrl, message )
       },
       //Sletter objektet fra messages Arrayet og sletter objektet fra databasen
@@ -95,7 +95,7 @@ export default {
         const index = this.messages.indexOf(item)
         this.messages.splice(index, 1)
         this.dialog = false;
-        let webAPIUrl = `https://localhost:5001/contactmessages/${item.id}`;
+        let webAPIUrl = `https://localhost:5001/admin/messages/${item.id}`;
         this.$http.delete(webAPIUrl)
       },
     },

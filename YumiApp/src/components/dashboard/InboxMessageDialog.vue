@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="690">
+  <v-dialog persistent :value="active" v-model="active" max-width="690">
     <v-card min-height="400px">
       <v-list-item>
         <v-card-title class="headline">{{message.subject}}</v-card-title>

@@ -111,6 +111,7 @@ export default {
             defaultMenuItem: {
                 title: '',
                 ingredients: '',
+                description: '',
                 allergens: '',
                 category: '',
                 imgSrc: 'default.jpg',

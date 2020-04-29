@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-dialog :value="active" v-model="active" max-width="690">
+      <v-dialog persistent :value="active" v-model="active" max-width="690">
         <v-card min-height="400px">
           <v-sheet color="grey lighten-3">
             <v-list-item>

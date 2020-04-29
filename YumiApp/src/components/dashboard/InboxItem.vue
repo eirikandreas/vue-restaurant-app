@@ -57,7 +57,7 @@ export default {
       this.dialog = true   
     },
     isRead(message){
-      let webAPIUrl = "https://localhost:5001/admin/contactmessages/";
+      let webAPIUrl = "https://localhost:5001/admin/messages/";
       this.$http.put( webAPIUrl, message )
       console.log("SAVE");
       console.log(message)
@@ -69,8 +69,9 @@ export default {
       const index = this.inboxData.indexOf(item)
       this.inboxData.splice(index, 1)
       this.dialog = false;
-      let webAPIUrl = `https://localhost:5001/admin/contactmessages/${item.id}`;
+      let webAPIUrl = `https://localhost:5001/admin/messages/${item.id}`;
       this.$http.delete(webAPIUrl)
+      console.log(item.id)
     }
   }
 }
