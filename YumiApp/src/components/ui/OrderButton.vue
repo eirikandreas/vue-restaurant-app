@@ -17,7 +17,8 @@ export default {
                 title: '',
                 price: 0,
                 quantity: 1,
-            }
+            },
+
         }
     },
     methods: {
@@ -41,51 +42,28 @@ export default {
                 });
         },
          placeOrder() {
-            
             let orders = [];
-
-            
-            
             orders = JSON.parse(localStorage.getItem("orders")) || [];
+            let newOrder = true;
             
-            
-            let orderIds = [];
-            let newOrders = [];
-            for(let i of orders) {
-                orderIds.push(i.id)
-                
 
-            }
-       
-            if(!orderIds.includes(this.orderItem.id)) {
-                newOrders.push(this.orderItem);
-
-                orders.forEach( order => {
-                        newOrders.push(order) 
-                })
-
-            } else {
-                
-                 orders.forEach( order => {
-                     if(order.id != this.orderItem.id)
-                        newOrders.push(order)
-                })
-                
-                this.orderItem.quantity++
-            
-                newOrders.push(this.orderItem)
+            /*
+            Sjekker om den nye bestillingen er i listen fra før, dersom den er det
+            oppdater antall og pris.
+            */
+            for(let item of orders) {
+                if(this.orderItem.id == item.id) {
+                    item.quantity++;
+                    item.price = item.quantity * this.menuItem.price
+                    newOrder = false
+                    break;
+                }
             }
 
-            console.log(newOrders)
-
-
-          
-          
-
-            
-
-
-            localStorage.setItem("orders", JSON.stringify(newOrders));
+            if(newOrder) {
+                orders.push(this.orderItem)
+            }
+            localStorage.setItem("orders", JSON.stringify(orders));
 
 
 

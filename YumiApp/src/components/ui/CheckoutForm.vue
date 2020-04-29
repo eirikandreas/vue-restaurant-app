@@ -96,6 +96,15 @@ export default {
         this.$refs.form.validate()
       }
     },
+    /* 
+    Sett orders fra LocalStorage i items Arrayet,
+    slett fra Arrayet, sett så Arrayet tilbake til LocalStorage
+    */ 
+    deleteCartItem(index){
+          this.items = JSON.parse(localStorage.getItem("orders"));
+          this.items.splice(index, 1);
+          localStorage.setItem("orders",JSON.stringify(this.items));
+    },
     calcCart() {
       let orders = JSON.parse(localStorage.getItem('orders'));
       this.sum = 0

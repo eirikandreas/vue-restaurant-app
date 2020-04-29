@@ -29,16 +29,13 @@
 
                             <v-col cols="12" sm="12" class="mb-0 pb-0">
 
-                                <v-select
+                                <v-text-field
                                 outlined
-                                chips
-                                multiple
                                 v-model="editedItem.allergens"
-                                :items="allergens"
                                 color="amber accent-3"
-                                label="Pick allergens"
+                                label="Allergens"
                                 :rules="reqRule"
-                                ></v-select>  
+                                ></v-text-field>  
                             </v-col>
     
                             <v-col cols="12" md="12" class="mb-0 pb-0">
@@ -108,7 +105,6 @@ export default {
                 v => !!v || 'This field is required'
             ],
             categories: this.$categories.getName().slice(1, 7),
-            allergens: this.$allergens.getAll(),
             file: "",
 
         } 

@@ -26,7 +26,7 @@ export default {
       image: {type: String, default: 'default.jpg'},
       title: {type: String, default: 'Not Set'},
       price: {type: Number, default: 0 },
-      index: {type: Number, default: 0 },
+      index: {type: Number },
       method: { type: Function },
       quantity: {type: Number, default: 1},
       showDelete: {type: Boolean, default: true}

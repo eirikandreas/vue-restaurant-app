@@ -31,6 +31,7 @@
                             :cartItems="orders"
                             :totalItems="orders"
                             :displayLimit="false"
+                            @update-cart="update"
                             />
                         </v-card>
                     </v-col>
@@ -60,6 +61,10 @@ export default {
         }
     },
     methods: {
+        update(e) {
+            this.orders = e;
+
+        },
         checkoutFinished() {
             this.success = true
         },
