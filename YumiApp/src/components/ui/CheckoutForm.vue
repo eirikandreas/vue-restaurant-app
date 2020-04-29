@@ -79,7 +79,8 @@ export default {
         phoneNumber: '',
         comment: '',
         dateAdded: new Date().toDateString(),
-      }
+      },
+      sum: 0,
     }
   },
   methods: {
@@ -94,33 +95,29 @@ export default {
         this.$refs.form.validate()
       }
     },
-
-    postCheckoutForm(){ 
-    
-      console.log(this.checkoutForm)
-      let webAPIUrl = "https://localhost:5001/user/orders";
-      this.$http.post(webAPIUrl, this.checkoutForm)
-        .then(
-          console.log("POST request firing "),
-          localStorage.removeItem("orders")
-        )
-        .catch(err =>
-        console.log(err))
-
-        },
-        success() {
-          this.$emit('checkout-finished');
-
+    calcCart() {
+      let orders = JSON.parse(localStorage.getItem('orders'));
+      this.sum = 0
+      orders.forEach(item => {
+      this.sum += item.price
+      }) 
     },
-
+    success() {
+          this.$emit('checkout-finished');
+    },
     postCartItems(){
+      this.calcCart()
+
+      let totalPrice = this.sum.toString()
+
       let newOrder = {
         name: this.checkoutForm.name,
         email: this.checkoutForm.email,
-        phoneNumbera: this.checkoutForm.phoneNumber,
+        phoneNumbers: this.checkoutForm.phoneNumber,
         address: this.checkoutForm.address,
         comment: this.checkoutForm.comment,
         dateAdded: this.checkoutForm.dateAdded,
+        totalPrice: totalPrice,
         items: localStorage.getItem("orders")
       }
       
@@ -128,8 +125,7 @@ export default {
       this.$http.post(webAPIUrl, newOrder)
         .then(
           this.success(),
-          console.log("POST request firing "),
-          localStorage.removeItem("orders")
+          localStorage.clear("orders")
         );
     },
   }

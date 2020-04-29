@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <template v-if="orders.length == 0">
+        <template v-if="!orders">
             <NothingToDisplay
             text="Your shoppingcart is empty"/>
         </template>

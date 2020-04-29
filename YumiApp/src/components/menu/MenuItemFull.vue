@@ -48,7 +48,7 @@
 
                         <v-card-title class="title font-weight-bold">Description:</v-card-title>
                         <v-card-text>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, recusandae iste! Natus explicabo odit, ullam officiis libero amet nulla, ex illo facilis impedit mollitia reiciendis voluptatum ea perspiciatis sint? Quisquam recusandae esse iste nihil numquam quibusdam accusantium est accusamus repellat consectetur, nisi amet consequuntur dolorem, quas dolor iusto nesciunt quos.
+                       {{menuItem.description}}
                         </v-card-text>
 
                     </v-col>
@@ -60,6 +60,7 @@
                         :title="menuItem.title"
                         :ingredients="menuItem.ingredients"
                         :allergens="menuItem.allergens"
+                        :price="menuItem.price"
                         />
 
                     </v-col>

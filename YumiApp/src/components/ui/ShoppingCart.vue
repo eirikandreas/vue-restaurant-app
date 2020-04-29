@@ -70,7 +70,9 @@ export default {
   
         },
         limitCartItems(){
+          if(this.orders > 3) {
           this.limitedOrder = this.orders.slice(0, 3)
+          }
         },
     },
     mounted() {

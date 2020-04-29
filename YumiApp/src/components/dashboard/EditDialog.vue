@@ -150,11 +150,7 @@ export default {
                 data.append( "file", this.file.files[0] );
                 if(this.file.value == "") { 
                     this.editedItem.imgSrc = "default.jpg";
-                } else if(this.file.value == this.editedItem.imgSrc) {
-                    this.editedItem.imgSrc = this.file.value ;
-                }
-                
-                else {
+                } else {
                     this.$http({
                         method: 'post',
                         url: "https://localhost:5001/admin/savepicture",
