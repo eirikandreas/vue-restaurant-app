@@ -2,23 +2,27 @@
   <v-app>
 
     <TheHeader 
-    :title="pageContent.pageTitle"
-    :cartItems="header.cartItems"
-    :isLoggedIn="header.isLoggedIn"
-    :isAdmin="header.isAdmin"
-    :bgColor="header.bgColor"
+    :appName="pageTitle"
+    :links="links"
     />
-      <v-content>
-        <router-view/>
-      </v-content>
-    <TheFooter/>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+
+    <TheFooter
+    :appName="pageTitle"
+    :footerItems="footerItems"
+    :links="links"
+    :someLinks="someLinks"
+    />
 
   </v-app>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader';
-import TheFooter from './components/layout/TheFooter';
+import TheHeader from '@/components/layout/TheHeader';
+import TheFooter from '@/components/layout/TheFooter';
 
 export default {
   name: 'App',
@@ -27,27 +31,24 @@ export default {
     TheFooter
   },
   data: () => ({
-    isAdmin: true,
-    header: { title: "YUMI", bgColor: "black", cartItems: 3, isLoggedIn: false, isAdmin: false},
-    pageContent: {},
+    pageTitle: "YUMI",
+    links: [
+      { title: 'Home', to: '/' },
+      { title: 'Menu', to: '/menu'},
+      { title: 'About', to: '/about' },
+      { title: 'Contact', to: '/contact' },
+    ],
+    someLinks: [
+      { icon: "mdi-facebook", link:"#" },
+      { icon: "mdi-twitter", link:"#" },
+      { icon: "mdi-instagram", link:"#" },
+    ],
+    footerItems: [
+      { title: "About", text: "Yumi is a big, locally owned sushi resturant in Oslo. Since 1999, Yumi has been producing high quality Asian dishes. Visit us for a great taste experience."},
+      { title: "Get in touch", text: "Reach us by mail or phone. +47 22453590 yumioslo@sushi.com"},
+      { title: "Location", text: "Cort Adelers gate 2, 0254 Oslo"},
+
+    ]
   }),
-    methods: {
-        getPageContent(){
-          let webAPIUrl = "https://localhost:5001/pagecontent/1";
-          this.$http.get( webAPIUrl )
-            .then( result => {
-              this.pageContent = result.data;
-              console.log(this.pageContent)
-            })
-        }
-    },
-    created(){
-      this.getPageContent()
-    }
 };
 </script>
-<style>
-.mt-n-header {
-  margin-top: -64px;
-}
-</style>

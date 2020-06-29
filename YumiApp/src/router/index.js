@@ -1,18 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Dashboard from '../pages/admin/DashboardPage/Dashboard.vue'
-import Orders from '../pages/admin/DashboardPage/Orders.vue'
-import EditMenu from '../pages/admin/DashboardPage/EditMenu.vue'
-import EditUsers from '../pages/admin/DashboardPage/EditUsers.vue'
-import PageSettings from '../pages/admin/DashboardPage/PageSettings.vue'
-import SettingsGeneral from '../pages/admin/DashboardPage/SettingsGeneral.vue'
-import SettingsContent from '../pages/admin/DashboardPage/SettingsContent.vue'
-import SettingsDisplay from '../pages/admin/DashboardPage/SettingsDisplay.vue'
-import MenuCategoryList from '../pages/MenuPage/MenuCategoryList.vue'
-import MenuList from '../pages/MenuPage/MenuList.vue'
-import MenuSearchList from '../pages/MenuPage/MenuSearchList.vue'
-import NotFound from '../views/NotFound.vue'
+import HomePage from '../pages/HomePage/Index.vue'
+import DashboardInbox from '../pages/DashboardPage/DashboardInbox.vue'
+import DashboardOrdersTable from '../pages/DashboardPage/DashboardOrdersTable.vue'
+import DashboardMenuTable from '../pages/DashboardPage/DashboardMenuTable.vue'
+import DashboardPageSettings from '../pages/DashboardPage/DashboardPageSettings.vue'
+import PageNotFound from '../components/common/PageNotFound.vue'
+import DisplayCategories from '../pages/MenuPage/DisplayCategories'
+import DisplayAll from '../pages/MenuPage/DisplayAll'
+import DisplaySearch from '../pages/MenuPage/DisplaySearch'
 
 Vue.use(VueRouter)
 
@@ -20,111 +16,102 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: HomePage
   },
   {
     path: '/about',
     name: 'About',
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../pages/AboutPage/Index.vue')
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "about" */ '../pages/ContactPage/Index.vue')
   },
   {
     path: '/menu',
     name: 'Menu',
-    component: () => import(/* webpackChunkName: "menu" */ '../views/Menu.vue'),
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "menu" */ '../pages/MenuPage/Index.vue'),
     children: [
       {
-        path: '',
-        component: MenuList
+        path: '/menu',
+        component: DisplayAll
       },
       {
         path: ':category',
-        component: MenuCategoryList
+        component: DisplayCategories
       },
       {
         path: ':category/:id',
-        name: 'MenuItemDetails',
-        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/MenuItemDetails.vue')
+        name: 'MenuItemFull',
+        component: () => import(/* webpackChunkName: "menuitemdetails" */ '../components/menu/MenuItemFull.vue')
       },
       {
-        path: 'search/:title', 
-        component: MenuSearchList, 
-
-      },
+        path: '/search', 
+        name: 'search', 
+        component: DisplaySearch, 
+        props: (route) => ({ query: route.query.q })
+      }
     ]
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue')
   },
   {
     path: '/admin',
     name: 'Admin',
-    component: () => import(/* webpackChunkName: "admin" */ '../pages/admin/Index.vue'),
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "admin" */ '../pages/DashboardPage/Index.vue'),
     children: [
       {
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
-        path: 'dashboard',
-        component: Dashboard
+        path: '/admin',
+        component: DashboardOrdersTable
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'orders',
-        component: Orders
+        component: DashboardOrdersTable
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'editmenu',
-        component: EditMenu
+        component: DashboardMenuTable
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'editusers',
-        component: EditUsers
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
         path: 'pagesettings',
-        component: PageSettings
+        component: DashboardPageSettings
       },
       {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'settingsgeneral',
-        component: SettingsGeneral
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'settingscontent',
-        component: SettingsContent
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'settingsdisplay',
-        component: SettingsDisplay
+        path: 'inbox',
+        component: DashboardInbox
       },
     ]
   },
   {
+    path: '/checkout',
+    name: 'Checkout',
+    // route level code-splitting
+    component: () => import(/* webpackChunkName: "checkout" */ '../pages/CheckoutPage/Index.vue')
+  },
+  {
     path: '*',
-    component: NotFound
+    component: PageNotFound
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } if (to.hash) {
+      return {
+        selector: to.hash
+      } }  else {
+      return { x: 0, y: 0 }
+    }
+  }
+  
 })
 
 export default router
