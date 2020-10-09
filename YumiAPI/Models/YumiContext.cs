@@ -12,6 +12,10 @@ namespace YumiAPI.Models{
 
         public DbSet<Order> Order { get; set; }
 
+        public DbSet<PageSettings> PageSettings { get; set; }
+
+        public DbSet<ContactMessage> ContactMessage { get; set; }
+
     }
 
 }

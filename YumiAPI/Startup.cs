@@ -51,6 +51,7 @@ namespace YumiAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
             app.UseCors("AllowAll");
 
